@@ -1,7 +1,7 @@
 # Welcome to the World of Code Adventures!
 
-<div id="header">
-  <img src="https://comicmess.com/at-fix.gif" width="700"/>
+<div id="header"; align='center'>
+  <img src="https://comicmess.com/at-fix.gif" width="500"/>
 </div>
 
 Unleash Your Inner Programmer and Explore the Depths of Computer Systems Engineering
