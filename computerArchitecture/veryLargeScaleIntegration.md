@@ -804,13 +804,13 @@ This is an image of Microcontroller-based system on chip
 ![SOC](https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/ARMSoCBlockDiagram.svg/800px-ARMSoCBlockDiagram.svg.png)
 
 ## Definition
-A System on Chip (SoC) referes to an integrated circuits (IC) that encapsulates most or all components of a computer or electronic system onto a single chip. These components can include a processor, memory, input/output ports, communication interfaces, and various peripherals.
+A System on Chip (SoC) refers to an integrated circuit (IC) that encapsulates most or all components of a computer or electronic system onto a single chip. These components can include a processor, memory, input/output ports, communication interfaces, and various peripherals.
 
-The design philosopy behind SoC is to enhance efficiency, reduce power consumption, and optimize performance by consolidating multiple functionalities into a unified chip.
+The design philosophy behind SoC is to enhance efficiency, reduce power consumption, and optimize performance by consolidating multiple functionalities into a unified chip.
 
-The goal of an SoC it to consolidate the essential elements of a system into a compact and efficient package.
+The goal of an SoC is to consolidate the essential elements of a system into a compact and efficient package.
 
-SoC finds extensive applications in a wide array of electronics devices, ranging from smartphones and tablets to embedded systems and internet of things (IOT) devices. The integration of diverse componetns onto a signle chip not only save physical space but also contribute to enhanced reliability and improve performance.
+SoC finds extensive applications in a wide array of electronics devices, ranging from smartphones and tablets to embedded systems and internet of things (IOT) devices. The integration of diverse components onto a single chip not only save physical space but also contribute to enhanced reliability and improve performance.
 
 ## What made Desiners Think about SoC?
 The inception of System on Chip (SoC) design was primarly driven by the need for increased integration, improved performance, and enhanced power efficieny in electronic systems.
@@ -857,7 +857,7 @@ The symphony of cores within a multi-core system operates in tandem, sharing acc
 As we delve deeper into the technical intricacies, imagine the multi-core system as a dynamic ensemble, each core playing a crucial role in orchestrating a seamless and efficient performance. Get ready to unravel the layers of this architectural marvel, where the union of multiple cores transforms the digital landscape into a realm of unparalleled computational prowess. 🌐💽🔍
 
 ## Definition
-A multi-core system is a computing architecture characterized by the integration of multiple independent processing units, known as cores, onto a single semiconductor chip. Each core operates as a discrete central processing unit (CPU) with its dedicated set of execution resources, including arithmetic logic units (ALUs), registers, and cache memory. **he fundamental distinction** lies in the simultaneous execution of tasks, as multiple cores can operate in parallel, enhancing computational throughput.
+A multi-core system is a computing architecture characterized by the integration of multiple independent processing units, known as cores, onto a single semiconductor chip. Each core operates as a discrete central processing unit (CPU) with its dedicated set of execution resources, including arithmetic logic units (ALUs), registers, and cache memory. **The fundamental distinction** lies in the simultaneous execution of tasks, as multiple cores can operate in parallel, enhancing computational throughput.
 
 The architecture facilitates concurrent processing, allowing the system to execute multiple instructions independently and simultaneously. Cores within a multi-core system share access to the central system's memory and peripherals, collaborating to enhance overall performance. The objective is to optimize computational efficiency by dividing tasks among the individual cores, leading to improved multitasking capabilities, reduced latency, and increased throughput.
 
