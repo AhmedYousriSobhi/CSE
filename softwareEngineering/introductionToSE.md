@@ -132,7 +132,7 @@ Software developers should consider all of these characteristics when designing 
 
 ## Characteristics of Hardware
 ### The Bathtub curve
-The Hardware follows the bahhtub curve. The bathtub curve is a particular shape of a failure rate graph. This graph is used in reliability engineering and deterioration modeling .The bathtub curve has 3 regions:
+The Hardware follows the bathhub curve. The bathtub curve is a particular shape of a failure rate graph. This graph is used in reliability engineering and deterioration modeling .The bathtub curve has 3 regions:
 - The first region has a decreasing failure rate due to early failures.
 - The middle region is a constant failure rate due to random failures.
 - The last region is an increasing failure rate due to wear-out failures.
