@@ -9,6 +9,7 @@
   - [Key Difference](#key-difference)
 - [Product Line Engineering (PLE)](#product-line-engineering-ple)
 - [Models](#models)
+  - [Why do we need Modeling?](#why-do-we-need-modeling)
   - [Types](#types)
     - [Single-Version Models](#single-version-models)
       - [Bing-Bang Model](#bing-bang-model)
@@ -67,7 +68,12 @@ So PLE makes creating products easier & more cost effictive.
 In software engineering, a Model refers to an abstraction or representation of a system, process, or a concept. It is a simplified and structured way of expressing comples ideas, relationships or designs within the software development context.
 
 Models can take various forms, including diagrams, charts, mathematical representations, and textual descriptions.
-
+## Why do we need Modeling?
+1. Cheaper than building real thing
+2. To gain understanding before building
+3. To provide common vision between user & developer
+4. To manage, scope & document complexity
+5. To provide clear abstraction of concepts
 ## Types
 ### Single-Version Models
 #### Bing-Bang Model
