@@ -1120,14 +1120,14 @@ A two-qubit QNN takes the input PQC $|00\rangle$. Apply rotation gates $R_y(\the
 
 **1. Calculating final state from the Circuit:**
 
-$\because I=diag(1,1), Y=\begin{pmatrix}0&-i \\\\ i&0\end{pmatrix}$</br>
+$\because I=diag(1,1), Y=\begin{pmatrix}0&-i \\ i&0\end{pmatrix}$</br>
 
-$\because R_y(\theta)=e^{-i\frac{\theta}{2}y}=\cos(\frac{\theta}{2})I-i\sin(\frac{\theta}{w})Y=diag(\cos(\frac{\theta}{2}),\cos(\frac{\theta}{2}))+\begin{pmatrix}0&-\sin(\frac{\theta}{2})\\\\\sin(\frac{\theta}{2}))&0\end{pmatrix}=\begin{pmatrix}\cos\frac{\theta}{2}&-\sin\frac{\theta}{2}\\\\\sin\frac{\theta}{2}&\cos\frac{\theta}{2}\end{pmatrix}$</br>
+$\because R_y(\theta)=e^{-i\frac{\theta}{2}y}=\cos(\frac{\theta}{2})I-i\sin(\frac{\theta}{w})Y=diag(\cos(\frac{\theta}{2}),\cos(\frac{\theta}{2}))+\begin{pmatrix}0&-\sin(\frac{\theta}{2})\\\sin(\frac{\theta}{2}))&0\end{pmatrix}=\begin{pmatrix}\cos\frac{\theta}{2}&-\sin\frac{\theta}{2}\\\sin\frac{\theta}{2}&\cos\frac{\theta}{2}\end{pmatrix}$</br>
 
 Applying to $|0\rangle$:</br>
 
-$R_y(\theta_1)|0\rangle=\begin{pmatrix}\cos\frac{\theta_1}{2}\\\\\sin\frac{\theta_1}{2}\end{pmatrix}=\cos\frac{\theta_1}{2}|0\rangle+\sin\frac{\theta_1}{2}|1\rangle$</br></br>
-$R_y(\theta_2)|0\rangle=\begin{pmatrix}\cos\frac{\theta_2}{2}\\\\\sin\frac{\theta_2}{2}\end{pmatrix}=\cos\frac{\theta_2}{2}|0\rangle+\sin\frac{\theta_2}{2}|1\rangle$</br>
+$R_y(\theta_1)|0\rangle=\begin{pmatrix}\cos\frac{\theta_1}{2}\\\sin\frac{\theta_1}{2}\end{pmatrix}=\cos\frac{\theta_1}{2}|0\rangle+\sin\frac{\theta_1}{2}|1\rangle$</br></br>
+$R_y(\theta_2)|0\rangle=\begin{pmatrix}\cos\frac{\theta_2}{2}\\\sin\frac{\theta_2}{2}\end{pmatrix}=\cos\frac{\theta_2}{2}|0\rangle+\sin\frac{\theta_2}{2}|1\rangle$</br>
 
 The combined state $|\psi_1\rangle$ is:</br>
 
@@ -1195,12 +1195,12 @@ $\|-i\rangle$| $\frac{1}{\sqrt{2}}(\|0\rangle-i\|1\rangle)$
 
 |Key|Value|Additional Note
 |-|-|-|
-$X$|$\begin{pmatrix}0&1\\\\1&0\end{pmatrix}$
-$Y$|$\begin{pmatrix}0&-i\\\\i&0\end{pmatrix}$
-$Z$|$\begin{pmatrix}1&0\\\\0&-1\end{pmatrix}$|$Z\equiv(H,X,H)$
-$S$|$\begin{pmatrix}1\quad0 \\\\ 0\quad e^{i\pi/2}\end{pmatrix}$|Phase Gate
-$T$|$\begin{pmatrix}1\quad0 \\\\ 0\quad e^{i\pi/4}\end{pmatrix}$|Phase Gate
-$H$|$\frac{1}{\sqrt{2}}\begin{pmatrix}1&1\\\\1&-1\end{pmatrix}$
+$X$|$\begin{pmatrix}0&1\\1&0\end{pmatrix}$
+$Y$|$\begin{pmatrix}0&-i\\ i&0\end{pmatrix}$
+$Z$|$\begin{pmatrix}1&0\\0&-1\end{pmatrix}$|$Z\equiv(H,X,H)$
+$S$|$\begin{pmatrix}1\quad0 \\ 0\quad e^{i\pi/2}\end{pmatrix}$|Phase Gate
+$T$|$\begin{pmatrix}1\quad0 \\ 0\quad e^{i\pi/4}\end{pmatrix}$|Phase Gate
+$H$|$\frac{1}{\sqrt{2}}\begin{pmatrix}1&1\\1&-1\end{pmatrix}$
 
 </td><td style="vertical-align: top;">
 
