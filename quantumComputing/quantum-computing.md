@@ -1201,7 +1201,7 @@ $\|-i\rangle$| $\frac{1}{\sqrt{2}}(\|0\rangle-i\|1\rangle)$
 | $Z$ | $\begin{pmatrix}1&0\cr 0&-1\end{pmatrix}$ | $Z \equiv (H, X, H)$ |
 | $S$ | $\begin{pmatrix}1&0\cr 0&e^{i\pi/2}\end{pmatrix}$ | Phase Gate |
 | $T$ | $\begin{pmatrix}1&0\cr 0&e^{i\pi/4}\end{pmatrix}$ | Phase Gate |
-| $H$ | $\frac{1}{\sqrt{2}}\begin{pmatrix}1&1\cr 1&-1\end{pmatrix}$ | |
+| $H$ | $\frac{1}{\sqrt{2}}$ | |
 
 </td><td style="vertical-align: top;">
 
