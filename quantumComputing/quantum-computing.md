@@ -1074,16 +1074,16 @@ The inner product between two states is written as: $\langle\phi|\psi\rangle$
 [TO DO] Continue understand the inner product meaning.
 
 ### Calculation
-![i1](../assets/inner-product-1.jpg)
+![i1](./assets/inner-product-1.jpg)
 
 An Example:
-![i1](../assets/inner-product-2.jpg)
+![i1](./assets/inner-product-2.jpg)
 
 ## Hadamard "H" Gate
-![31](../assets/hadamard-1.jpg)
+![31](./assets/hadamard-1.jpg)
 
 prove:
-![32](../assets/hadamard-2.jpg)
+![32](./assets/hadamard-2.jpg)
 
 ## Note: Hadamard Gate
 $H|u\rangle = \frac{1}{\sqrt{2}} \sum_{y=0}^{1} (-1)^{uy} |y\rangle$
@@ -1249,10 +1249,12 @@ Note: In quantum mechanics, we follow the math from right to left (order of appl
 
 **Tesnor Product**</br>
 To find the operator for a two-quibt system, we calculate the tensor product:</br>
-$Z\otimes I = \begin{pmatrix}1&0\\\\0&-1\end{pmatrix} \otimes \begin{pmatrix}1&0\\\\0&1\end{pmatrix}==\begin{pmatrix}1\begin{pmatrix}1&0\\\\0&1\end{pmatrix}&0\\\\0&-1\begin{pmatrix}1&0\\\\0&1\end{pmatrix}\end{pmatrix}=\begin{pmatrix}1&0&0&0\\\\0&1&0&0\\\\0&0&-1&0\\\\0&0&0&-1\end{pmatrix}=diag(1,1,-1,-1)$
+
+$Z\otimes I=\begin{pmatrix}1&0\\\\0&-1\end{pmatrix}\otimes \begin{pmatrix}1&0\\\\0&1\end{pmatrix}==\begin{pmatrix}1\begin{pmatrix}1&0\\\\0&1\end{pmatrix}&0\\\\0&-1\begin{pmatrix}1&0\\\\0&1\end{pmatrix}\end{pmatrix}=\begin{pmatrix}1&0&0&0\\\\0&1&0&0\\\\0&0&-1&0\\\\0&0&0&-1\end{pmatrix}=diag(1,1,-1,-1)$
 
 **Rotation State General rule**</br>
-$$R_G = e^{-i\frac{\theta}{2}G} = \cos \frac{\theta}{2}I - i \sin \frac{\theta}{2}G$$
+
+$$R_G=e^{-i\frac{\theta}{2}G}=\cos \frac{\theta}{2}I-i\sin\frac{\theta}{2}G$$
 
 To calculate: $e^{i\varphi Z\otimes I} = diag(e^{i\varphi}, e^{i\varphi}, e^{-i\varphi}, e^{-i\varphi})$
 1. Use tesnor product: $Z\otimes I$
