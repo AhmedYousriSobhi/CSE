@@ -31,13 +31,62 @@ MathJax = {
 
 ## Eigen decomposition and SVD
 [Fall 2018 F]</br>
-Q1. You are given a design matrix. Let's use PCA to reduce the dimension from 2 to 1.
+**Question:** You are given a design matrix. Let's use PCA to reduce the dimension from 2 to 1.
 
 $$X=\begin{pmatrix}6&-4\\\\-3&5\\\\-2&6\\\\7&-3\end{pmatrix}$$
 
 1. Compute the covariance matrix from the sample points (Warning observe that X is not centered.) Then compute the unit eigenvectors, and the corresponding eigenvalues, of the covariance matrix.
 2. Suppose we use PCA to project the sample points onto a one-dimensional space. What one-dimensional subspace are we projecting onto? for each of the four sample points in X (Not the centered version of X!), Write the coordinate that the point is projected to.
 3. Given a design matrix X that is taller than it is wide, prove that every right singular vector of X with singular value $\sigma$ is an eigenvector of the covariance matrix with eigenvalue $\sigma ^2$</br>
+
+**Solution:**</br>
+
+**Part 1 — Covariance Matrix**
+
+Compute the sample mean (data is NOT centered):
+
+$$\mu = \frac{1}{4}\sum x_i = [1.5,\ 1.5]^T$$
+
+Center the data: $\tilde{X} = X - \mathbf{1}\mu^T$
+
+$$\tilde{X} = \begin{bmatrix}4.5 & -4.5 \\ -3.5 & 5.5 \\ -5.5 & 3.5 \\ 4.5 & -4.5\end{bmatrix}$$
+
+Sample covariance:
+
+$$\Sigma = \frac{1}{n-1}\tilde{X}^T\tilde{X} = \begin{bmatrix}30.33 & -26.33 \\ -26.33 & 24.33\end{bmatrix}$$
+
+Eigenvalues from $\det(\Sigma - \lambda I) = 0$:
+
+$$\lambda_1 \approx 54.13,\quad \lambda_2 \approx 0.53$$
+
+Principal eigenvector (unit): $v_1 \approx [0.737,\ -0.676]^T$
+
+---
+
+**Part 2 — Projection**
+
+Project each original (un-centered) point $x$ onto $v_1$: coordinate $= x^T v_1$
+
+| Point | Projection $x^T v_1$ |
+|-------|----------------------|
+| [6, −3] | $6(0.737) + (-3)(-0.676) \approx 6.45$ |
+| [−2, 7] | $-2(0.737) + 7(-0.676) \approx -6.21$ |
+| [−4, 5] | $-4(0.737) + 5(-0.676) \approx -6.33$ |
+| [6, −3] | $\approx 6.45$ |
+
+---
+
+**Part 3 — Proof**
+
+Let $X = U\Sigma V^T$ be the SVD. The sample covariance matrix is:
+
+$$C = \frac{1}{n-1}X^TX = \frac{1}{n-1}(U\Sigma V^T)^T(U\Sigma V^T) = \frac{1}{n-1}V\Sigma^2 V^T$$
+
+since $U^TU = I$. Therefore:
+
+$$C \cdot v_i = \frac{1}{n-1}V\Sigma^2 V^T v_i = \frac{\sigma_i^2}{n-1} v_i$$
+
+Every right singular vector $v_i$ with singular value $\sigma_i$ is an eigenvector of $C$ with eigenvalue $\lambda_i = \sigma_i^2/(n-1)$. $\square$
 
 ---
 ---
