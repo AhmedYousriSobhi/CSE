@@ -31,7 +31,10 @@ MathJax = {
 
 ## Eigen decomposition and SVD
 [Fall 2018 F]</br>
-Q1. You are given a design matrix, $X=\begin{bmatrix}6&-4\\-3&5\\-2&6\\7&-3\end{bmatrix}$. Let's use PCA to reduce the dimension from 2 to 1.
+Q1. You are given a design matrix. Let's use PCA to reduce the dimension from 2 to 1.
+
+$$X=\begin{bmatrix}6&-4\\-3&5\\-2&6\\7&-3\end{bmatrix}$$
+
 1. Compute the covariance matrix from the sample points (Warning observe that X is not centered.) Then compute the unit eigenvectors, and the corresponding eigenvalues, of the covariance matrix.
 2. Suppose we use PCA to project the sample points onto a one-dimensional space. What one-dimensional subspace are we projecting onto? for each of the four sample points in X (Not the centered version of X!), Write the coordinate that the point is projected to.
 3. Given a design matrix X that is taller than it is wide, prove that every right singular vector of X with singular value $\sigma$ is an eigenvector of the covariance matrix with eigenvalue $\sigma ^2$</br>
