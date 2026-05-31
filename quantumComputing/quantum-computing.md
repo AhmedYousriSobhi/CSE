@@ -1195,13 +1195,13 @@ $\|-i\rangle$| $\frac{1}{\sqrt{2}}(\|0\rangle-i\|1\rangle)$
 </td><td style="vertical-align: top;">
 
 | Key | Value | Additional Note |
-|---|---|---|
-| $X$ | $\left(\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right)$ | |
-| $Y$ | $\left(\begin{smallmatrix}0&-i\\i&0\end{smallmatrix}\right)$ | |
-| $Z$ | $\left(\begin{smallmatrix}1&0\\0&-1\end{smallmatrix}\right)$ | $Z \equiv (H, X, H)$ |
-| $S$ | $\left(\begin{smallmatrix}1&0\\0&e^{i\pi/2}\end{smallmatrix}\right)$ | Phase Gate |
-| $T$ | $\left(\begin{smallmatrix}1&0\\0&e^{i\pi/4}\end{smallmatrix}\right)$ | Phase Gate |
-| $H$ | $\frac{1}{\sqrt{2}}\left(\begin{smallmatrix}1&1\\1&-1\end{smallmatrix}\right)$ | |
+| :---: | :--- | :--- |
+| $X$ | $\begin{pmatrix}0&1 \\\ 1&0 \end{pmatrix}$ | |
+| $Y$ | $\begin{pmatrix}0&-i \\\ i&0\end{pmatrix}$ | |
+| $Z$ | $\begin{pmatrix}1&0 \\\ 0&-1\end{pmatrix}$ | $Z \equiv (H, X, H)$ |
+| $S$ | $\begin{pmatrix}1&0 \\\ 0&e^{i\pi/2}\end{pmatrix}$ | Phase Gate |
+| $T$ | $\begin{pmatrix}1&0 \\\ 0&e^{i\pi/4}\end{pmatrix}$ | Phase Gate |
+| $H$ | $\frac{1}{\sqrt{2}} \begin{pmatrix}1&1 \\\ 1&-1\end{pmatrix}$ | |
 
 </td><td style="vertical-align: top;">
 
