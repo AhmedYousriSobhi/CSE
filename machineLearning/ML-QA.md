@@ -147,6 +147,7 @@ Provide a clear specification of teh number of nodes in each layer, along with t
 
 [Fall 2020 M]</br>
 **Question-7:** In the perceptron algorithm, what is the reason to use the learning rate 𝜌 :
+
 $$\underline{W}(t+1)=\underline{W}(t)-\rho_t\sum_{\underline{x}\in Y} \delta_x \underline{x}$$
 
 **Solution:**</br>
