@@ -206,7 +206,8 @@ Provide a clear specification of teh number of nodes in each layer, along with t
 $$W_(t+1)=W_t-\rho_t\sum_{x\in Y} \delta_x x$$
 
 **Solution:**</br>
-!!!!
+
+The learning rate $\rho$ controls the **step size** of each weight update. Without it, a single misclassified point can overcorrect — swinging the boundary too far and causing oscillation or divergence. $\rho$ dampens corrections, enabling smoother convergence and stability when the same point is repeatedly misclassified.
 
 ---
 
@@ -404,10 +405,31 @@ Output is **0.5**, regardless of input. This illustrates the symmetry-breaking f
 
 **Question-9:** What would be the output of a neural network with a 2‐2‐1 structure, where all activation functions are tanh and all weights and biases are initialized to 0.1, when a single input vector [0.5, ‐0.5] is forwarded through the network? Provide the calculations for each layer.</br>
 
+**Solution:**</br>
+
+2-2-1 NN, tanh, all weights and biases = 0.1. Input $[0.5, -0.5]$.
+
+**Hidden Layer:**
+
+$$z_{h1} = z_{h2} = 0.1(0.5) + 0.1(-0.5) + 0.1 = 0 + 0.1 = 0.1$$
+$$h_1 = h_2 = \tanh(0.1) \approx 0.0997$$
+
+**Output Layer:**
+
+$$z_{out} = 0.1(0.0997) + 0.1(0.0997) + 0.1 = 0.01994 + 0.1 = 0.11994$$
+$$\text{output} = \tanh(0.11994) \approx \mathbf{0.1194}$$
+
+
 ---
 
 [Fall 2023 F]</br>
 **Question-10:** Let p be the probability of keeping neurons in a dropout layer. We have seen that in forward passes, we often scale activations by dividing them by p during training time. You accidentally train a model with dropout layers without dividing the activations by p. How would you resolve this issue at test time? Justify your answer.</br>
+
+**Solution:**</br>
+
+Trained with dropout but forgot to divide by $p$. Fix at test time?
+
+**Answer:** Without dividing by $p$ during training, the network learned with activations scaled by $p$ relative to inference. **Fix at test time:** multiply all activations (or weights) by $p$ before inference. This compensates for the missing scaling factor and restores the correct expected activation magnitude.
 
 ---
 
@@ -420,6 +442,18 @@ Output is **0.5**, regardless of input. This illustrates the symmetry-breaking f
 2. Draw a neural net with no hidden layer which is equivalent to the given neural net, and write weights w˜ of this new neural net in terms of $c$ and $w$.
 3. Is it true that any multi‐layered neural net with linear activation functions at hidden layers can be represented as a neural net without any hidden layer? Briefly explain your answer
 
+**Solution:**</br>
+
+**Part 1:**
+
+$$P(y=1|x,w) = \sigma\!\left(w_7 \cdot c(w_3x_1+w_5x_2+w_1) + w_8 \cdot c(w_4x_1+w_6x_2+w_2) + w_9\right)$$
+
+This is a sigmoid of a linear function of $x$ → **linear decision boundary**.
+
+**Part 2:** Since the hidden layer is linear, it can be absorbed into the output weights. The equivalent no-hidden-layer network has weights $\tilde{w}_i = c \sum_j w_{j,\text{out}} \cdot w_{ij,\text{hidden}}$.
+
+**Part 3:** **Yes.** Any composition of linear layers is itself a single linear layer. Depth without non-linearity provides no additional representational power.
+
 ---
 
 [Fall 2023 F]</br>
@@ -428,11 +462,6 @@ Output is **0.5**, regardless of input. This illustrates the symmetry-breaking f
 2. What does the gap between the two curves represent?
 
 ![image](./assets/nn-q12.png)
-
----
-
-[Spring 2025 F]</br>
-Q17. What would be the output of a neural network with a 2‐2‐1 structure, where all activation functions are tanh and all weights and biases are initialized to 0.1, when a single input vector [0.5, ‐0.5] is forwarded through the network? Provide the calculations for each layer.
 
 ---
 ---
@@ -458,8 +487,18 @@ The output node has a linear activation function, i.e., $f(n)=\alpha n$, where $
 
 ---
 
+**Question-3:** Derive the backpropagation graph: $z=(x-y) / sigmoid(x)$, where x=a*b and y=b+c</br>
+
+**Solution:**</br>
+
+$$\frac{\partial z}{\partial x} = \frac{1}{\sigma} - \frac{(x-y)(1-\sigma)}{\sigma} \quad \text{(x appears in both numerator and } \sigma\text{)}$$
+$$\frac{\partial z}{\partial y} = -\frac{1}{\sigma}$$
+$$\frac{\partial z}{\partial a} = \frac{\partial z}{\partial x} \cdot b, \quad \frac{\partial z}{\partial b} = \frac{\partial z}{\partial x} \cdot a + \frac{\partial z}{\partial y} \cdot 1, \quad \frac{\partial z}{\partial c} = \frac{\partial z}{\partial y} = -\frac{1}{\sigma}$$
+
+---
+
 [Fall 2018 F]</br>
-**Question-3:** You want to train a neural network to drive a car. Your training data consists of grayscale 64 × 64 pixel images. The training labels include the human driver’s steering wheel angle in degrees and the human driver’s speed in miles per hour. Your neural network consists of an input layer with 64 × 64 = 4, 096 units, a hidden layer with 2,048 units, and an output layer with 2 units (one for steering angle, one for speed). You use the ReLU activation function for the hidden units and no activation function for the outputs (or inputs).</br>
+**Question-4:** You want to train a neural network to drive a car. Your training data consists of grayscale 64 × 64 pixel images. The training labels include the human driver’s steering wheel angle in degrees and the human driver’s speed in miles per hour. Your neural network consists of an input layer with 64 × 64 = 4, 096 units, a hidden layer with 2,048 units, and an output layer with 2 units (one for steering angle, one for speed). You use the ReLU activation function for the hidden units and no activation function for the outputs (or inputs).</br>
 1. Calculate the number of parameters (weights) in this network. You can leave your answer as an expression. Be sure to account for the bias terms.
 2. You train your network with the cost function $J=\frac{1}{2}|y-z|^2$. Use the following notation.
   - $x$ is a training image (input) vector with a 1 component appended to the end, $y$ is a training label (input) vector, and $z$ is the output vector. All vectors are column vectors.
@@ -477,20 +516,11 @@ Derive $\partial J/\partial W_{ij}$
 ---
 
 [Summer 2022 M, Fall 2023 M]</br>
-**Question-4:**  Derive the backpropagation for the computational graph shown below:
+**Question-5:**  Derive the backpropagation for the computational graph shown below:
 
 ![image](./assets/backprop-q4.png)
 
 **Solution:**</br>
-
----
-
-[Spring 2025 F]</br>
-Q4. Derive the backpropagation for the computational graph: z = (x ‐ y) / sigmoid(x), where x = a*b and y = b+c.
-
----
-
-Q7. Derive the backpropagation graph: $z=(x-y) / sigmoid(x)$, where x=a*b and y=b+c</br>
 
 ---
 ---
