@@ -50,7 +50,10 @@ Q1. You are given a design matrix, $X=\begin{bmatrix}6&-4\\-3&5\\-2&6\\7&-3\end{
 
 [Fall 2018 F]</br>
 **Question-2:** Consider the following classification problem. There are two real-valued features $x_1$ and $x_2$, and a binary class label.</br>
-The class label is determined by $y = \begin{cases} 1 & \text{if } x_2 \geq |x_1| \\ 0 & \text{otherwise} \end{cases}$
+The class label is determined by:
+ 
+$$y = \begin{cases} 1 & \text{if } x_2 \geq |x_1| \\ 0 & \text{otherwise} \end{cases}$$
+
 1. Can this function be perfectly represented by a feedforward neural network without a hidden layer? Why or why not?
 2. Consider a simpler problem for a moment, the classification problem $y = \begin{cases} 1 & \text{if } x_2 \geq x_1 \\ 0 & \text{otherwise} \end{cases}$</br>
     Design a single neuron that represents this function. Pick the weights by hand. Use the hard threshold function applied to a linear combination of the x inputs.
@@ -148,7 +151,7 @@ Provide a clear specification of teh number of nodes in each layer, along with t
 [Fall 2020 M]</br>
 **Question-7:** In the perceptron algorithm, what is the reason to use the learning rate 𝜌 :
 
-$$\underline{W}(t+1)=\underline{W}(t)-\rho_t\sum_{\underline{x}\in Y} \delta_x \underline{x}$$
+$$W_(t+1)=W_t-\rho_t\sum_{x\in Y} \delta_x x$$
 
 **Solution:**</br>
 !!!!
@@ -240,7 +243,9 @@ A negative consequence of ReLU's non-negative outputs is that it can lead to dea
 
 [Spring 2022 M]</br>
 Q3. Recall the logistic activation function σ and the tanh activation function:
+
 $$\sigma (z)=\frac{1}{1+\exp^{-z}}$$
+
 $$tanh(z)=\frac{\exp^z - \exp^{-z}}{\exp^z + \exp^{-z}}$$
 
 Both activation functions have a sigmoidal shape.</br>
@@ -492,7 +497,9 @@ L4 penalizes large weights more aggressively (cubic decay rate vs linear in L2).
 
 [Fall 2023 M]</br>
 **Question-5:** Note that the update rule for momentum based gradient descent is given by
+
 $$\delta w_t=\alpha \Delta w_{t-1} - \eta \nabla w_t$$
+
 $$w_{t+1}=w_t+\Delta w_t$$
 
 Let $\eta = 1$ and $\alpha = 0.9$ and $\nabla w_1$ be the derivative computed at the first time step. If you run momentum based gradient descent for k iterations, what fraction of $\nabla w_1$ will be part of $\Delta w_k$ ?</br>
@@ -896,6 +903,7 @@ True translation invariance is only achieved if this convolutional layer is imme
 
 **More Illustration (Just for knowledge):**</br>
 Invariant means that the output does not change when the input undergoes a particular transformation.
+
 $$f(T(x))=f(x)$$
 
 Example for Translation invariance:</br>
@@ -1019,39 +1027,49 @@ The optimal lies at the **bias-variance tradeoff** sweet spot.
 
 ---
 
-[Fall 2020 F]</br>
-**Question-8:** For the VGGNET-19 structure given below, assume that the filter size is 3X3 in the convolutional layers with a stride of 1. Discuss and calculate the input and output size of each stage as well as the number of parameters. Asume that the number of nodes in the FC layer is 4096.</br>
-![image](./assets/cnn-q8.png)
-
-**Solution:**</br>
-
----
-
-[Spring 2022 F]</br>
-Q10. If an input data block in a convolutional network has dimension $𝐶\times𝐻\times 𝑊= 96 \times128\times 128$ ,(96 channels, spatial dim 128 128) and we apply a convolutional filter to it of dimensions $D\times C\times H_F\times W_F=128 \times 96 \times 7 \times 7$, (i.e. a block of D=128 filters) with stride 2 and pad 3, what is the dimension of the output data block?
-
----
-
-[Spring 2022 F, summer 2022 F]</br>
-Q11. A convolutional neural network has 4 consecutive 3x3 convolutional layers with stride 1 and no pooling. How large is the support of (the set of image pixels which activate) a neuron in the 4th non‐image layer of this network?</br>
-
----
-
 [Summer 2022 F]</br>
-Q12. Consider a convolution layer. The input consists of 6 feature maps of size 20 x 20. The output consists of 8 feature maps, and the filters are of size 5 x 5. The convolution is done with a stride of 2 and zero padding, so the output feature maps are of size 10 x 10.
-
----
-
-[Summer 2022 F]</br>
-Q13. Suppose you have a convolutional network with the following architecture:
+**Question-8** Suppose you have a convolutional network with the following architecture:
 - The input is an RGB image of size 256 x 256.
 - The first layer is a convolution layer with 32 feature maps and filters of size 3 x 3. It uses a stride of 1, so it has the same width and height as the original image.
 - The next layer is a pooling layer with a stride of 2 (so it reduces the size of each dimension by a factor of 2) and pooling groups of size 3 x 3.</br>
 Determine the size of the receptive field for a single unit in the pooling layer. (i.e., determine the size of the region of the input image which influences the activation of that unit.)
 
+**Solution:**</br>
+
+RGB 256×256 → Conv 3×3, stride=1 → Pool 3×3, stride=2.
+
+A pool unit looks at a 3×3 region of conv output. Each conv pixel sees 3×3 of the input. Total input extent:
+
+$$RF = 3 \times 1 + (3-1) = 5 \quad \Rightarrow \quad \mathbf{5\times5} \text{ receptive field}$$
+
 ---
 
-Q14. Consider a convolutional neural network with one convolutional layer. It will be invariant to which geometric transformations (translation, rotation, scale)</br>
+[Spring 2022 F]</br>
+**Question-9:** If an input data block in a convolutional network has dimension $𝐶\times𝐻\times 𝑊= 96 \times128\times 128$ ,(96 channels, spatial dim 128 128) and we apply a convolutional filter to it of dimensions $D\times C\times H_F\times W_F=128 \times 96 \times 7 \times 7$, (i.e. a block of D=128 filters) with stride 2 and pad 3, what is the dimension of the output data block?</br>
+
+**Solution:**</br>
+
+Input $96\times128\times128$, filter $128\times96\times7\times7$, stride=2, pad=3:
+
+$$H_{out} = \left\lfloor\frac{128 + 2(3) - 7}{2}\right\rfloor + 1 = 64, \quad W_{out} = 64$$
+
+**Output: $128 \times 64 \times 64$**
+
+---
+
+[Spring 2022 F, summer 2022 F]</br>
+**Question-10:** A convolutional neural network has 4 consecutive 3x3 convolutional layers with stride 1 and no pooling. How large is the support of (the set of image pixels which activate) a neuron in the 4th non‐image layer of this network?</br>
+
+**Solution:**</br>
+
+4 consecutive 3×3 conv layers, stride=1, no pooling. Receptive field after layer $n$: $RF = n(k-1) + 1 = 2n+1$. At $n=4$:
+
+$$RF = 4(3-1)+1 = \mathbf{9\times9}$$
+
+---
+
+[Summer 2022 F]</br>
+Q12. Consider a convolution layer. The input consists of 6 feature maps of size 20 x 20. The output consists of 8 feature maps, and the filters are of size 5 x 5. The convolution is done with a stride of 2 and zero padding, so the output feature maps are of size 10 x 10.
 
 ---
 ---
@@ -1107,7 +1125,34 @@ $120 \times 84 + 84 = 10{,}080 + 84 = \mathbf{10{,}164}$
 ---
 
 [Spring 2022 F]</br>
-Q1. Compare GoogLeNet and Residual networks (ResNets). What are the main architectural features of each, and how did they lead to improvements over previous design?
+**Question0-3:** Compare GoogLeNet and Residual networks (ResNets). What are the main architectural features of each, and how did they lead to improvements over previous design?</br>
+**Solution:**</br>
+
+| Aspect | GoogLeNet (Inception) | ResNet |
+|--------|----------------------|--------|
+| Key innovation | Inception modules — parallel 1×1, 3×3, 5×5 filters within one block | Residual (skip) connections: output = $F(x) + x$ |
+| Depth | 22 layers (auxiliary classifiers to fight vanishing gradients) | 50/101/152+ layers |
+| Parameter efficiency | 1×1 convolutions reduce dimensions before expensive filters (~5M params) | Bottleneck blocks (1×1, 3×3, 1×1) |
+| Vanishing gradient fix | Auxiliary classifiers inject gradient mid-network | Skip connections provide direct gradient highway |
+| Improvement over VGG | Much fewer params with comparable accuracy | Enables training of arbitrarily deep nets (solved degradation problem) |
+
+---
+
+[Fall 2020 F]</br>
+**Question-8:** For the VGGNET-19 structure given below, assume that the filter size is 3X3 in the convolutional layers with a stride of 1. Discuss and calculate the input and output size of each stage as well as the number of parameters. Asume that the number of nodes in the FC layer is 4096.</br>
+![image](./assets/cnn-q8.png)
+
+**Solution:**</br>
+
+Stage|	Layer Block|	Input Spatial Volume|	Output Spatial Volume|	Weight & Bias Parameters
+|-|-|-|-|-|
+Stage 1|	Conv1 (x2) + Pool|	224×224×3|	112×112×64|	38,720
+Stage 2|	Conv2 (x2) + Pool|	112×112×64|	56×56×128|	221,440
+Stage 3|	Conv3 (x4) + Pool|	56×56×128|	28×28×256|	2,065,408
+Stage 4|	Conv4 (x4) + Pool|	28×28×256|	14×14×512|	8,259,584
+Stage 5|	Conv5 (x4) + Pool|	14×14×512|	7×7×512|	9,439,232
+Dense|	FC1 + FC2 + FC3|	Flattened: 25,088|	Vector Length: 1000|	123,642,856
+Total|	VGG-19 Network|	—|	—|	≈ 143.67 Million Parameters
 
 ---
 ---
@@ -1137,35 +1182,93 @@ $$= 2(2-5)(2) + 2(2-5)(2)(1) = -12 + (-12) = \mathbf{-24}$$
 ---
 
 [Spring 2025 F]</br>
-Q2. Write the equations for an LSTM cell, including all gates (input, forget, output, and cell state update). Explain the role of the forget gate in capturing long‐term dependencies</br>
+**Question-2:** Write the equations for an LSTM cell, including all gates (input, forget, output, and cell state update). Explain the role of the forget gate in capturing long‐term dependencies</br>
+**Solution:**</br>
+
+$$i_t = \sigma(W_i x_t + U_i h_{t-1} + b_i) \quad \text{(input gate)}$$
+$$f_t = \sigma(W_f x_t + U_f h_{t-1} + b_f) \quad \text{(forget gate)}$$
+$$o_t = \sigma(W_o x_t + U_o h_{t-1} + b_o) \quad \text{(output gate)}$$
+$$\tilde{c}_t = \tanh(W_c x_t + U_c h_{t-1} + b_c) \quad \text{(cell candidate)}$$
+$$c_t = f_t \odot c_{t-1} + i_t \odot \tilde{c}_t \quad \text{(cell state)}$$
+$$h_t = o_t \odot \tanh(c_t) \quad \text{(hidden state)}$$
+
+**Forget gate role:** $f_t \in (0,1)$ scales $c_{t-1}$ element-wise. When $f_t \approx 1$, the cell remembers past information (long-term dependency preserved). When $f_t \approx 0$, past is forgotten. The multiplicative $\odot$ interaction means $c_t$ can flow across many steps with minimal decay when $f_t \approx 1$ — the key to long-range dependencies vanilla RNNs cannot capture.
 
 ---
 
 [Spring 2025 F]</br>
-Q3. Suppose you are training an LSTM for a sequence classification task, and the model fails to learn dependencies longer than 5 time steps. Suggest two potential reasons and corresponding solutions.</br>
+**Question-3:** Suppose you are training an LSTM for a sequence classification task, and the model fails to learn dependencies longer than 5 time steps. Suggest two potential reasons and corresponding solutions.</br>
+**Solution:**</br>
+**LSTM fails to learn beyond 5 time steps. Two reasons:**
+
+1. **Forget gate saturates to 0:** If forget gate biases are initialized poorly, the gate closes early and zeros out long-range cell states. **Solution:** Initialize forget gate biases to 1 (Jozefowicz et al., 2015) so the gate starts open.
+
+2. **Insufficient model capacity:** Hidden state too small to encode all necessary history. **Solution:** Increase hidden state dimension, use stacked (multi-layer) LSTMs, or add attention mechanisms that directly access past states.
 
 ---
 
 [Spring 2025 F]</br>
-Q4. Compare and contrast LSTM and GRU in terms of architecture and computational efficiency. Why might one choose GRU over LSTM in a resource constrained environment?</br>
+**Question-4** Compare and contrast LSTM and GRU in terms of architecture and computational efficiency. Why might one choose GRU over LSTM in a resource constrained environment?</br>
+
+**Solution:**</br>
+
+| Aspect | LSTM | GRU |
+|--------|------|-----|
+| Gates | 3: input, forget, output | 2: reset, update |
+| States | Separate $c_t$ and $h_t$ | Single $h_t$ |
+| Parameters | 4 weight matrices | 3 weight matrices (~25% fewer) |
+| Training speed | Slower | Faster |
+| Performance | Marginally better on complex long-range tasks | Comparable on most tasks |
+
+**Choose GRU in resource-constrained settings** because it achieves similar performance with ~25% fewer parameters and faster computation.
 
 ---
 
 [Spring 2025 F]</br>
 Q5. Explain why vanilla RNNs suffer from the vanishing gradient problem during training. How does this affect long‐term dependencies?</br>
 
+BPTT requires:
+
+$$\frac{\partial h_t}{\partial h_0} = \prod_{t=1}^{T} \frac{\partial h_t}{\partial h_{t-1}} = \prod_{t=1}^{T} W_{hh}^T \cdot \text{diag}(\tanh'(\cdot))$$
+
+Each factor has eigenvalues scaled by $W_{hh}$'s spectrum and $\tanh' \in (0,1]$. If spectral radius $< 1$: gradients decay exponentially → zero (vanishing). If $> 1$: they explode.
+
+**Effect on long-term dependencies:** Gradients at step $T$ w.r.t. early inputs are negligibly small → the network cannot learn to use information from far back. Only recent steps (a few) are effectively trainabl
+
 ---
 
 [Spring 2025 F]</br>
-Q6. A student proposes using a ReLU activation instead of tanh in an RNN to avoid vanishing gradients. Discuss the potential benefits and drawbacks of this choice.</br>
+**Question-6** A student proposes using a ReLU activation instead of tanh in an RNN to avoid vanishing gradients. Discuss the potential benefits and drawbacks of this choice.</br>
+
+**Solution:**</br>
+
+**Benefits:** ReLU gradient = 1 for $x > 0$ (no shrinkage), potentially alleviating vanishing gradient. Computationally cheaper.
+
+**Drawbacks:**
+
+- **Exploding gradients dominant:** Without saturation, repeated $W_{hh}$ multiplications cause unbounded growth if spectral radius $> 1$.
+- **Hidden state explosion:** No upper bound on $h_t$ → numerical instability across time steps.
+- **No bounded memory:** tanh's $\pm 1$ bound provides stable hidden states; ReLU has no such bound.
+
+In practice: clip gradients and use LSTM/GRU instead.
 
 ---
 
 [Spring 2025 F]</br>
-Q7. Derive the backpropagation through time (BPTT) update rule from a simple RNN with a single hidden layer. Assume the RNN has input $x_t$, hidden state $h_t$, output $y_t$, and loss function $L_t=Loss(y_t, \hat{y}_t)$. The RNN equations are:
+**Question-7:** Derive the backpropagation through time (BPTT) update rule from a simple RNN with a single hidden layer. Assume the RNN has input $x_t$, hidden state $h_t$, output $y_t$, and loss function $L_t=Loss(y_t, \hat{y}_t)$. The RNN equations are:
 $$h_t=tanh(W_{xh}x_t+W_{hh}h_{t-1}+b_h), y_t=W_{hy}+b_y$$
 
 Show the gradient of the loss $L_t$ with respect to $W_{hh}$.</br>
+
+**Solution:**</br>
+
+**BPTT derivation for $\partial L_t / \partial W_{hh}$:**
+
+$$\frac{\partial L_t}{\partial W_{hh}} = \sum_{k=1}^{t} \frac{\partial L_t}{\partial h_t} \cdot \left(\prod_{j=k+1}^{t} \frac{\partial h_j}{\partial h_{j-1}}\right) \cdot \frac{\partial h_k}{\partial W_{hh}}$$
+
+where $\frac{\partial h_j}{\partial h_{j-1}} = W_{hh}^T \cdot \text{diag}(1 - h_j^2)$ and $\frac{\partial h_k}{\partial W_{hh}} = h_{k-1}^T$.
+
+The product term shows exponential decay/explosion with $t-k$, explaining vanishing/exploding gradients.
 
 ---
 
@@ -1220,23 +1323,8 @@ $$L(x,\hat{x})=\frac{1}{N}\sum_{i=1}^N ​∥x_i​−\hat{x_i}​∥^2$$
 
 ---
 
-[Spring 2025 F]</br>
-Q3. Define an undercomplete auto encoder and explain how it differs from other types (e.g., overcomplete autoencoders). Why is the undercomplete constraint useful for representation learning?</br>
-
----
-
-[Spring 2025 F]</br>
-Q4. Consider an undercomplete autoencoder with a single hidden layer of size 64, input dimension 128, and mean squared error (MSE) loss. The encoder is $z=\sigma(W_x+b)$, and the decoder is $\hat{x}=\sigma(W'z+b')$ , where 𝜎 is the sigmoid activation. Derive the gradient of the MSE loss with respect to 𝑊</br>
-
----
-
-[Spring 2025 F]</br>
-Q5. Explain how an undercomplete autoencoder can be used for anomaly detection. What assumptions does this approach make about the data?</br>
-
----
-
 [Fall 2018 F]</br>
-Q6. An autoencoder is a neural network designed to learn feature representations in an unsupervised manner. </br>
+**Question-3:** An autoencoder is a neural network designed to learn feature representations in an unsupervised manner. </br>
 Suppose the input is a set of P-dimensional unlabeled data $\{\mathbf{x}^{(i)}\}_{i=1}^{N}$. </br>
 Consider an autoencoder with $P$ units in both the input layer, $L_1$, and output layer, $L_3$, and $H$ hidden units in $L_2$. </br>
 We will use the following notation for this autoencoder: $W^e$ is a $P \times H$ encoder weight matrix, $W^d$ is an $H\times P$ decoder weight matrix, $\sigma$ is the activation for %L_2% and $L_3$ units, $S_j^{(i)}=\sum_{k=1}^{P} W_{kj}^{e} x_k^{(i)}, z_j^{(i)}=\sigma(S_j^{(i)}), t_j^{(i)}=\sum_{k=1}^{H} W_{kj}^{d} z_k^{(i)}, J(W^d, W^e)=\|X^{(i)-\hat{x}^{(i)}}\|_2^2=\sum_{k=1}^P(x_k^{(i)}-\hat{x}_k^{(i)})^2$ is the reconstruction error for example $x^{(i)}$, and $J(W^d,W^e)=\sum_i^N J(W^d,W^e)^{(i)}$ is the total reconstruction error.
@@ -1247,6 +1335,34 @@ $$J_{\text{sparse}} = J(W^d, W^e) + \beta \sum_{j=1}^{H} \left( \rho \log \frac{
   Where $\hat{\rho_j}=\frac{1}{N}\sum_{i=1}^N z_i^{(i)}$, $\rho$ and $\beta$ are hyperparameter. Find $\partial J_{sparse}/\partial W_{kl}^d$ and $\partial J_{sparse}/\partial W_{kl}^e$.
 
 3. State some relations between autoencoders and PCA.
+
+---
+
+[Spring 2025 F]</br>
+**Question-4:** [Unrelated] Explain how an undercomplete autoencoder can be used for anomaly detection. What assumptions does this approach make about the data?</br>
+
+**Solution:**</br>
+
+Train on normal data only. At test time, compute reconstruction error $\|x - \hat{x}\|$ for each sample:
+
+- **Normal samples:** Resemble training data → well-reconstructed by learned latent space → **low error**.
+- **Anomalies:** Structurally different → poor reconstruction → **high error**.
+
+Threshold on reconstruction error distinguishes normal from anomalous.
+
+**Assumptions:**
+- Anomalies are rare in training (AE trained predominantly on normal data)
+- Anomalies are structurally different enough to reconstruct poorly
+- Latent space is compact enough not to generalize to out-of-distribution samples
+
+---
+[Spring 2025 F]</br>
+**Question-5:** [Unrelated] Define an undercomplete auto encoder and explain how it differs from other types (e.g., overcomplete autoencoders). Why is the undercomplete constraint useful for representation learning?</br>
+
+---
+
+[Spring 2025 F]</br>
+**Question-6:** [Unrelated] Consider an undercomplete autoencoder with a single hidden layer of size 64, input dimension 128, and mean squared error (MSE) loss. The encoder is $z=\sigma(W_x+b)$, and the decoder is $\hat{x}=\sigma(W'z+b')$ , where 𝜎 is the sigmoid activation. Derive the gradient of the MSE loss with respect to 𝑊</br>
 
 ---
 ---
@@ -1280,8 +1396,16 @@ In contrast, the Non-saturating cost curve has a very steep slope near 0. This p
 
 ---
 
+[Spring 2022 F]</br>
+**Question-2:** When the GAN network is trained, then D(G(z)) is close to 0, or 1, or 0.5? Justify your answer </br>
+
+**Solution:**</br>
+At equilibrium, the optimal discriminator assigns equal probability to real and fake: $D^*(x) = 0.5$ everywhere. $D(G(z)) \approx 0.5$ signals convergence, not $\approx 1$.
+
+---
+
 [Spring 2021 F]</br>
-**Question-2:** Recall that a GAN could, in principle, be trained using the following minimax formulation, where G is the generator function, D is the probability the discriminator assigns to the sample being data, and 𝐽𝐷 and 𝐽𝐺 are the cost functions for the discriminator and generator, respectively.
+**Question-3:** Recall that a GAN could, in principle, be trained using the following minimax formulation, where G is the generator function, D is the probability the discriminator assigns to the sample being data, and 𝐽𝐷 and 𝐽𝐺 are the cost functions for the discriminator and generator, respectively.
 
 $$J_D=E_x~D[-logD(x)]+E_z[-log(1-D(G(z)))]$$
 $$J_G=-J_D$$
@@ -1311,28 +1435,56 @@ Instead of minimizing the probability that the discriminator catches it being fa
 - Saturating Slope Defect: If you calculate the mathematical derivative of the original minimax objective (log(1−D(G(z)))) at a value near 0, the gradient approaches zero. This flat, horizontal slope stalls gradient descent, preventing the generator from learning anything.
 - Exploding Gradients Benefit: The non-saturating function (−logD(G(z))) exhibits a fundamentally different geometric profile. Near 0, its slope is exceptionally steep. This injects powerful, highly informative objective gradients into the network precisely when the generator is performing at its worst, maximizing optimization speed and training stability.
 
+---
+
+[Spring 2025 F]</br>
+**Question-4:** The original GAN paper proposes using $L_g=-log(D(G(z)))$ instead of $\log (1-D(G(z)))$. Explain why this modification improves training dynamics.</br>
+**Solution:**</br>
+
+Early in training, $D$ is strong and $D(G(z)) \approx 0$:
+
+| Loss | Gradient when $D(G(z)) \to 0$ |
+|------|-------------------------------|
+| $\log(1-D(G(z)))$ | $\approx \nabla_G \log(1) = 0$ — **flat, no signal** |
+| $-\log(D(G(z)))$ | **Large gradient** — strong learning signal |
+
+The non-saturating objective provides **large gradients precisely when the generator is weakest**, enabling effective early learning. Both share the same Nash equilibrium, but non-saturating converges much more reliably in practice.
 
 ---
 
 [Spring 2025 F]</br>
-Q3. Describe the objective function of a standard GAN, including the roles of the generator and discriminator. Write the minimax optimization problem and explain why it is a zero-sum game.</br>
+**Question-5:** Describe the objective function of a standard GAN, including the roles of the generator and discriminator. Write the minimax optimization problem and explain why it is a zero-sum game.</br>
+**Solution:**</br>
+**GAN minimax objective:**
+
+$$\min_G \max_D V(D,G) = \mathbb{E}_{x \sim p_\text{data}}[\log D(x)] + \mathbb{E}_{z \sim p_z}[\log(1-D(G(z)))]$$
+
+**Discriminator $D$:** Maximizes $V$ — assigns $D(x) \to 1$ for real, $D(G(z)) \to 0$ for generated. Goal: correctly classify real vs fake.
+
+**Generator $G$:** Minimizes $V$ — makes $D(G(z)) \to 1$ to fool the discriminator. Goal: generate indistinguishable samples.
+
+**Why zero-sum:** $J^D + J^G = 0$ in the minimax formulation. Every gain for $D$ is a loss for $G$ — the game is purely competitive with no cooperative component.
 
 ---
 
 [Spring 2025 F]</br>
-Q4. Prove that the optimal discriminator in a GAN is $D*(x)=\frac{p_data(x)}{p_data(x)+p_g(x)}$, where $P_data$ is the real data distribution and $p_g$ is the generator's distribution.</br>
+**Question-6:** Prove that the optimal discriminator in a GAN is $D*(x)=\frac{p_data(x)}{p_data(x)+p_g(x)}$, where $P_data$ is the real data distribution and $p_g$ is the generator's distribution.</br>
 
----
+**Solution:**</br>
+For fixed $G$, maximize $V$ over $D$ pointwise:
 
-[Spring 2025 F]</br>
-Q5. The original GAN paper proposes using $L_g=-log(D(G(z)))$ instead of $\log (1-D(G(z)))$. Explain why this modification improves training dynamics.</br>
+$$V = \int \left[p_\text{data}(x)\log D(x) + p_g(x)\log(1-D(x))\right]dx$$
+
+Maximize integrand $f(D) = a\log D + b\log(1-D)$ where $a = p_\text{data}(x)$, $b = p_g(x)$:
+
+$$\frac{df}{dD} = \frac{a}{D} - \frac{b}{1-D} = 0 \implies a(1-D) = bD \implies D^* = \frac{a}{a+b} = \frac{p_\text{data}(x)}{p_\text{data}(x)+p_g(x)} \quad \square$$
 
 ---
 
 [Spring 2022 F]</br>
-Q6. In GANs, what is the primary goal of the discriminator? State this goal in a probabilistic sense for a class y and input x </br>
+**Question-7:** In GANs, what is the primary goal of the discriminator? State this goal in a probabilistic sense for a class y and input x </br>
+**Solution:**</br>
+
+Maximize $P(\text{real}|x)$ — correctly classify real vs generated samples. Probabilistically: estimate $P(y=\text{real}|x) = D(x)$, aiming for $D(x) \approx 1$ for $x \sim p_\text{data}$ and $D(G(z)) \approx 0$ for generated samples.
 
 ---
-
-[Spring 2022 F]</br>
-Q7. When the GAN network is trained, then D(G(z)) is close to 0, or 1, or 0.5? Justify your answer </br>
