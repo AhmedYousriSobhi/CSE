@@ -1190,26 +1190,26 @@ $\|-i\rangle$| $\frac{1}{\sqrt{2}}(\|0\rangle-i\|1\rangle)$
 
 Gate|Operation|
 |-|-|
-$X$|$X\|0\rangle\xrightarrow{X}\|1\rangle$
-||$X\|1\rangle\xrightarrow{X}\|0\rangle$
-||$X\|+\rangle\xrightarrow{X}\|+\rangle$
-||$X\|-\rangle\xrightarrow{X}-\|-\rangle$
-$Y$|$Y\|0\rangle\xrightarrow{Y}i\|1\rangle$
-||$Y\|1\rangle\xrightarrow{Y}-i\|0\rangle$
-||$Y\|+\rangle\xrightarrow{Y}-i\|-\rangle$
-||$Y\|-\rangle\xrightarrow{Y}i\|+\rangle$
-$Z$|$Z\|0\rangle\xrightarrow{Z}\|0\rangle$
-||$Z\|1\rangle\xrightarrow{Z}-\|1\rangle$
-||$Z\|+\rangle\xrightarrow{Z}\|-\rangle$
-||$Z\|-\rangle\xrightarrow{Z}\|+\rangle$
-$H$|$H\|0\rangle\xrightarrow{H}\|+\rangle$
-||$H\|1\rangle\xrightarrow{H}\|-\rangle$
-||$H\|+\rangle\xrightarrow{H}\|0\rangle$
-||$H\|-\rangle\xrightarrow{H}\|1\rangle$
-$S$|$S\|0\rangle\xrightarrow{S}\|0\rangle$
-||$S\|1\rangle\xrightarrow{S}e^{i\frac{\pi}{2}}\|1\rangle$
-$T$|$T\|0\rangle\xrightarrow{T}\|0\rangle$
-||$T\|1\rangle\xrightarrow{T}e^{i\frac{\pi}{4}}\|1\rangle$
+$X$|$X\|0\rangle\xrightarrow{X}\|1\rangle$&ensp;
+||$X\|1\rangle\xrightarrow{X}\|0\rangle$&ensp;
+||$X\|+\rangle\xrightarrow{X}\|+\rangle$&ensp;
+||$X\|-\rangle\xrightarrow{X}-\|-\rangle$&ensp;
+$Y$|$Y\|0\rangle\xrightarrow{Y}i\|1\rangle$&ensp;
+||$Y\|1\rangle\xrightarrow{Y}-i\|0\rangle$&ensp;
+||$Y\|+\rangle\xrightarrow{Y}-i\|-\rangle$&ensp;
+||$Y\|-\rangle\xrightarrow{Y}i\|+\rangle$&ensp;
+$Z$|$Z\|0\rangle\xrightarrow{Z}\|0\rangle$&ensp;
+||$Z\|1\rangle\xrightarrow{Z}-\|1\rangle$&ensp;
+||$Z\|+\rangle\xrightarrow{Z}\|-\rangle$&ensp;
+||$Z\|-\rangle\xrightarrow{Z}\|+\rangle$&ensp;
+$H$|$H\|0\rangle\xrightarrow{H}\|+\rangle$&ensp;
+||$H\|1\rangle\xrightarrow{H}\|-\rangle$&ensp;
+||$H\|+\rangle\xrightarrow{H}\|0\rangle$&ensp;
+||$H\|-\rangle\xrightarrow{H}\|1\rangle$&ensp;
+$S$|$S\|0\rangle\xrightarrow{S}\|0\rangle$&ensp;
+||$S\|1\rangle\xrightarrow{S}e^{i\frac{\pi}{2}}\|1\rangle$&ensp;
+$T$|$T\|0\rangle\xrightarrow{T}\|0\rangle$&ensp;
+||$T\|1\rangle\xrightarrow{T}e^{i\frac{\pi}{4}}\|1\rangle$&ensp;
 
 </td><td style="vertical-align: top;">
 
