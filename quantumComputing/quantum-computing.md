@@ -1228,28 +1228,24 @@ $$e^{-i\theta}=\cos\theta-i\sin\theta$$
 $$\sin\theta = 2\sin\frac{\theta}{2}\cos\frac{\theta}{2}$$
 $$\cos\theta = \cos^2\frac{\theta}{2} - \sin^2\frac{\theta}{2}$$
 
-Note: In quantum mechanics, we follow the math from right to left (order of application).
+> Note: In quantum mechanics, we follow the math from right to left (order of application).
 
 **| Tesnor Product**</br>
 To find the operator for a two-quibt system, we calculate the tensor product:</br>
 
-$Z\otimes I=\begin{pmatrix}1&0\\0&-1\end{pmatrix}\otimes \begin{pmatrix}1&0\\0&1\end{pmatrix}==\begin{pmatrix}1\begin{pmatrix}1&0\\0&1\end{pmatrix}&0\\0&-1\begin{pmatrix}1&0\\0&1\end{pmatrix}\end{pmatrix}=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&-1&0\\0&0&0&-1\end{pmatrix}=diag(1,1,-1,-1)$
+$Z\otimes I=\begin{pmatrix}1&0\\0&-1\end{pmatrix}\otimes \begin{pmatrix}1&0\\0&1\end{pmatrix}=\begin{pmatrix}1\begin{pmatrix}1&0\\0&1\end{pmatrix}&0\\0&-1\begin{pmatrix}1&0\\0&1\end{pmatrix}\end{pmatrix}=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&-1&0\\0&0&0&-1\end{pmatrix}=diag(1,1,-1,-1)$
 
 **| Rotation State General rule**</br>
 
-$$R_G=e^{-i\frac{\theta}{2}G}=\cos \frac{\theta}{2}I-i\sin\frac{\theta}{2}G$$
+$$R_G(\theta)=e^{-i\frac{\theta}{2}G}=\cos \frac{\theta}{2}I-i\sin\frac{\theta}{2}G$$
 
 To calculate: $e^{i\varphi Z\otimes I} = diag(e^{i\varphi}, e^{i\varphi}, e^{-i\varphi}, e^{-i\varphi})$
-1. Use tesnor product: $Z\otimes I$
-2. Apply the rotation state formula: $e^{i\varphi Z\otimes I}=\cos i\varphi I + i\sin\varphi (Z\otimes I)$
-
-</br>
-
-**| The CNOT "Sandwich"**</br>
-- The CNOT gate swaps the amplitudes of $|10\rangle$ and $|11\rangle$.</br> 
-- In terms of a diagonal matrix $D = \text{diag}(a, b, c, d)$, the operation $\text{CNOT} \cdot D \cdot \text{CNOT}$ has the effect of swapping the last two diagonal elements ($c$ and $d$).</br>
-- Initial: $\text{diag}(e^{-i\varphi}, e^{i\varphi}, \mathbf{e^{-i\varphi}}, \mathbf{e^{i\varphi}})$</br>
-- After CNOT swap: $\text{diag}(e^{-i\varphi}, e^{i\varphi}, \mathbf{e^{i\varphi}}, \mathbf{e^{-i\varphi}})$
+1. Calculate tesnor product: $Z\otimes I$ (calculated above = $diag(1,1,-1,-1)$ ).
+2. Apply the rotation state formula: $e^{i\varphi (Z\otimes I)}=\cos \varphi I + i\sin\varphi (Z\otimes I)$
+3. Calculation: </br>
+    $e^{i\varphi Z\otimes I}=diag(\cos(\varphi),\cos(\varphi),\cos(\varphi),\cos(\varphi)) + i\sin(\varphi) diag(1,1,-1,-1)$</br>
+    $e^{i\varphi Z\otimes I}=diag(\cos(\varphi)+i\sin(\varphi),\cos(\varphi)+i\sin(\varphi),\cos(\varphi)-i\sin(\varphi),\cos(\varphi)-i\sin(\varphi))$</br>
+    $e^{i\varphi Z\otimes I}=diag(e^{i\varphi},e^{i\varphi},e^{-i\varphi},e^{-i\varphi})$
 
 </br>
 
@@ -1266,12 +1262,21 @@ To calculate: $e^{i\varphi Z\otimes I} = diag(e^{i\varphi}, e^{i\varphi}, e^{-i\
 
 </br>
 
+**| The CNOT "Sandwich"**</br>
+- The CNOT gate swaps the amplitudes of $|10\rangle$ and $|11\rangle$ (Assuming 1st qubit is the controller, and 2nd qubit is the target qubit).</br> 
+- In terms of a diagonal matrix $D = \text{diag}(a, b, c, d)$, the operation $\text{CNOT} \cdot D \cdot \text{CNOT}$ has the effect of swapping the last two diagonal elements ($c$ and $d$).</br>
+- Initial: $\text{diag}(e^{-i\varphi}, e^{i\varphi}, \mathbf{e^{-i\varphi}}, \mathbf{e^{i\varphi}})$</br>
+- After CNOT swap: $\text{diag}(e^{-i\varphi}, e^{i\varphi}, \mathbf{e^{i\varphi}}, \mathbf{e^{-i\varphi}})$
+
+</br>
+
 **| Describe the quantum circuit of the ZZFeatureMap on 2 qubits and show that it is given by $U(x)H^{\otimes 2}$**</br>
+- **Given that**: $U(x)=e^{ix_1Z\otimes I}e^{ix_2I\otimes Z}e^{ix_1x_2Z\otimes Z}$ 
 - **Description**: The **ZZFeatureMap** is a circuit that encodes classical data $x=(x_1,x_2)$ into a quantum state, consisting of two primary layers applied from left to right.</br>
 - **Circuit Layout**: To build the operator $U(x)H^{\otimes 2}$:</br>
   - The superposition layer $H^{\otimes 2}$: Apply an Hadamard $H$ gate to both qubits to create a uniform superposition; this puts the system into state $\frac{1}{2}(|00\rangle+|01\rangle+|10\rangle+|11\rangle)$.
   - The Encoding Layer $U(x)$: This layer encodes the classical data ($x_1, x_2$) using three of rotations $U(x)=e^{ix_1Z\otimes I}e^{ix_2I\otimes Z}e^{ix_1x_2Z\otimes Z}$:
       1. Single-qubit $Z$-rotations: an $R_z$ gate on qubit 1 with angle $\theta=-2x_1$, and an $Rz$ gate on qubit 2 with angle $\theta=-2x_2$.
-      2. The Entangling ZZ-Gate: a CNOT sandwich consisting of a CNOT (control:qubit 1, target:qubit 2), followed by $R_z$ gate on qubit 2 with angle $\theta=-2x_1x_2$, and edning with another CNOT.
+      2. The Entangling ZZ-Gate: a CNOT sandwich consisting of a CNOT (control:qubit 1, target:qubit 2), followed by $R_z$ gate on qubit 2 with angle $\theta=-2x_1x_2$, and ending with another CNOT.
 
 > Note: the mentioned angles above were the double! {$2x_1, 2x_2, 2x_1x_2$}, as in the rotation gate rule: $R(\theta)=e^{-i\frac{\theta}{2}}$

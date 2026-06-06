@@ -1,13 +1,66 @@
 # Comprehensive Question Bank: Quantum Machine Learning
 
+## Table of Contents
+- [Comprehensive Question Bank: Quantum Machine Learning](#comprehensive-question-bank-quantum-machine-learning)
+  - [Table of Contents](#table-of-contents)
+  - [Part 1: Mathematical Proofs \& Fundamental Derivations](#part-1-mathematical-proofs--fundamental-derivations)
+    - [Question 1: Real Eigenvalues of Hermitian Operators](#question-1-real-eigenvalues-of-hermitian-operators)
+    - [Question 2: Expectation Value Formula from Quantum Postulates](#question-2-expectation-value-formula-from-quantum-postulates)
+    - [Question 3: Analytical Derivation of the Parameter Shift Rule](#question-3-analytical-derivation-of-the-parameter-shift-rule)
+    - [Question 4: Sign-Flipping Action of a Phase Oracle](#question-4-sign-flipping-action-of-a-phase-oracle)
+  - [Part 2: Analytical Calculations](#part-2-analytical-calculations)
+    - [Question 5: Complete Cost Function Circuit Derivation](#question-5-complete-cost-function-circuit-derivation)
+    - [Question 6: The Algebraic Foundation of the Parameter-Shift Rule](#question-6-the-algebraic-foundation-of-the-parameter-shift-rule)
+    - [Question 7: Parameter Shift Rule - Derivative of $f(\\theta)$](#question-7-parameter-shift-rule---derivative-of-ftheta)
+    - [Question 6: Numerical Calculation of Quantum SVM Kernels](#question-6-numerical-calculation-of-quantum-svm-kernels)
+    - [Question 7: Execution Shot-Budget Breakdown](#question-7-execution-shot-budget-breakdown)
+  - [Part 3: Conceptual \& Algorithmic Analysis](#part-3-conceptual--algorithmic-analysis)
+    - [Question 8: Empirical Basis Transformations for Non-Diagonal Observables](#question-8-empirical-basis-transformations-for-non-diagonal-observables)
+    - [Question 9: The Anatomy of a Barren Plateau](#question-9-the-anatomy-of-a-barren-plateau)
+    - [Question 10: The "One State" Paradigm in Quantum GANs](#question-10-the-one-state-paradigm-in-quantum-gans)
+    - [Question 11: Factorizable vs. Non-Factorizable Cost Landscapes](#question-11-factorizable-vs-non-factorizable-cost-landscapes)
+    - [Question 12: Step-by-Step Complete QML Execution Pipeline](#question-12-step-by-step-complete-qml-execution-pipeline)
+  - [Part 4: Advanced, Tricky \& Conceptual Exam Questions](#part-4-advanced-tricky--conceptual-exam-questions)
+    - [Question 13: The Parameter-Shift Trap with Non-Pauli Generators](#question-13-the-parameter-shift-trap-with-non-pauli-generators)
+    - [Question 14: Apparent Freedom from Barren Plateaus](#question-14-apparent-freedom-from-barren-plateaus)
+    - [Question 15: Over-Shifting the Parameter-Shift Rule](#question-15-over-shifting-the-parameter-shift-rule)
+    - [Question 16: Measuring $Y$ Basis Readout under $Z$-Only Native Constraints](#question-16-measuring-y-basis-readout-under-z-only-native-constraints)
+    - [Question 17: Expressibility Collapse under Product Feature Maps](#question-17-expressibility-collapse-under-product-feature-maps)
+    - [Question 18: Nash Equilibrium Realities in Faulty QGANs](#question-18-nash-equilibrium-realities-in-faulty-qgans)
+    - [Question 19: Exploding Shot Noise inside Gradient Descent Loops](#question-19-exploding-shot-noise-inside-gradient-descent-loops)
+    - [Question 20: Cost Function Vanishing via Observable Locality](#question-20-cost-function-vanishing-via-observable-locality)
+    - [Question 21: The Unitary Invariance Illusion of Quantum Kernels](#question-21-the-unitary-invariance-illusion-of-quantum-kernels)
+    - [Question 22: Quantum Overfitting under Perfect Target Overlap](#question-22-quantum-overfitting-under-perfect-target-overlap)
+- [Final Exam Model Answers](#final-exam-model-answers)
+  - [Question 1:](#question-1)
+    - [(b) (i) Using the basic postulates of quantum mechanics, show that the expectation value of a Hermitian operator, $\\langle A\\rangle$ is given by $\\langle A\\rangle=\\langle\\psi|A|\\psi\\rangle$. \[4 Marks\]](#b-i-using-the-basic-postulates-of-quantum-mechanics-show-that-the-expectation-value-of-a-hermitian-operator-langle-arangle-is-given-by-langle-aranglelanglepsiapsirangle-4-marks)
+    - [(b) (ii) How this expectation value can be calculated empirically using a quantum computer? \[4 Marks\]](#b-ii-how-this-expectation-value-can-be-calculated-empirically-using-a-quantum-computer-4-marks)
+  - [Question 2: \[13 Marks\]](#question-2-13-marks)
+    - [(a) The quantum kernel function $k(\\vec{x}_{j}, \\vec{x}_{k})$ used in QSVM reads: $k(\\vec{x}_{j}, \\vec{x}_{k})=|\\langle\\phi(\\vec{x}_{j})|\\phi(\\vec{x}_{k})\\rangle|^{2}$. Identify different elements in this expression: $\\vec{x}\_j$, $\\vec{x}\_k$, $|\\phi(\\vec{x})\\rangle$, $k(\\vec{x}\_j, \\vec{x}\_k)$. \[4 Marks\]](#a-the-quantum-kernel-function-kvecxj-vecxk-used-in-qsvm-reads-kvecxj-vecxklanglephivecxjphivecxkrangle2-identify-different-elements-in-this-expression-vecx_j-vecx_k-phivecxrangle-kvecx_j-vecx_k-4-marks)
+    - [(b) What is the main objective of using quantum kernel method? \[4 Marks\]](#b-what-is-the-main-objective-of-using-quantum-kernel-method-4-marks)
+    - [(c) Explain why factorizable quantum training landscapes do not offer quantum advantage and discuss why non-factorizable cost functions are essential. \[5 Marks\]](#c-explain-why-factorizable-quantum-training-landscapes-do-not-offer-quantum-advantage-and-discuss-why-non-factorizable-cost-functions-are-essential-5-marks)
+      - [Factorizable Cost Functions (No Quantum Advantage)](#factorizable-cost-functions-no-quantum-advantage)
+      - [Non-Factorizable Cost Functions (Essential for Advantage)](#non-factorizable-cost-functions-essential-for-advantage)
+  - [Question 3:](#question-3)
+    - [(a) Prove analytically the parameter shift rule for a Pauli operator generator.](#a-prove-analytically-the-parameter-shift-rule-for-a-pauli-operator-generator)
+    - [(b) Discuss how this derivative is obtained empirically using a quantum computer during the training of a quantum neural network.](#b-discuss-how-this-derivative-is-obtained-empirically-using-a-quantum-computer-during-the-training-of-a-quantum-neural-network)
+  - [Question 4: \[10 Marks\]](#question-4-10-marks)
+    - [(a) Given $U\_{f}|x\\rangle|y\\rangle=|x\\rangle|y\\oplus f(x)\\rangle$, where $y$ and $f(x)\\in{0,1}$, demonstrate that: $U\_{f}|x\\rangle|-\\rangle=(-1)^{f(x)}|x\\rangle|-\\rangle$. \[4 Marks\]](#a-given-u_fxrangleyranglexrangleyoplus-fxrangle-where-y-and-fxin01-demonstrate-that-u_fxrangle-rangle-1fxxrangle-rangle-4-marks)
+    - [(b) The oracle $U\_{f}$ in Bernstein-Vazirani algorithm calculates a function $f(x)=s.x=\\sum\_{i=1}^{n}s\_{i}.x\_{i}$, where $x$ and $s\\in{0,1}^{n}$, such that $U\_{f}|x\\rangle|y\\rangle=|x\\rangle|y\\oplus f(x)\\rangle$, where $y$ and $f(x)\\in{0,1}$. By carrying out the algorithm step by step, show that by measuring the first $n$ output qubits, the secret string $s$ is revealed. \[6 Marks\]](#b-the-oracle-u_f-in-bernstein-vazirani-algorithm-calculates-a-function-fxsxsum_i1ns_ix_i-where-x-and-sin01n-such-that-u_fxrangleyranglexrangleyoplus-fxrangle-where-y-and-fxin01-by-carrying-out-the-algorithm-step-by-step-show-that-by-measuring-the-first-n-output-qubits-the-secret-string-s-is-revealed-6-marks)
+      - [Step 1: Initialize the Input Registers](#step-1-initialize-the-input-registers)
+      - [Step 2: Apply Hadamard Gates to All Qubits](#step-2-apply-hadamard-gates-to-all-qubits)
+      - [Step 3: Apply the Function Oracle $\\hat{U}\_f$](#step-3-apply-the-function-oracle-hatu_f)
+      - [Step 4: Apply a Second Layer of Hadamard Gates to the Input Register](#step-4-apply-a-second-layer-of-hadamard-gates-to-the-input-register)
+      - [Step 5: Evaluate Orthogonality and Measurement Outcomes](#step-5-evaluate-orthogonality-and-measurement-outcomes)
+
 ---
 
 ## Part 1: Mathematical Proofs & Fundamental Derivations
 
 ### Question 1: Real Eigenvalues of Hermitian Operators
-**Question:** Prove that the eigenvalues of a Hermitian operator are always real.
-
-**Answer:**
+[Exam Question]</br>
+**Question:** Prove that the eigenvalues of a Hermitian operator are always real.</br>
+**Answer:**</br>
 Let $\hat{A}$ be a Hermitian operator, which by definition satisfies $\hat{A} = \hat{A}^\dagger$ (it equals its own conjugate transpose). Let $|\psi\rangle$ be an eigenstate of $\hat{A}$ with eigenvalue $\lambda$:
 $$\hat{A}|\psi\rangle = \lambda|\psi\rangle \quad \text{--- (Eq. 1)}$$
 
@@ -128,25 +181,126 @@ $$U_{f}|x\rangle|-\rangle = (-1)^{f(x)}|x\rangle|-\rangle \quad \blacksquare$$
 ## Part 2: Analytical Calculations
 
 ### Question 5: Complete Cost Function Circuit Derivation
+[Exam Question]</br>
 **Question:** Consider a 2-qubit QNN variational form. Take the initial input state as $|00\rangle$, apply a parameter-controlled rotation gate $R_Y(\theta)$ on qubit 1, and then apply a CNOT gate where qubit 1 acts as the control and qubit 2 acts as the target. Given the target cost function measurement observable $\hat{O} = X \otimes X$, prove by vector tracking that the output cost evaluation function maps to $f(\theta) = \sin(\theta)$.
 
-**Answer:**
-* **Initial State $|\psi_0\rangle$:**
-  $$|\psi_0\rangle = |00\rangle$$
-* **After $R_Y(\theta) \otimes I$ operation ($|\psi_1\rangle$):**
-  $$R_Y(\theta)|0\rangle = \cos\frac{\theta}{2}|0\rangle + \sin\frac{\theta}{2}|1\rangle \implies |\psi_1\rangle = \cos\frac{\theta}{2}|00\rangle + \sin\frac{\theta}{2}|10\rangle$$
+**Proof:**</br>
+The baseline matrix states and core operators are defined as:
+$$|0\rangle = \begin{pmatrix}1 \\ 0\end{pmatrix}, \quad |1\rangle = \begin{pmatrix}0 \\ 1\end{pmatrix}, \quad R_y(\theta) = \begin{pmatrix}\cos\frac{\theta}{2} & -\sin\frac{\theta}{2} \\ \sin\frac{\theta}{2} & \cos\frac{\theta}{2}\end{pmatrix}, \quad \hat{X} = \begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}$$
+
+**Step 1: Track the Evolution of the State Vector**</br>
+* **Initial Input State $|\psi_0\rangle$:**
+  $$|\psi_0\rangle = |00\rangle = |0\rangle \otimes |0\rangle$$
+
+* **After applying the rotation gate $\hat{R}_y(\theta) \otimes \hat{I}$ on Qubit 1 ($|\psi_1\rangle$):**
+  $$\hat{R}_y(\theta)|0\rangle = \cos\left(\frac{\theta}{2}\right)|0\rangle + \sin\left(\frac{\theta}{2}\right)|1\rangle$$
+  $$|\psi_1\rangle = \left[\cos\left(\frac{\theta}{2}\right)|0\rangle + \sin\left(\frac{\theta}{2}\right)|1\rangle\right] \otimes |0\rangle = \cos\left(\frac{\theta}{2}\right)|00\rangle + \sin\left(\frac{\theta}{2}\right)|10\rangle$$
+
 * **After applying the CNOT gate ($|\psi_2\rangle$):**
-  $$|\psi_2\rangle = \cos\frac{\theta}{2}|00\rangle + \sin\frac{\theta}{2}|11\rangle$$
+  The CNOT gate uses qubit 1 as the control and qubit 2 as the target. It leaves components controlled by $|0\rangle$ unchanged and flips target qubits controlled by $|1\rangle$ ($|10\rangle \rightarrow |11\rangle$):
+  $$|\psi_2\rangle = \cos\left(\frac{\theta}{2}\right)|00\rangle + \sin\left(\frac{\theta}{2}\right)|11\rangle$$
 
-Now evaluate the cost function $f(\theta) = \langle\psi_2|(X \otimes X)|\psi_2\rangle$. Note that $(X \otimes X)|00\rangle = |11\rangle$ and $(X \otimes X)|11\rangle = |00\rangle$:
-$$(X \otimes X)|\psi_2\rangle = \cos\frac{\theta}{2}|11\rangle + \sin\frac{\theta}{2}|00\rangle$$
+**Step 2: Apply the Observable Operator to the State Vector**</br>
+The target cost function is given by $f(\theta) = \langle\psi_2|(\hat{X} \otimes \hat{X})|\psi_2\rangle$. First, evaluate the action of the operator $(\hat{X} \otimes \hat{X})$ on the ket state $|\psi_2\rangle$. Since $\hat{X}|0\rangle = |1\rangle$ and $\hat{X}|1\rangle = |0\rangle$:
+$$(\hat{X} \otimes \hat{X})|00\rangle = |11\rangle \quad \text{and} \quad (\hat{X} \otimes \hat{X})|11\rangle = |00\rangle$$
 
-Compute the full inner product:
-$$f(\theta) = \left(\cos\frac{\theta}{2}\langle00| + \sin\frac{\theta}{2}\langle11|\right) \left(\cos\frac{\theta}{2}|11\rangle + \sin\frac{\theta}{2}|00\rangle\right)$$
-$$f(\theta) = \cos^2\frac{\theta}{2}\langle00|11\rangle + \cos\frac{\theta}{2}\sin\frac{\theta}{2}\langle00|00\rangle + \sin\frac{\theta}{2}\cos\frac{\theta}{2}\langle11|11\rangle + \sin^2\frac{\theta}{2}\langle11|00\rangle$$
+Substituting these into the expression yields:
+$$(\hat{X} \otimes \hat{X})|\psi_2\rangle = \cos\left(\frac{\theta}{2}\right)|11\rangle + \sin\left(\frac{\theta}{2}\right)|00\rangle$$
 
-By orthonormality ($\langle00|11\rangle=0, \langle00|00\rangle=1$):
-$$f(\theta) = 2 \sin\frac{\theta}{2} \cos\frac{\theta}{2} = \sin(\theta) \quad \blacksquare$$
+**Step 3: Compute the Final Inner Product Expectation Value**</br>
+Now, compute the inner product by multiplying the bra state with the transformed ket state:
+$$f(\theta) = \left[\cos\left(\frac{\theta}{2}\right)\langle00| + \sin\left(\frac{\theta}{2}\right)\langle11|\right] \cdot \left[\cos\left(\frac{\theta}{2}\right)|11\rangle + \sin\left(\frac{\theta}{2}\right)|00\rangle\right]$$
+
+Expanding the terms gives:
+$$f(\theta) = \cos^2\left(\frac{\theta}{2}\right)\langle00|11\rangle + \cos\left(\frac{\theta}{2}\right)\sin\left(\frac{\theta}{2}\right)\langle00|00\rangle + \sin\left(\frac{\theta}{2}\right)\cos\left(\frac{\theta}{2}\right)\langle11|11\rangle + \sin^2\left(\frac{\theta}{2}\right)\langle11|00\rangle$$
+
+By the orthonormality of the computational basis states ($\langle00|11\rangle = 0$, $\langle11|00\rangle = 0$, and $\langle00|00\rangle = \langle11|11\rangle = 1$), the expression simplifies to:
+$$f(\theta) = 0 + \cos\left(\frac{\theta}{2}\right)\sin\left(\frac{\theta}{2}\right)(1) + \sin\left(\frac{\theta}{2}\right)\cos\left(\frac{\theta}{2}\right)(1) + 0$$
+$$f(\theta) = 2 \sin\left(\frac{\theta}{2}\right) \cos\left(\frac{\theta}{2}\right)$$
+
+Using the double-angle trigonometric identity $\sin(2\alpha) = 2\sin\alpha\cos\alpha$, the expression matches the target cost function:
+$$f(\theta) = \sin\left(2 \cdot \frac{\theta}{2}\right) = \sin(\theta) \quad \blacksquare$$
+
+**HandWritten Solution:**</br>
+![image](./assets/q-a/fe-q5-a1.jpg)
+![image](./assets/q-a/fe-q5-a2.jpg)
+
+---
+
+### Question 6: The Algebraic Foundation of the Parameter-Shift Rule
+[Exam Question]</br>
+Show that $f(\theta) = A + B\cos\theta + C\sin\theta$</br>
+**Given:**
+- Rotation gate: $U(\theta) = e^{-i\frac{\theta}{2}G}$, where $G$ is the generator (Hermitian, e.g., a Pauli operator)
+- Cost function: $f(\theta) = \langle\psi|U^\dagger(\theta)\,\hat{O}\,U(\theta)|\psi\rangle$
+
+**HandWritten Solution**</br>
+
+![image](./assets/q-a/fe-q6-a1.jpg)
+![image](./assets/q-a/fe-q6-a2.jpg)
+
+**Proof**</br>
+Expand $U(\theta)$ using the Euler/Rodrigues identity for a Pauli generator $G$:</br>
+For a Pauli-type generator with eigenvalues $\pm 1/2$:</br>
+$$U(\theta) = e^{-i\frac{\theta}{2}G} = \cos\!\left(\frac{\theta}{2}\right)I - i\sin\!\left(\frac{\theta}{2}\right)(G)$$
+
+More generally, $U(\theta)$ is analytic in $\theta$, so $f(\theta) = \langle\psi|U^\dagger\hat{O}U|\psi\rangle$ is analytic. Expand $U(\theta)$ and $U^\dagger(\theta)$ using the BCH/Euler identity:
+
+$$U(\theta) = \cos\!\left(\frac{\theta}{2}\right)I - i\sin\!\left(\frac{\theta}{2}\right)G$$
+$$U^\dagger(\theta) = \cos\!\left(\frac{\theta}{2}\right)I + i\sin\!\left(\frac{\theta}{2}\right)G$$
+
+Substituting into $f(\theta)$:
+$$f(\theta) = \left[\cos\!\left(\tfrac{\theta}{2}\right)\langle\psi| + i\sin\!\left(\tfrac{\theta}{2}\right)\langle\psi|G\right]\hat{O}\left[\cos\!\left(\tfrac{\theta}{2}\right)|\psi\rangle - i\sin\!\left(\tfrac{\theta}{2}\right)G|\psi\rangle\right]$$
+
+Expanding the product (defining shorthand $c = \cos(\theta/2)$, $s = \sin(\theta/2)$):
+$$f(\theta) = c^2\langle\hat{O}\rangle + s^2\langle G\hat{O}G\rangle + is\cdot c\left(\langle\hat{O}G\rangle - \langle G\hat{O}\rangle\right)$$
+
+Using $c^2 = \frac{1+\cos\theta}{2}$, $s^2 = \frac{1-\cos\theta}{2}$, $2sc = \sin\theta$:
+
+$$f(\theta) = \frac{\langle\hat{O}\rangle + \langle G\hat{O}G\rangle}{2} + \frac{\langle\hat{O}\rangle - \langle G\hat{O}G\rangle}{2}\cos\theta + i\langle[\hat{O},G]\rangle\sin\theta$$
+
+Defining real constants (all expectation values of Hermitian operators are real):
+$$A = \frac{\langle\hat{O}\rangle + \langle G\hat{O}G\rangle}{2}, \quad B = \frac{\langle\hat{O}\rangle - \langle G\hat{O}G\rangle}{2}, \quad C = i\langle[\hat{O},G]\rangle$$
+
+$$\boxed{f(\theta) = A + B\cos\theta + C\sin\theta} \quad \blacksquare$$
+
+where $A$, $B$, $C$ are real constants independent of $\theta$.
+
+> Note: Which solution is more accurate: The one that states $|\psi\rangle$ defined inside the constants (A,B,C) or not?</br> The accurate should be that the states are include in the constants! For two possible solutions: </br> 1. They are independent of $\theta$.</br>2. They are scaler numbers, not operators; Once you choose a specific state $|\psi\rangle$ and evaluate that inner product; the quantum state collapses into a single, real (or complex) number.
+ 
+---
+
+### Question 7: Parameter Shift Rule - Derivative of $f(\theta)$
+[Exam Question]</br>
+Apply the parameter shift rule to get the derivative of the cost function $f(\theta)$ given in part (a) (Question-6). Discuss how this derivative is obtained empirically using a quantum computer during the training of a quantum  neural network.</br>
+
+**Solution**</br>
+Some Context (Not two write in the solution but to understand more):</br>
+When you train a traditional neural network, you use backpropagation to calculate gradients (derivatives) so the model knows how to adjust its weights. But inside a real quantum computer, you can't easily peek inside the circuit to do backpropagation. If you want to optimize a quantum circuit using a cost function like $f(\theta)$, you need a way to find its derivative, $\frac{df}{d\theta}$, using only outputs you can actually measure on the hardware. This is where the trigonometric formula you just proved comes to the rescue.
+
+Given $f(\theta) = A + B\cos\theta + C\sin\theta$, differentiate:
+$$\frac{df}{d\theta} = -B\sin\theta + C\cos\theta$$
+
+[For Understanding] Normally, to calculate this value, you'd need to know the exact values of the constants $B$ and $C$. But remember, $B$ and $C$ are messy quantum expectation values ($\langle\psi|...|\psi\rangle$) that we don't inherently know without a ton of extra, complex measurements. The trick is to shift the parameters.
+
+Evaluate $f$ at shifted parameters:
+$$f\!\left(\theta + \frac{\pi}{2}\right) = A + B\cos\!\left(\theta+\frac{\pi}{2}\right) + C\sin\!\left(\theta+\frac{\pi}{2}\right) = A - B\sin\theta + C\cos\theta$$
+$$f\!\left(\theta - \frac{\pi}{2}\right) = A + B\cos\!\left(\theta-\frac{\pi}{2}\right) + C\sin\!\left(\theta-\frac{\pi}{2}\right) = A + B\sin\theta - C\cos\theta$$
+
+Taking the difference (subtract the backward shift from the forward shift):
+$$f\!\left(\theta+\frac{\pi}{2}\right) - f\!\left(\theta-\frac{\pi}{2}\right) = -2B\sin\theta + 2C\cos\theta = 2\frac{df}{d\theta}$$
+
+$$\boxed{\frac{df}{d\theta} = \frac{1}{2}\left[f\!\left(\theta+\frac{\pi}{2}\right) - f\!\left(\theta-\frac{\pi}{2}\right)\right]}$$
+
+**Empirical implementation on a quantum computer:**
+
+During training of a QNN:
+1. Run the quantum circuit with parameter $\theta + \pi/2$ and measure $\langle\hat{O}\rangle$ to get $f(\theta+\pi/2)$ by averaging over many shots.
+2. Run the **same** circuit with parameter $\theta - \pi/2$ and measure $\langle\hat{O}\rangle$ to get $f(\theta-\pi/2)$.
+3. Compute the gradient as the finite difference of the two expectation values divided by 2.
+4. Use this gradient in a classical optimizer (e.g., ADAM, gradient descent) to update $\theta$.
+
+**Key insight:** No analytical differentiation is needed — only two additional quantum circuit evaluations. The gradient is exact (not an approximation), since the parameter shift rule exploits the exact sinusoidal structure of $f(\theta)$.
 
 ---
 
@@ -387,38 +541,7 @@ This modification changes the scaling behavior of the gradient variance, helping
 
 # Final Exam Model Answers
 
-## Question 1: [12 Marks]
-
-### (a) Show that the eigenvalues of a Hermitian operator are real. [4 Marks]
-
-**Proof:**
-Let $\hat{A}$ be a Hermitian operator. By definition, a Hermitian operator equals its own conjugate transpose (adjoint):
-$$\hat{A} = \hat{A}^\dagger$$
-
-Let $|\psi\rangle$ be a non-zero eigenstate of $\hat{A}$ associated with the eigenvalue $\lambda$:
-$$\hat{A}|\psi\rangle = \lambda|\psi\rangle \quad \text{--- (Equation 1)}$$
-
-Take the inner product of both sides of Equation 1 from the left with the bra vector $\langle\psi|$:
-$$\langle\psi|\hat{A}|\psi\rangle = \langle\psi|\lambda|\psi\rangle = \lambda \langle\psi|\psi\rangle \quad \text{--- (Equation 2)}$$
-
-Now, take the conjugate transpose (adjoint) of the entire Equation 1:
-$$(\hat{A}|\psi\rangle)^\dagger = (\lambda|\psi\rangle)^\dagger \implies \langle\psi|\hat{A}^\dagger = \lambda^* \langle\psi|$$
-
-Since $\hat{A}$ is a Hermitian operator ($\hat{A}^\dagger = \hat{A}$), substitute $\hat{A}$ back into the expression:
-$$\langle\psi|\hat{A} = \lambda^* \langle\psi|$$
-
-Multiply both sides of this equation from the right with the ket vector $|\psi\rangle$:
-$$\langle\psi|\hat{A}|\psi\rangle = \lambda^* \langle\psi|\psi\rangle \quad \text{--- (Equation 3)}$$
-
-Equating the right-hand sides of Equation 2 and Equation 3 gives:
-$$\lambda \langle\psi|\psi\rangle = \lambda^* \langle\psi|\psi\rangle \implies (\lambda - \lambda^*) \langle\psi|\psi\rangle = 0$$
-
-Because $|\psi\rangle$ represents a physically valid state vector, it cannot be a null vector, meaning its norm must be strictly positive ($\langle\psi|\psi\rangle \neq 0$). Therefore, the scalar difference must equal zero:
-$$\lambda - \lambda^* = 0 \implies \lambda = \lambda^*$$
-
-Since the eigenvalue $\lambda$ equals its own complex conjugate $\lambda^*$, the eigenvalue must be a real number. $\blacksquare$
-
----
+## Question 1:
 
 ### (b) (i) Using the basic postulates of quantum mechanics, show that the expectation value of a Hermitian operator, $\langle A\rangle$ is given by $\langle A\rangle=\langle\psi|A|\psi\rangle$. [4 Marks]
 
@@ -501,9 +624,9 @@ A non-factorizable cost function contains tightly coupled parameters that cannot
 
 ---
 
-## Question 3: [15 Marks]
+## Question 3:
 
-### (a) Prove analytically the parameter shift rule for a Pauli operator generator. [6 Marks]
+### (a) Prove analytically the parameter shift rule for a Pauli operator generator.
 
 **Proof:**
 Let a parameter-dependent cost function be defined as the expectation value of a Hermitian measurement operator $\hat{M}$ relative to a state modified by a single-parameter unitary gate $\hat{U}(\mu)$:
@@ -547,7 +670,7 @@ $$\frac{f\left(\mu + \frac{\pi}{2}\right) - f\left(\mu - \frac{\pi}{2}\right)}{2
 
 ---
 
-### (b) Discuss how this derivative is obtained empirically using a quantum computer during the training of a quantum neural network. [4 Marks]
+### (b) Discuss how this derivative is obtained empirically using a quantum computer during the training of a quantum neural network.
 
 **Answer:**
 Because classical backpropagation requires saving intermediate state vectors that cannot be stored on a quantum processor due to the **No-Cloning Theorem**, gradients on quantum hardware must be calculated using the analytical Parameter Shift Rule:
@@ -558,47 +681,6 @@ Because classical backpropagation requires saving intermediate state vectors tha
    $$\frac{\partial f}{\partial \theta_i} = \frac{f\left(\theta_i + \frac{\pi}{2}\right) - f\left(\theta_i - \frac{\pi}{2}\right)}{2}$$
 4. **Parameter Update:** This process repeats for every parameter in the circuit. Once the full gradient vector $\nabla C(\vec{\theta})$ is constructed, a classical optimization algorithm (such as Adam or Gradient Descent) updates the parameters:
    $$\vec{\theta}_{\text{new}} = \vec{\theta}_{\text{old}} - \eta \nabla C(\vec{\theta})$$
-
----
-
-### (c) Consider a two-qubit QNN variational form. Take the input $|00\rangle$. Apply rotation gate $R_y(\theta)$ on qubit 1, then a CNOT (control: qubit 1, target: qubit 2). Taking the cost function measurement operator $\hat{O}=X\otimes X$. Show that the cost function is given by $f(\theta)=\sin(\theta)$. [5 Marks]
-
-**Proof:**
-The baseline matrix states and core operators are defined as:
-$$|0\rangle = \begin{pmatrix}1 \\ 0\end{pmatrix}, \quad |1\rangle = \begin{pmatrix}0 \\ 1\end{pmatrix}, \quad R_y(\theta) = \begin{pmatrix}\cos\frac{\theta}{2} & -\sin\frac{\theta}{2} \\ \sin\frac{\theta}{2} & \cos\frac{\theta}{2}\end{pmatrix}, \quad \hat{X} = \begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}$$
-
-#### Step 1: Track the Evolution of the State Vector
-* **Initial Input State $|\psi_0\rangle$:**
-  $$|\psi_0\rangle = |00\rangle = |0\rangle \otimes |0\rangle$$
-
-* **After applying the rotation gate $\hat{R}_y(\theta) \otimes \hat{I}$ on Qubit 1 ($|\psi_1\rangle$):**
-  $$\hat{R}_y(\theta)|0\rangle = \cos\left(\frac{\theta}{2}\right)|0\rangle + \sin\left(\frac{\theta}{2}\right)|1\rangle$$
-  $$|\psi_1\rangle = \left[\cos\left(\frac{\theta}{2}\right)|0\rangle + \sin\left(\frac{\theta}{2}\right)|1\rangle\right] \otimes |0\rangle = \cos\left(\frac{\theta}{2}\right)|00\rangle + \sin\left(\frac{\theta}{2}\right)|10\rangle$$
-
-* **After applying the CNOT gate ($|\psi_2\rangle$):**
-  The CNOT gate uses qubit 1 as the control and qubit 2 as the target. It leaves components controlled by $|0\rangle$ unchanged and flips target qubits controlled by $|1\rangle$ ($|10\rangle \rightarrow |11\rangle$):
-  $$|\psi_2\rangle = \cos\left(\frac{\theta}{2}\right)|00\rangle + \sin\left(\frac{\theta}{2}\right)|11\rangle$$
-
-#### Step 2: Apply the Observable Operator to the State Vector
-The target cost function is given by $f(\theta) = \langle\psi_2|(\hat{X} \otimes \hat{X})|\psi_2\rangle$. First, evaluate the action of the operator $(\hat{X} \otimes \hat{X})$ on the ket state $|\psi_2\rangle$. Since $\hat{X}|0\rangle = |1\rangle$ and $\hat{X}|1\rangle = |0\rangle$:
-$$(\hat{X} \otimes \hat{X})|00\rangle = |11\rangle \quad \text{and} \quad (\hat{X} \otimes \hat{X})|11\rangle = |00\rangle$$
-
-Substituting these into the expression yields:
-$$(\hat{X} \otimes \hat{X})|\psi_2\rangle = \cos\left(\frac{\theta}{2}\right)|11\rangle + \sin\left(\frac{\theta}{2}\right)|00\rangle$$
-
-#### Step 3: Compute the Final Inner Product Expectation Value
-Now, compute the inner product by multiplying the bra state with the transformed ket state:
-$$f(\theta) = \left[\cos\left(\frac{\theta}{2}\right)\langle00| + \sin\left(\frac{\theta}{2}\right)\langle11|\right] \cdot \left[\cos\left(\frac{\theta}{2}\right)|11\rangle + \sin\left(\frac{\theta}{2}\right)|00\rangle\right]$$
-
-Expanding the terms gives:
-$$f(\theta) = \cos^2\left(\frac{\theta}{2}\right)\langle00|11\rangle + \cos\left(\frac{\theta}{2}\right)\sin\left(\frac{\theta}{2}\right)\langle00|00\rangle + \sin\left(\frac{\theta}{2}\right)\cos\left(\frac{\theta}{2}\right)\langle11|11\rangle + \sin^2\left(\frac{\theta}{2}\right)\langle11|00\rangle$$
-
-By the orthonormality of the computational basis states ($\langle00|11\rangle = 0$, $\langle11|00\rangle = 0$, and $\langle00|00\rangle = \langle11|11\rangle = 1$), the expression simplifies to:
-$$f(\theta) = 0 + \cos\left(\frac{\theta}{2}\right)\sin\left(\frac{\theta}{2}\right)(1) + \sin\left(\frac{\theta}{2}\right)\cos\left(\frac{\theta}{2}\right)(1) + 0$$
-$$f(\theta) = 2 \sin\left(\frac{\theta}{2}\right) \cos\left(\frac{\theta}{2}\right)$$
-
-Using the double-angle trigonometric identity $\sin(2\alpha) = 2\sin\alpha\cos\alpha$, the expression matches the target cost function:
-$$f(\theta) = \sin\left(2 \cdot \frac{\theta}{2}\right) = \sin(\theta) \quad \blacksquare$$
 
 ---
 
