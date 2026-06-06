@@ -8,7 +8,7 @@
 # Table of Contents
 - [QML - Introduction](#qml---introduction)
 - [Table of Contents](#table-of-contents)
-  - [Abstract](#abstract)
+- [Abstract](#abstract)
 - [1. Theoretical Part](#1-theoretical-part)
   - [1.1. What is a Quantum computer?](#11-what-is-a-quantum-computer)
   - [1.2. Quantum Advantages Vs Quantum Supremacy](#12-quantum-advantages-vs-quantum-supremacy)
@@ -27,7 +27,7 @@
   - [3.6. Representing a Qubit on Bloch Sphere](#36-representing-a-qubit-on-bloch-sphere)
   - [3.7. Manipulating a Qubit - The X,Y and Z Gates](#37-manipulating-a-qubit---the-xy-and-z-gates)
   - [3.8. Intro to Phase: Global vs Relative Phase](#38-intro-to-phase-global-vs-relative-phase)
-  - [3.9. Tha Hadamard Gate, and the $+, -, i and -i$ States](#39-tha-hadamard-gate-and-the----i-and--i-states)
+  - [3.9. Tha Hadamard Gate, and the $+, -, i$ \& $-i$ States](#39-tha-hadamard-gate-and-the----i---i-states)
   - [3.10. The $S$ and $T$ Phase Gates.](#310-the-s-and-t-phase-gates)
   - [3.11. The Rotation Gates](#311-the-rotation-gates)
 - [4. Working with Multiple Qubit](#4-working-with-multiple-qubit)
@@ -37,8 +37,6 @@
 - [Notes](#notes)
   - [The Inner Product](#the-inner-product)
     - [Calculation](#calculation)
-  - [Hadamard "H" Gate](#hadamard-h-gate)
-  - [Note: Hadamard Gate](#note-hadamard-gate)
 - [5. Quantum Neural Network (QNN)](#5-quantum-neural-network-qnn)
   - [5.1. Cost Function](#51-cost-function)
   - [5.2. The Components](#52-the-components)
@@ -47,22 +45,22 @@
   - [5.5. Quantum Kernel Calculation Steps](#55-quantum-kernel-calculation-steps)
 - [CheatSheet](#cheatsheet)
 
-## Abstract
+# Abstract
 1. Theoretical Part.
 2. Mathematical Perquisites: Complex Numbers and Basic LA. 
 3. Working with a Single Qubit: What is a Qubit? and Operation on Qubits.
 4. Multiple Qubits: Multi Qubit Gates and Entanglements.
 5. Quantum Algorithms: Analyze Quantum algorithms.
 
+---
+
 # 1. Theoretical Part
 ## 1.1. What is a Quantum computer?
-**As HW perspective:**
+**As HW perspective:**</br>
 - A **quantum computer** is a machine that performs computation using the laws of quantum mechanics.
 - Instead of classical bits (0,1), it uses `qubits`.
 - A Simpler form: it's a computer that compute using probability amplitudes instead of definite bits.
 - **Practical Definition**: *A programmable physical system, that manipulates quantum states (vectors in Hilbert space), using unitary operations, to influence measurement probabilities.*
-
-</br>
 
 **More Illustration for the Practical Definition**
 
@@ -78,23 +76,23 @@ The industry often uses these terms interchangeably, but they represent two diff
 
 |Key|Differences
 |-|-|
-Quantum Advantages|**Simple form**: Can solve what classical computer do, but faster; Quantum beats classical where it actually matters. The speedup e.g., could be exponential parallelism</br>**Key point**: Advantage is a practical computing milestone.</br>**Demonstration**: Quantum computer provides a measurable practical benefits over the best classical methods for a useful problem.</br>Advantage answers: *Can quantum outperform classical where it matters?*
-Quantum Supremacy|Simple form: Can solve what Classical computer can't, whatever the time quantum computer will require to take.</br>Key point: Supremacy proves classical infeasibility, not usefulness.</br>Supremacy is a theoretical computation milestone.</br>**Demonstration**: a quantum computer can perform a specific computational task that is infeasible for classical computers within practical resource limits.</br>Supremacy answers: *Can quantum outperform classical at all?*
+Quantum Advantages|**Simple form**: Can solve what classical computer do, but faster; Quantum beats classical where it actually matters. The speedup e.g., could be exponential parallelism</br>**Key point**: Advantage is a practical computing milestone.</br>**Demonstration**: Quantum computer provides a measurable practical benefits over the best classical methods for a useful problem.</br>**Advantage answers**: *Can quantum outperform classical where it matters?*
+Quantum Supremacy|**Simple form**: Can solve what Classical computer can't, whatever the time quantum computer will require to take.</br>**Key point**: Supremacy is a theoretical computation milestone; Supremacy proves classical infeasibility, not usefulness.</br>**Demonstration**: a quantum computer can perform a specific computational task that is infeasible for classical computers within practical resource limits.</br>**Supremacy answers**: *Can quantum outperform classical at all?*
 
 **Myth vs. Reality**</br>
 Quantum Advantage: Quantum computation has the potential for providing exponential parallelism. Quantum Supremacy: Quantum Computers can solve problems and carry out simulations that are basically impossible on conventional computers.</br>
 The statements capture the intuition, but they mix concepts:
 
-1. Quantum Advantage</br>
+1. **Quantum Advantage**</br>
 The **Misconception**: "Quantum computers have exponential parallelism, allowing them to do everything at once."
      - **The Reality**: While $n$ qubits create an exponential state space ($2^n$ amplitudes), you can only measure **one** outcome. Advantage isn't a free gift of nature; it requires specific algorithms (like interference) to "cancel out" wrong answers and boost the right ones.
      - **The Nuance**: Most problem do **not** get an exponential speedup.
      - **Definition**: > **Quantum Advantage** is achieved when a quantum computer solves a **useful, real-world problem** more efficiently (faster or cheaper) than the best known classical method.
 
     Level of Speedup:
-    - Exponential: Very rare (e.g., Shor’s algorithm for factoring).
-    - Quadratic: Significant (e.g., Grover’s algorithm for searching databases).
-    - Practical: Even a constant-factor improvement in energy or cost for a massive industry problem counts as an advantage.
+    - **Exponential**: Very rare (e.g., Shor’s algorithm for factoring).
+    - **Quadratic**: Significant (e.g., Grover’s algorithm for searching databases).
+    - **Practical**: Even a constant-factor improvement in energy or cost for a massive industry problem counts as an advantage.
 
 2. **Quantum Supremacy**</br>
 **The Misconception**: "Quantum computers can do things that are impossible for classical computers."
@@ -115,7 +113,7 @@ Noisy| Means error happens, in order to prevent the errors, we have to implement
 Comparison|NISQ Devices|Fault-tolerant Quantum Devices|
 |-|-|-|
 Definition|NISQ devices are current-generation quantum processors:</br>&ensp; - Have tens to 1000 physical qubits; not large enough to achieve quantum advantage.</br>&ensp;- Suffer from noise and decoherence; not advanced enough yet for fault-tolerance.</br>&ensp;- Don't implement quantum error correction.|Fault-tolerance quantum computers:</br>&ensp;- Use Quantum error correction (QEC).</br>&ensp;- Encode one logical qubit into many physical qubits.</br>&ensp;- Actively detect and correct errors during computation.</br>&ensp;- Can run deep, long circuits reliably
-Regime Where|Errors accumulate quickly.</br>Long algorithms fails.</br>Fault tolerance is not available.|Shor’s algorithm at practical scale.</br>Large-scale quantum simulation.</br>Scalable quantum advantage
+State Where|Errors accumulate quickly.</br>Long algorithms fails.</br>Fault tolerance is not available.|Shor’s algorithm at practical scale.</br>Large-scale quantum simulation.</br>Scalable quantum advantage
 Core Technical|Errors accumulate → Computation eventually fails.|Errors are detected and corrected → computation remains stable.
 Algorithms|Hybrid quantum-classical (e.g., VQE, QAOA)|Fully quantum scalable algorithms (e.g., large-scale Shor).
 
@@ -131,29 +129,22 @@ Algorithms|Hybrid quantum-classical (e.g., VQE, QAOA)|Fully quantum scalable alg
    - $i\hbar \frac{d}{dt} |\psi\rangle = H |\psi\rangle$
   
 **More Details**</br>
-**1- The Wave Function (The State Postulate)**
-- The first postulate states that the physical state of a system is completely described by a complex mathematical function called the wave function, usually denoted by the Greek letter $\psi$ (Psi).
+**1- The Wave Function (The State Postulate)**</br>
+The first postulate states that the physical state of a system is completely described by a complex mathematical function called the wave function, usually denoted by the Greek letter $\psi$ (Psi).
+- What it means: Unlike classical physics, where you know exactly where a ball is, in quantum mechanics, the wave function tells you the probability of where a particle might be.
 
-    - What it means: Unlike classical physics, where you know exactly where a ball is, in quantum mechanics, the wave function tells you the probability of where a particle might be.
+- The Rule: The probability density of finding a particle at a specific point is given by the square of the absolute value of the wave function: ∣Ψ∣2.
 
-    - The Rule: The probability density of finding a particle at a specific point is given by the square of the absolute value of the wave function: ∣Ψ∣2.
+**2- Observables and Operators (The Measurement)**</br>
+For every physical property you can measure—like position, momentum, or energy—there is a corresponding mathematical "operator."
+- The Measurement Act: When you measure a property, the system "collapses" from a mix of possibilities into one specific state.
+- Eigenvalues: The only values you can actually observe in an experiment are the eigenvalues of that operator. Essentially, nature has a "menu" of allowed values, and you have to pick one.
 
-**2- Observables and Operators (The Measurement)**
-
-- For every physical property you can measure—like position, momentum, or energy—there is a corresponding mathematical "operator."
-
-    - The Measurement Act: When you measure a property, the system "collapses" from a mix of possibilities into one specific state.
-
-    - Eigenvalues: The only values you can actually observe in an experiment are the eigenvalues of that operator. Essentially, nature has a "menu" of allowed values, and you have to pick one.
-
-**3- The Schrödinger Equation (The Evolution)**
-
-- This postulate describes how the wave function changes as time passes. It is governed by the Time-Dependent Schrödinger Equation:
+**3- The Schrödinger Equation (The Evolution)**</br>
+This postulate describes how the wave function changes as time passes. It is governed by the Time-Dependent Schrödinger Equation:
 iℏ∂t∂​Ψ(r,t)=H^Ψ(r,t)
-
-    - H^ (The Hamiltonian): represents the total energy of the system.
-
-    - Determinism: Interestingly, while measurement is random, the way the wave function moves is perfectly predictable and smooth—until someone looks at it.
+- H^ (The Hamiltonian): represents the total energy of the system.
+- Determinism: Interestingly, while measurement is random, the way the wave function moves is perfectly predictable and smooth—until someone looks at it.
 
 Postulate|Focus|Key Concept
 |-|-|-|
@@ -165,7 +156,7 @@ Evolution|Time|Systems change according to the Schrödinger Equation.
 
 # 2. Mathematical Prerequisites
 ## 2.1. Complex Numbers Basics
-**Quantum computing relies heavily on complex numbers to represent states.**
+> Quantum computing relies heavily on complex numbers to represent states
 
 **The Concept of $i$**</br>
 To solve equations where squaring results in a negative number, we introduce the **imaginary unit**.
@@ -178,8 +169,8 @@ Define $i = \sqrt{-1}$, then $i^2 = 1$.</br>
 Apply to our problem: $x^2 = -4$ then $x = \pm2i$
 
 **Definition**</br>
-A complex number $z$ is represented in its standard form as: 
-> $$z = a + bi$$
+A complex number $z$ is represented in its standard form as:</br>
+$$z = a + bi$$
 
 * **$a$:** The **Real part**.
 * **$bi$**: The **Imaginary part** ($i = \sqrt{-1}$).
@@ -188,14 +179,14 @@ A complex number $z$ is represented in its standard form as:
 **Magnitude (Absolute Value)**</br>
 The magnitude $|z|$ represents the distance from the origin in the complex plane: 
 
-> $$|z| = \sqrt{a^2 + b^2}$$
+$$|z| = \sqrt{a^2 + b^2}$$
 
 **Complex Conjugate**</br>
 The **complex conjugate** of $z$ (denoted $z^*$) is *found by flipping the sign of the imaginary part*.
 
 * **Definition:** $z^* = a - bi$
 * **Property:** Multiplication of Complex with its conjugate results into real number: 
-> $$(a+ib)(a-ib)=a^2+b^2$$
+$$(a+ib)(a-ib)=a^2+b^2$$
 
 **Polar Representation**</br>
 Complex numbers can be converted from Cartesian $(a, b)$ to **Polar** coordinates $(r, \theta)$:
@@ -296,7 +287,7 @@ In Quantum Mechanics, we almost exclusively work with these two types:
 **Eigenvalues and Eigenvectors**</br>
 When a matrix $A$ acts on an eigenvector $\vec{v}$, the vector stays in the same direction but is scaled by the eigenvalue $\lambda$:
 
-> $$A\vec{v} = \lambda\vec{v}$$
+$$A\vec{v} = \lambda\vec{v}$$
 
 **Vector Illustration:**</br>
 Imagine a vector $\vec{v}$ being stretched by a factor $\lambda$ without changing its direction.
@@ -331,7 +322,7 @@ In Quantum Computing, we use **Dirac Notation** (Bra-Ket notation) [Will be expl
 <div style="display: flex; align-items: flex-start; gap: 24px; padding: 12px 0;">
   
   <div style="flex: 1; min-width: 180px;">
-      <h3 style="margin: 0; line-height: 1.4;">Classical Computer vs. Quantum Computer</h3>
+      <h3 style="margin: 0; line-height: 1.4;">| Classical Computer vs. Quantum Computer</h3>
   </div>
 
   <div style="flex: 3;">
@@ -349,7 +340,7 @@ In Quantum Computing, we use **Dirac Notation** (Bra-Ket notation) [Will be expl
 <div style="display: flex; align-items: flex-start; gap: 24px; padding: 12px 0;">
   
   <div style="flex: 1; min-width: 180px;">
-    <h3 style="margin: 0; line-height: 1.4;">What is a Qubit?</h3>
+    <h3 style="margin: 0; line-height: 1.4;">| What is a Qubit?</h3>
   </div>
 
   <div style="flex: 3;">
@@ -366,7 +357,7 @@ In Quantum Computing, we use **Dirac Notation** (Bra-Ket notation) [Will be expl
 <div style="display: flex; align-items: flex-start; gap: 24px; padding: 12px 0;">
   
   <div style="flex: 1; min-width: 180px;">
-    <h3 style="margin: 0; line-height: 1.4;">Dirac Notation for States</h3>
+    <h3 style="margin: 0; line-height: 1.4;">| Dirac Notation for States</h3>
   </div>
 
   <div style="flex: 3;">
@@ -385,13 +376,14 @@ We will cover Dirac Notation more explained in further sections below.
 <div style="display: flex; align-items: flex-start; gap: 24px; padding: 12px 0;">
   
   <div style="flex: 1; min-width: 180px;">
-    <h3 style="margin: 0; line-height: 1.4;">Superposition</h3>
+    <h3 style="margin: 0; line-height: 1.4;">| Superposition</h3>
   </div>
 
   <div style="flex: 3;">
     <ul style="margin: 0; padding-left: 20px; line-height: 1.6;">
-      <li>A particle is in two states at the same time (simultaneously).</li>
-      <li>A qubit is in superposition if it is both $|0\rangle$ and $|1\rangle$.</li>
+A particle is in two states at the same time (simultaneously).</br>
+
+A qubit is in superposition if it is both $|0\rangle$ and $|1\rangle$.
     </ul>
   </div>
 
@@ -401,7 +393,7 @@ We will cover Dirac Notation more explained in further sections below.
 
 ## 3.2. Representing Qubits Mathematically
 
-**Column Vector Representation**</br>
+**| Column Vector Representation**</br>
 A qubit $|\psi\rangle$ is represented as:
 
 $$|\psi\rangle = \begin{pmatrix} \alpha \\\\ \beta \end{pmatrix}$$
@@ -416,7 +408,7 @@ $$|\psi\rangle = \begin{pmatrix} \alpha \\\\ \beta \end{pmatrix}$$
 <div style="display: flex; align-items: flex-start; gap: 24px; padding: 12px 0;">
   
   <div style="flex: 1; min-width: 180px;">
-    <h3 style="margin: 0; line-height: 1.4;">The Collapse</h3>
+    <h3 style="margin: 0; line-height: 1.4;">| The Collapse</h3>
   </div>
 
   <div style="flex: 3;">
@@ -433,7 +425,7 @@ Measurement results in either **0** or **1**.</br>
 <div style="display: flex; align-items: flex-start; gap: 24px; padding: 12px 0;">
   
   <div style="flex: 1; min-width: 180px;">
-    <h3 style="margin: 0; line-height: 1.4;">Measurement Outcomes</h3>
+    <h3 style="margin: 0; line-height: 1.4;">| Measurement Outcomes</h3>
   
   When measuring $|\psi\rangle = \begin{pmatrix} \alpha \\\\ \beta \end{pmatrix}$:
   </div>
@@ -453,7 +445,7 @@ Measurement results in either **0** or **1**.</br>
 <div style="display: flex; align-items: flex-start; gap: 24px; padding: 12px 0;">
   
   <div style="flex: 1; min-width: 180px;">
-    <h3 style="margin: 0; line-height: 1.4;">Concluding Question</h3>
+    <h3 style="margin: 0; line-height: 1.4;">| Concluding Question</h3>
 
   **So what is the point of $\alpha, \beta$ if we only measure 0 or 1?**
   </div>
@@ -480,13 +472,13 @@ The states: $|0\rangle, |1\rangle$ are not the only possibilities for the state 
 - $\sqrt{|a|^2 + |b|^2}$ : norm or length of the state, when it is equal to 1 then the state is called normalized.
 </br></br>
 
-**Hilbert Space**: 
+**| Hilbert Space**: 
   - All these possible values for the state of a single qubit are vectors in the complex vector space of dimension 2.
   - In fact, they live in what is called a **Hilbert space**
   - Since we are working only with finite dimensions, there is no real difference.
 </br></br>
 
-**Computational Basis**:</br>
+**| Computational Basis**:</br>
 To fix the vectors $|0\rangle$ and $|1\rangle$ as elements of special **basis**, we refer to as the **computational basis**.</br>
 Representing these vectors, constituents of the computational basis, as the column vectors: $|0\rangle = \begin{pmatrix} 1 \\\\ 0 \end{pmatrix}$, $|1\rangle = \begin{pmatrix} 0 \\\\ 1\end{pmatrix}$</br>
 Hence: $a|0\rangle + b|1\rangle = a\begin{pmatrix} 1 \\\\ 0 \end{pmatrix} + b\begin{pmatrix} 0 \\\\ 1 \end{pmatrix} = \begin{pmatrix} a \\\\ b \end{pmatrix}$.
@@ -513,8 +505,7 @@ $|\psi\rangle=\begin{pmatrix} \frac{1}{2} \\\\ \frac{2\sqrt{3}}{4}\end{pmatrix}=
 
 Note: 
 - $|\alpha|^2 + |\beta|^2 = 1$
-- Ket: Represent a Quantum state (A column vector) $|\psi\rangle$
-- Bra: The conjugate transpose of the ket (a row vector) $\langle\psi|$
+- Recall: {Ket: Represent a Quantum state (A column vector) $|\psi\rangle$, Bra: The conjugate transpose of the ket (a row vector) $\langle\psi|$}
 - So a *Ket* is like: $|\psi\rangle = \begin{pmatrix}\alpha \\\\ \beta \end{pmatrix}$, and the conjugate *Bra* is: $\langle\psi| = [\alpha^* \quad \beta^*]$
 
 --- 
@@ -542,9 +533,8 @@ We can represent a qubit $|\psi\rangle$ as a point on the surface of the **Bloch
 ---
 
 ## 3.7. Manipulating a Qubit - The X,Y and Z Gates
-In classical computing, we use logic gates to change the state. In quantum computing, we still have gates that we use to change the Qubit state. These gates are little different that the logic gates.
-
-There three quantum gates: X-Gate, Y-Gate, and Z-Gate
+In classical computing, we use logic gates to change the state. In quantum computing, we still have gates that we use to change the Qubit state. These gates are little different that the logic gates.</br>
+There three quantum gates: X-Gate, Y-Gate, and Z-Gate. (called **Pauli Gates**)</br>
 
 **The X-Gate**</br>
 The X-gate flips the Qubit $\pi$ radians around the x-axis on the Bloch Sphere
@@ -619,21 +609,21 @@ The Z-gate flips the Qubit $\pi$ radians around the z-axis on the Bloch Sphere
 
 </div>
 
-**Observations**</br>
+**| Observations**</br>
 Since the $X$, $Y$, and $Z$ gates rotate around the specified axis $\pi$ radians.</br>
 If we apply the same gate twice; we rotate around $2\pi$ radians; meaning the qubit will end up in the original state.</br>
 ! This means **The $X$, $Y$, and $Z$ gates are their own inverses**.
 
 </br>
 
-**Gates Representation**</br>
+**| Gates Representation**</br>
 These **Pauli** gate can be represented as matrices.
 
 $X=\begin{pmatrix} 0&1 \\\\ 1&0 \end{pmatrix}$ &ensp; &ensp; $Y=\begin{pmatrix} 0&-i \\\\ i&0 \end{pmatrix}$ &ensp; &ensp; $Z=\begin{pmatrix} 1&0 \\\\ 0&-1 \end{pmatrix}$
 
 </br>
 
-**Applying Gates to Qubit**</br>
+**| Applying Gates to Qubit**</br>
 Applying $X$ gate to an arbitrary qubit $|\psi\rangle = \begin{pmatrix}\alpha \\ \beta \end{pmatrix}$
 
 $$X|\psi\rangle = \begin{pmatrix}0&1\\\\1&0\end{pmatrix} \begin{pmatrix}\alpha\\\beta\end{pmatrix} = \begin{pmatrix}\beta\\\alpha\end{pmatrix}$$
@@ -646,7 +636,7 @@ $$X|0\rangle = \begin{pmatrix} 0 & 1 \\\\ 1 & 0 \end{pmatrix} \begin{pmatrix} 1 
 
 </br>
 
-**Dirac Notation Note: Matrix Columns**</br>
+**| Dirac Notation Note: Matrix Columns**</br>
 When working in *Dirac notation*, the columns of an arbitrary gate matrix $U=\begin{pmatrix}a&b \\\\ c&d\end{pmatrix}$ directly define how the gate transforms the basis states:
 - **First Columns ($|0\rangle$ outcome)**: 
 
@@ -696,9 +686,9 @@ $Z$|$\|0\rangle\xrightarrow{Z}\|0\rangle$</br>$\|1\rangle\xrightarrow{Z}-\|1\ran
 <div style="display: flex; align-items: center; gap: 30px;">
 
   <div style="flex: 1;">
-    <h3><strong>Concluding Question</strong></h3>
+    <h3><strong>| Concluding Question</strong></h3>
     
-What is the point of Z gate? it just rotates the qubit around the Z-axis. Also, gives that from previous example, that the qubit still have the same $\alpha$ chances of being zero and $\beta$ chance of being one. This didn't affect the probability! The qubit stays the same distance from zero/one states.
+What is the point of Z gate? it just rotates the qubit around the Z-axis. Also, given that from previous example, the qubit still have the same $\alpha$ chances of being zero and $\beta$ chance of being one. This didn't affect the probability! The qubit stays the same distance from zero/one states.
 
 In the further explanation, the complex numbers will be brought here in the quantum computing with introduction to Phase
   </div>
@@ -711,13 +701,15 @@ In the further explanation, the complex numbers will be brought here in the quan
 </div>
 
 ## 3.8. Intro to Phase: Global vs Relative Phase
-To introduce phase, we must get our friend "Complex numbers". In QC, the complex numbers are usually used in the exponential form; It gives a nice mathematically way in rotating the qubit based on the $\phi$ angle value.
+To introduce phase, we must get to meet our friend "Complex numbers". In QC, the complex numbers are usually used in the exponential form; It gives a nice mathematically way in rotating the qubit based on the $\phi$ angle value.
 
 $$|\psi\rangle=\alpha |0\rangle + e^{i\phi}\beta |1\rangle$$
 
 - By multiplying the $|1\rangle$ by $e^{i\phi}$, we rotate around the z-axis (on the Bloch Sphere) by $\phi$ radians.
 
-**Why The $|1\rangle$ State that Multiply by Complex Number?**</br>
+</br>
+
+**| Why The $|1\rangle$ State that Multiply by Complex Number?**</br>
 
 |Global Phase|Relative Phase|
 |-|-|
@@ -728,18 +720,20 @@ $e^{i\phi}(\alpha \|0\rangle + \beta \|1\rangle)$ </br>= $e^{i\phi} \alpha \|0\r
 - It turns out that the global phase is physically irrelevant; 
 - $e^{i\phi}(\alpha |0\rangle + \beta |1\rangle) \equiv \alpha |0\rangle + \beta |1\rangle$
 
+</br>
+
 **What If $e^{i\theta} \alpha |0\rangle + e^{i\phi} \beta |1\rangle$ ?**</br>
 Here, we have a complex number in both of amplitude of the two states.
 
 **Prove**</br>
 1. The arbitrary qubit: 
-> $$e^{i\theta} \alpha |0\rangle + e^{i\phi} \beta |1\rangle$$
-2. Factor out the complex number over entire Qubit: 
-> $$e^{i\theta}(\alpha |0\rangle + (e^{i\theta})^{-1} e^{i\phi} \beta |1\rangle) = e^{i\theta}(\alpha |0\rangle + e^{i(\phi - \theta)} \beta |1\rangle)$$
-3. Now, we have global phase and relative phase. Discarding the global phase: 
-> $$\alpha |0\rangle + e^{i(\phi - \theta)} \beta |1\rangle$$
+$$e^{i\theta} \alpha |0\rangle + e^{i\phi} \beta |1\rangle$$
+1. Factor out the complex number over entire Qubit: 
+$$e^{i\theta}(\alpha |0\rangle + (e^{i\theta})^{-1} e^{i\phi} \beta |1\rangle) = e^{i\theta}(\alpha |0\rangle + e^{i(\phi - \theta)} \beta |1\rangle)$$
+1. Now, we have global phase and relative phase. Discarding the global phase: 
+$$\alpha |0\rangle + e^{i(\phi - \theta)} \beta |1\rangle$$
 
-**Recall! Phasing Does Not Affect Probability!**</br>
+**| Recall! Phasing Does Not Affect Probability!**</br>
 the qubit still have the same $\alpha$ chances of being zero and $\beta$ chance of being one. This didn't affect the probability! The qubit stays the same distance from zero/one states. It's just rotating around the Z-axix.
 
 <div style="display: flex; align-items: flex-start; gap: 20px;">
@@ -758,24 +752,24 @@ So, if we have a Qubit $|\psi\rangle = \alpha|0\rangle + e^{i\phi} \beta|1\rangl
 
 ---
 
-## 3.9. Tha Hadamard Gate, and the $+, -, i and -i$ States 
-**Each on of the gates contains a relative phase.**
+## 3.9. Tha Hadamard Gate, and the $+, -, i$ & $-i$ States 
+**Each one of the gates contains a relative phase.**
 
-**States Representation**</br>
+**| States Representation**</br>
 
 |State|Representation|
 |-|-|
-$\|+\rangle$| $\|+\rangle=\frac{1}{\sqrt{2}}\|0\rangle+\frac{1}{\sqrt{2}}\|1\rangle$
-$\|-\rangle$| $\|-\rangle=\frac{1}{\sqrt{2}}\|0\rangle-\frac{1}{\sqrt{2}}\|1\rangle$
-$\|i\rangle$| $\|i\rangle=\frac{1}{\sqrt{2}}\|0\rangle+\frac{i}{\sqrt{2}}\|1\rangle$
-$\|-i\rangle$| $\|-i\rangle=\frac{1}{\sqrt{2}}\|0\rangle-\frac{i}{\sqrt{2}}\|1\rangle$
+$\|+\rangle$| $\frac{1}{\sqrt{2}}\|0\rangle+\frac{1}{\sqrt{2}}\|1\rangle$
+$\|-\rangle$| $\frac{1}{\sqrt{2}}\|0\rangle-\frac{1}{\sqrt{2}}\|1\rangle$
+$\|i\rangle$| $\frac{1}{\sqrt{2}}\|0\rangle+\frac{i}{\sqrt{2}}\|1\rangle$
+$\|-i\rangle$| $\frac{1}{\sqrt{2}}\|0\rangle-\frac{i}{\sqrt{2}}\|1\rangle$
 
 **Note That**</br>
 - The values for $\alpha$ & $\beta$ represents the eigenvalues; e.g., $|+\rangle$: eigenvalues are {$\frac{1}{\sqrt{2}}$,$\frac{1}{\sqrt{2}}$}, $|-\rangle$: eigenvalues are {$\frac{1}{\sqrt{2}}$,-$\frac{1}{\sqrt{2}}$}
 
 </br>
 
-**The Hadamard Gate**</br>
+**| The Hadamard Gate**</br>
 Mathematical representation: $H = \frac{1}{\sqrt{2}}\begin{bmatrix}1&1 \\\\1&-1\end{bmatrix}$
 
 **Applying effect of $H$ on the states**:
@@ -811,15 +805,23 @@ $\|1\rangle \xrightarrow{H} \|-\rangle$
 $\|+\rangle \xrightarrow{H} \|0\rangle$
 $\|-\rangle \xrightarrow{H} \|1\rangle$
 
-**Note**
+**| Note**
 - **The Hadamard Gate is it's own inverse**.
+- $H|u\rangle = \frac{1}{\sqrt{2}} \sum_{y=0}^{1} (-1)^{uy} |y\rangle$: Why is this formula preferred in QML?
+    - While the ∣0⟩±∣1⟩ notation is more intuitive, this summation form is the "workhorse" of Quantum Machine Learning and Quantum Algorithms for two reasons:
+      - Generalization: It scales beautifully. For n qubits, the formula becomes H⊗n∣u⟩=2n​1​∑y∈{0,1}n​(−1)u⋅y∣y⟩. This is the Walsh-Hadamard Transform, used to create a uniform superposition of all possible states simultaneously—the ultimate "parallel processing" step in quantum computing.
+      - Phase Encoding: In QML, we often use the (−1)uy term to encode data into the "phase" of the quantum state. This allows us to perform interference patterns that highlight certain data features while canceling out noise.
+
+</br>
+
+![32](./assets/hadamard-2.jpg)
 
 ---
 
 ## 3.10. The $S$ and $T$ Phase Gates.
 Introduction to a two Phase gates; it adds a relative phase to the $|1\rangle$ state.
 
-|$S$|$T$|
+|$S$ Gate|$T$ Gate|
 |-|-|
 $S=\begin{pmatrix}1&0\\\\0&e^{i\frac{\pi}{2}}\end{pmatrix}$|$T=\begin{pmatrix}1&0\\\\0&e^{i\frac{\pi}{4}}\end{pmatrix}$
 $\|0\rangle \xrightarrow{S}\|0\rangle$|$\|0\rangle \xrightarrow{T}\|0\rangle$|
@@ -831,11 +833,9 @@ $\alpha\|0\rangle+\beta\|1\rangle\xrightarrow{S}\alpha\|0\rangle+e^{i\frac{\pi}{
 |------------------|------------------|
 | $S^\dagger = \begin{pmatrix} 1 & 0 \\\\ 0 & e^{i(-\frac{\pi}{2})} \end{pmatrix}$ | $T^\dagger = \begin{pmatrix} 1 & 0 \\\\ 0 & e^{i(-\frac{\pi}{4})} \end{pmatrix}$ |
 | Adds a relative phase of $e^{i(-\frac{\pi}{2})}$ | Adds a relative phase of $e^{i(-\frac{\pi}{4})}$ |
-| $S(\alpha\|0\rangle + \beta\|1\rangle) = \alpha\|0\rangle + e^{i\frac{\pi}{2}}\beta\|1\rangle$ | |
-| $S^\dagger(\alpha\|0\rangle + e^{i\frac{\pi}{2}}\beta\|1\rangle)$ | |
-| $= \alpha\|0\rangle + e^{i(-\frac{\pi}{2})} e^{i\frac{\pi}{2}} \beta\|1\rangle$ | |
-| $= \alpha\|0\rangle + e^{i(0)} \beta\|1\rangle$ | |
-| $= \alpha\|0\rangle + \beta\|1\rangle$ | |
+| $S(\alpha\|0\rangle + \beta\|1\rangle) = \alpha\|0\rangle + e^{i\frac{\pi}{2}}\beta\|1\rangle$ |$T(\alpha\|0\rangle + \beta\|1\rangle) = \alpha\|0\rangle + e^{i\frac{\pi}{4}}\beta\|1\rangle$ |
+| $S^\dagger(\alpha\|0\rangle + e^{i\frac{\pi}{2}}\beta\|1\rangle)$ |$T^\dagger(\alpha\|0\rangle + e^{i\frac{\pi}{4}}\beta\|1\rangle)$ |
+| $= \alpha\|0\rangle + e^{i(-\frac{\pi}{2})} e^{i\frac{\pi}{2}} \beta\|1\rangle$</br>$= \alpha\|0\rangle + e^{i(0)} \beta\|1\rangle$ </br>$= \alpha\|0\rangle + \beta\|1\rangle$|$= \alpha\|0\rangle + e^{i(-\frac{\pi}{4})} e^{i\frac{\pi}{4}} \beta\|1\rangle$</br>$= \alpha\|0\rangle + e^{i(0)} \beta\|1\rangle$</br>$= \alpha\|0\rangle + \beta\|1\rangle$ |
 
 ---
 
@@ -854,13 +854,13 @@ $$
 R_Z(\theta) = e^{-i\frac{\theta}{2}Z} = \cos \frac{\theta}{2}I - i \sin \frac{\theta}{2}Z = \begin{pmatrix} e^{-i\frac{\theta}{2}} & 0 \\ 0 & e^{i\frac{\theta}{2}} \end{pmatrix} \equiv \begin{pmatrix} 1 & 0 \\ 0 & e^{i\theta} \end{pmatrix}
 $$
 
-> **Note:**
->
-> The symbol $\equiv$ represents an equivalent action up to a **global phase**.
->
-> The rotation gates definition derivated is explained below.
+**Note:** 
+- The symbol $\equiv$ represents an equivalent action up to a **global phase**.
+- The rotation gates definition derivated is explained below.
 
-**Notable Equivalences**</br>
+</br>
+
+**| Notable Equivalences**</br>
 Notice the following specific rotation results:
 * $R_X(\pi) \equiv X$
 * $R_Y(\pi) \equiv Y$
@@ -868,19 +868,19 @@ Notice the following specific rotation results:
 * $R_Z\left(\frac{\pi}{2}\right) \equiv S$
 * $R_Z\left(\frac{\pi}{4}\right) \equiv T$
 
-> Note: Notice how the $R_z$ gate is equivalent to the $S$ and $T$ phase gates at specifc angles; this shows that "Phase" is essentially just a rotation around the Z-axis of the sphere.
+**Note:** Notice how the $R_z$ gate is equivalent to the $S$ and $T$ phase gates at specifc angles; this shows that "Phase" is essentially just a rotation around the Z-axis of the sphere.
 
 </br>
 
-**Geometric Interpretation**</br>
+**| Geometric Interpretation**</br>
 
 Rotation matrices can be interpreted geometrically by introducing the so-called **Bloch sphere**. In fact, for any gate $G$, if $G$ is **Hermitian**, we have:
 
-$$R_G = e^{-i\frac{\theta}{2}G} = \cos \frac{\theta}{2}I - i \sin \frac{\theta}{2}G$$
+$$R_G(\theta) = e^{-i\frac{\theta}{2}G} = \cos \frac{\theta}{2}I - i \sin \frac{\theta}{2}G$$
 
 </br>
 
-**The Definition Derivitive**</br>
+**| The Definition Derivitive**</br>
 Let's explore how the above rotation gate defition was get:
 
 - Example: $R_x(\theta)$:
@@ -986,17 +986,17 @@ In the above quantum circuits, some books put a double line "$=$" instead of sin
 <div style="display: flex; align-items: center; gap: 30px;">
 
   <div style="flex: 1;">
-    <h3><strong>CNOT/Controlled X Gate</strong></h3>
+    <h3><strong>| CNOT/Controlled X Gate</strong></h3>
     
 The CNOT gate applies an $X$ gate to the **target qubit**, if the **Control qubit** is a *1*
 
 Example: The 1st qubit is the control, 2nd qubit is the target. 
 
-$CNOT(\frac{\sqrt{3}}{4}|00\rangle)+\frac{1}{2}|01\rangle+\frac{1}{\sqrt{2}}|10\rangle+\frac{1}{4}|11\rangle)$ 
+$CNOT(\frac{\sqrt{3}}{4}|00\rangle+\frac{1}{2}|01\rangle+\frac{1}{\sqrt{2}}|10\rangle+\frac{1}{4}|11\rangle)$ 
 
 = $\frac{\sqrt{3}}{4}CNOT|00\rangle+\frac{1}{2}CNOT|01\rangle+\frac{1}{\sqrt{2}}CNOT|10\rangle+\frac{1}{4}CNOT|11\rangle$
 
-= $\frac{\sqrt{3}}{4}|00\rangle+\frac{1}{2}|01\rangle+\frac{1}{\sqrt{2}}|11\rangle+\frac{1}{\sqrt{2}}|10\rangle$
+= $\frac{\sqrt{3}}{4}|00\rangle+\frac{1}{2}|01\rangle+\frac{1}{\sqrt{2}}|11\rangle+\frac{1}{4}|10\rangle$
 
   </div>
 
@@ -1010,7 +1010,7 @@ $CNOT(\frac{\sqrt{3}}{4}|00\rangle)+\frac{1}{2}|01\rangle+\frac{1}{\sqrt{2}}|10\
 <div style="display: flex; align-items: center; gap: 30px;">
 
   <div style="flex: 1;">
-    <h3><strong>Toffoli Gate</strong></h3>
+    <h3><strong>| Toffoli Gate</strong></h3>
     
 Same as CNOT but has 2 Control Qubits.
 
@@ -1034,9 +1034,9 @@ $TOFFOLI(\frac{1}{\sqrt{2}}|0011\rangle+\frac{1}{\sqrt{2}}|0110\rangle)$
 <div style="display: flex; align-items: center; gap: 30px;">
 
   <div style="flex: 1;">
-    <h3><strong>Notes</strong></h3>
+    <h3><strong>| Notes</strong></h3>
     
-There are also other controlled gates like: $CY, CZ, CS, CT, CH, ..$; it odes the same that it applies the gate to the target qubit is the control qubit is a 1
+There are also other controlled gates like: $CY, CZ, CS, CT, CH, ..$; it does the same; it applies the gate to the target qubit is the control qubit is a 1
 
   </div>
 
@@ -1079,23 +1079,6 @@ The inner product between two states is written as: $\langle\phi|\psi\rangle$
 An Example:
 ![i1](./assets/inner-product-2.jpg)
 
-## Hadamard "H" Gate
-![31](./assets/hadamard-1.jpg)
-
-prove:
-![32](./assets/hadamard-2.jpg)
-
-## Note: Hadamard Gate
-$H|u\rangle = \frac{1}{\sqrt{2}} \sum_{y=0}^{1} (-1)^{uy} |y\rangle$
-
-Why is this formula preferred in QML?
-
-While the ∣0⟩±∣1⟩ notation is more intuitive, this summation form is the "workhorse" of Quantum Machine Learning and Quantum Algorithms for two reasons:
-
-    Generalization: It scales beautifully. For n qubits, the formula becomes H⊗n∣u⟩=2n​1​∑y∈{0,1}n​(−1)u⋅y∣y⟩. This is the Walsh-Hadamard Transform, used to create a uniform superposition of all possible states simultaneously—the ultimate "parallel processing" step in quantum computing.
-
-    Phase Encoding: In QML, we often use the (−1)uy term to encode data into the "phase" of the quantum state. This allows us to perform interference patterns that highlight certain data features while canceling out noise.
-
 # 5. Quantum Neural Network (QNN)
 ## 5.1. Cost Function
 In QML, a cost funciton tells us how 'well' our quantum circuit is performing relative to an objective.</br>
@@ -1103,42 +1086,42 @@ It is almost always defined as the **expectation value** of a measurement operat
 $$C(\theta)=\langle\psi(\theta)|\hat{O}|\psi(\theta)\rangle$$
 
 In most of the problem it's defined as $C(\theta_1,\theta_2)=\langle\psi_f|\hat{O}|\psi_f\rangle$, where:</br>
-- $|\psi_f\rangle (The Ket): the final column vector of our system.$
-- $\langle\psi_f|$ (The Bra): The conjugate transpose (row vector) of our system.
-- $\hat{O}$ (The Operator): The measurement instruction (e,g, $Z\otimes X$).
+- $|\psi_f\rangle (The Ket)$: the final column vector of our system.
+- $\langle\psi_f| (The Bra)$: The conjugate transpose (row vector) of our system.
+- $\hat{O} (The Operator)$: The measurement instruction (e,g, $Z\otimes X$).
 
 ## 5.2. The Components
 
 |Component|Role|
 |-|-|
-**Variational Form (PQC)**|This is the sequence of gates with tunable parameters ($\theta_1, \theta_2$).</br>By changing these angles, we train the circuit to minimize the cost function. 
+**Variational Form </br>or</br> Parameterized Quantum Circuit (PQC)**|This is the sequence of gates with tunable parameters ($\theta_1, \theta_2$).</br>By changing these angles, we train the circuit to minimize the cost function. 
 **Rotation Gates ($R_y$)**|These move the qubit state along the Y-axis of the Bloch sphere.
 **Measurement Operator ($\hat{O}=Z\otimes X$)**|This is the specific physical property we are measuring.</br>It asks: "is the first qubit aligned with the Z-axis, and is the second qubit aligned with the X-axis?"
 
 ## 5.3. Cost Function Calculation Example
 A two-qubit QNN takes the input PQC $|00\rangle$. Apply rotation gates $R_y(\theta_1)$ on qubit 1, $R_y(\theta_2)$ on qubit 2, then a CNOT (control: qubit 1, target: qubit 2). the cost function operator is $\hat{O}=Z\otimes X$</br>
 
-**1. Calculating final state from the Circuit:**
+**| 1. Calculating ($|\psi_f\rangle$) final state from the Circuit:**
 
-$$\because I=diag(1,1), Y=\begin{pmatrix}0&-i \\\ i&0 \end{pmatrix}$$</br>
+$$\because I=diag(1,1), Y=\begin{pmatrix}0&-i \\\ i&0 \end{pmatrix}$$
 
-$$\because R_y(\theta)=e^{-i\frac{\theta}{2}y}=\cos(\frac{\theta}{2})I-i\sin(\frac{\theta}{w})Y=diag(\cos(\frac{\theta}{2}),\cos(\frac{\theta}{2}))+\begin{pmatrix}0&-\sin(\frac{\theta}{2})\\\\sin(\frac{\theta}{2}))&0\end{pmatrix}=\begin{pmatrix}\cos\frac{\theta}{2}&-\sin\frac{\theta}{2}\\\\sin\frac{\theta}{2}&\cos\frac{\theta}{2}\end{pmatrix}$$</br>
+$$\because R_y(\theta)=e^{-i\frac{\theta}{2}y}=\cos(\frac{\theta}{2})I-i\sin(\frac{\theta}{2})Y=diag(\cos(\frac{\theta}{2}),\cos(\frac{\theta}{2}))+\begin{pmatrix}0&-\sin(\frac{\theta}{2})\\\\sin(\frac{\theta}{2}))&0\end{pmatrix}=\begin{pmatrix}\cos\frac{\theta}{2}&-\sin\frac{\theta}{2}\\\\sin\frac{\theta}{2}&\cos\frac{\theta}{2}\end{pmatrix}$$
 
-Applying to $|0\rangle$:</br>
+Applying to the input qubit $|00\rangle$: {$R_y(\theta_1)$ on 1st qubit $|0\rangle$,$R_y(\theta_2)$ on 2nd qubit $|0\rangle$}
 
-$$R_y(\theta_1)|0\rangle=\begin{pmatrix}\cos\frac{\theta_1}{2}\\\\sin\frac{\theta_1}{2}\end{pmatrix}=\cos\frac{\theta_1}{2}|0\rangle+\sin\frac{\theta_1}{2}|1\rangle$$</br></br>
+$$R_y(\theta_1)|0\rangle=\begin{pmatrix}\cos\frac{\theta_1}{2}\\\\sin\frac{\theta_1}{2}\end{pmatrix}=\cos\frac{\theta_1}{2}|0\rangle+\sin\frac{\theta_1}{2}|1\rangle$$
 
-$$R_y(\theta_2)|0\rangle=\begin{pmatrix}\cos\frac{\theta_2}{2}\\\\sin\frac{\theta_2}{2}\end{pmatrix}=\cos\frac{\theta_2}{2}|0\rangle+\sin\frac{\theta_2}{2}|1\rangle$$</br>
+$$R_y(\theta_2)|0\rangle=\begin{pmatrix}\cos\frac{\theta_2}{2}\\\\sin\frac{\theta_2}{2}\end{pmatrix}=\cos\frac{\theta_2}{2}|0\rangle+\sin\frac{\theta_2}{2}|1\rangle$$
 
-The combined state $|\psi_1\rangle$ is:</br>
+The combined state $|\psi_1\rangle$ is:
 
-$\therefore|\psi_1\rangle=R_y(\theta_1)\otimes R_y(\theta_2)=\cos\frac{\theta_1}{2}\cos\frac{\theta_2}{2}|00\rangle+\cos\frac{\theta_1}{2}\sin\frac{\theta_2}{2}|01\rangle+\sin\frac{\theta_1}{2}\cos\frac{\theta_2}{2}|10\rangle+\sin\frac{\theta_1}{2}\sin\frac{\theta_2}{2}|11\rangle$</br>
+$\therefore|\psi_1\rangle=R_y(\theta_1)\otimes R_y(\theta_2)=\cos\frac{\theta_1}{2}\cos\frac{\theta_2}{2}|00\rangle+\cos\frac{\theta_1}{2}\sin\frac{\theta_2}{2}|01\rangle+\sin\frac{\theta_1}{2}\cos\frac{\theta_2}{2}|10\rangle+\sin\frac{\theta_1}{2}\sin\frac{\theta_2}{2}|11\rangle$
 
-Applying the CNOT (control: qubit 1, target: qubit 2):</br>
+Applying the CNOT (control: qubit 1, target: qubit 2):
 
-$\therefore|\psi_f\rangle=R_y(\theta_1)\otimes R_y(\theta_2)=\cos\frac{\theta_1}{2}\cos\frac{\theta_2}{2}|00\rangle+\cos\frac{\theta_1}{2}\sin\frac{\theta_2}{2}|01\rangle+\sin\frac{\theta_1}{2}\cos\frac{\theta_2}{2}|11\rangle+\sin\frac{\theta_1}{2}\sin\frac{\theta_2}{2}|10\rangle$</br>
+$\therefore|\psi_f\rangle=R_y(\theta_1)\otimes R_y(\theta_2)=\cos\frac{\theta_1}{2}\cos\frac{\theta_2}{2}|00\rangle+\cos\frac{\theta_1}{2}\sin\frac{\theta_2}{2}|01\rangle+\sin\frac{\theta_1}{2}\cos\frac{\theta_2}{2}|11\rangle+\sin\frac{\theta_1}{2}\sin\frac{\theta_2}{2}|10\rangle$
 
-**2. Calculating the $Z\otimes X$**:</br>
+**| 2. Calculating the $Z\otimes X$**:
 
 Think of $(Z \otimes X)$ as a set of transformation rules applied to each component of our state $|\psi_f\rangle$. Based on the definitions of the Pauli matrices:</br>
 - $Z$ (acts on the first qubit): leaves $|0\rangle$ alone, but flips the sign of $|1\rangle$.
@@ -1153,7 +1136,7 @@ We apply these rules to each basis state in $|\psi_f\rangle$:</br>
 
 $$(Z \otimes X) |\psi_f\rangle = \cos\frac{\theta_1}{2}\cos\frac{\theta_2}{2}|01\rangle + \cos\frac{\theta_1}{2}\sin\frac{\theta_2}{2}|00\rangle - \sin\frac{\theta_1}{2}\cos\frac{\theta_2}{2}|10\rangle - \sin\frac{\theta_1}{2}\sin\frac{\theta_2}{2}|11\rangle$$
 
-**3. Calculate the Inner Product $\langle\psi_f|(...)\rangle$**
+**| 3. Calculate the Inner Product $\langle\psi_f|(...)\rangle$**
 - Why the inner product? Now that we have transformed our state, we need to find the overlap between the **original final state** and this **transformed state**.
 - Think of this like a Dot Product. In quantum mechanics, $\langle i | j \rangle$ is $1$ if the states are the same, and $0$ if they are different. We compare the terms in our original state $|\psi_f\rangle$ with the terms in the result of $(Z \otimes X)|\psi_f\rangle$
 
@@ -1196,7 +1179,7 @@ $\|-i\rangle$| $\frac{1}{\sqrt{2}}(\|0\rangle-i\|1\rangle)$
 
 | Key | Value | Additional Note |
 | :---: | :--- | :--- |
-| $X$ | $\begin{pmatrix}0&1 \\\ 1&0 \end{pmatrix}$ | |
+| $X$ | $\begin{pmatrix}0&1 \\\\\ 1&0 \end{pmatrix}$ | |
 | $Y$ | $\begin{pmatrix}0&-i \\\ i&0\end{pmatrix}$ | |
 | $Z$ | $\begin{pmatrix}1&0 \\\ 0&-1\end{pmatrix}$ | $Z \equiv (H, X, H)$ |
 | $S$ | $\begin{pmatrix}1&0 \\\ 0&e^{i\pi/2}\end{pmatrix}$ | Phase Gate |
@@ -1239,8 +1222,7 @@ CZ|Flip Phases
 
 </br>
 
-**Rules**</br>
-**Maths Recall**</br>
+**| Maths Recall**</br>
 $$e^{i\theta}=\cos\theta+i\sin\theta$$
 $$e^{-i\theta}=\cos\theta-i\sin\theta$$
 $$\sin\theta = 2\sin\frac{\theta}{2}\cos\frac{\theta}{2}$$
@@ -1248,12 +1230,12 @@ $$\cos\theta = \cos^2\frac{\theta}{2} - \sin^2\frac{\theta}{2}$$
 
 Note: In quantum mechanics, we follow the math from right to left (order of application).
 
-**Tesnor Product**</br>
+**| Tesnor Product**</br>
 To find the operator for a two-quibt system, we calculate the tensor product:</br>
 
 $Z\otimes I=\begin{pmatrix}1&0\\\\0&-1\end{pmatrix}\otimes \begin{pmatrix}1&0\\\\0&1\end{pmatrix}==\begin{pmatrix}1\begin{pmatrix}1&0\\\\0&1\end{pmatrix}&0\\\\0&-1\begin{pmatrix}1&0\\\\0&1\end{pmatrix}\end{pmatrix}=\begin{pmatrix}1&0&0&0\\\\0&1&0&0\\\\0&0&-1&0\\\\0&0&0&-1\end{pmatrix}=diag(1,1,-1,-1)$
 
-**Rotation State General rule**</br>
+**| Rotation State General rule**</br>
 
 $$R_G=e^{-i\frac{\theta}{2}G}=\cos \frac{\theta}{2}I-i\sin\frac{\theta}{2}G$$
 
@@ -1263,7 +1245,7 @@ To calculate: $e^{i\varphi Z\otimes I} = diag(e^{i\varphi}, e^{i\varphi}, e^{-i\
 
 </br>
 
-**The CNOT "Sandwich"**</br>
+**| The CNOT "Sandwich"**</br>
 - The CNOT gate swaps the amplitudes of $|10\rangle$ and $|11\rangle$.</br> 
 - In terms of a diagonal matrix $D = \text{diag}(a, b, c, d)$, the operation $\text{CNOT} \cdot D \cdot \text{CNOT}$ has the effect of swapping the last two diagonal elements ($c$ and $d$).</br>
 - Initial: $\text{diag}(e^{-i\varphi}, e^{i\varphi}, \mathbf{e^{-i\varphi}}, \mathbf{e^{i\varphi}})$</br>
@@ -1271,7 +1253,7 @@ To calculate: $e^{i\varphi Z\otimes I} = diag(e^{i\varphi}, e^{i\varphi}, e^{-i\
 
 </br>
 
-**Steps to Deduce the Diagonal Value for $|00\rangle$ in operator $e^{ix_1Z\otimes I}$**</br>
+**| Steps to Deduce the Diagonal Value for $|00\rangle$ in operator $e^{ix_1Z\otimes I}$**</br>
 1. **Matrix definitions**: $Z=diag(1,-1)$, $I=diag(1,1)$
 2. **The Tensor Product**: $Z\otimes I=diag(1,-1)\otimes diag(1,1) = diag(1,1,-1,-1)$
      - The first two diagonal elements (1, 1) corresponds to the states where the first qubit is in state $|0\rangle$; which are $|00\rangle$ and $|01\rangle$. 
@@ -1284,7 +1266,7 @@ To calculate: $e^{i\varphi Z\otimes I} = diag(e^{i\varphi}, e^{i\varphi}, e^{-i\
 
 </br>
 
-**Describe the quantum circuit of the ZZFeatureMap on 2 qubits and show that it is given by $U(x)H^{\otimes 2}$**</br>
+**| Describe the quantum circuit of the ZZFeatureMap on 2 qubits and show that it is given by $U(x)H^{\otimes 2}$**</br>
 - **Description**: The **ZZFeatureMap** is a circuit that encodes classical data $x=(x_1,x_2)$ into a quantum state, consisting of two primary layers applied from left to right.</br>
 - **Circuit Layout**: To build the operator $U(x)H^{\otimes 2}$:</br>
   - The superposition layer $H^{\otimes 2}$: Apply an Hadamard $H$ gate to both qubits to create a uniform superposition; this puts the system into state $\frac{1}{2}(|00\rangle+|01\rangle+|10\rangle+|11\rangle)$.
