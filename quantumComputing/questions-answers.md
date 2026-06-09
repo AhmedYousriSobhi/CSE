@@ -3,61 +3,159 @@
 ## Table of Contents
 - [Comprehensive Question Bank: Quantum Machine Learning](#comprehensive-question-bank-quantum-machine-learning)
   - [Table of Contents](#table-of-contents)
-  - [Part 1: Mathematical Proofs \& Fundamental Derivations](#part-1-mathematical-proofs--fundamental-derivations)
-    - [Question 1: Real Eigenvalues of Hermitian Operators](#question-1-real-eigenvalues-of-hermitian-operators)
-    - [Question 2: Expectation Value Formula from Quantum Postulates](#question-2-expectation-value-formula-from-quantum-postulates)
-    - [Question 3: Analytical Derivation of the Parameter Shift Rule](#question-3-analytical-derivation-of-the-parameter-shift-rule)
-    - [Question 4: Sign-Flipping Action of a Phase Oracle](#question-4-sign-flipping-action-of-a-phase-oracle)
-  - [Part 2: Analytical Calculations](#part-2-analytical-calculations)
-    - [Question 5: Complete Cost Function Circuit Derivation](#question-5-complete-cost-function-circuit-derivation)
-    - [Question 6: The Algebraic Foundation of the Parameter-Shift Rule](#question-6-the-algebraic-foundation-of-the-parameter-shift-rule)
-    - [Question 7: Parameter Shift Rule - Derivative of $f(\\theta)$](#question-7-parameter-shift-rule---derivative-of-ftheta)
-    - [Question 6: Numerical Calculation of Quantum SVM Kernels](#question-6-numerical-calculation-of-quantum-svm-kernels)
-    - [Question 7: Execution Shot-Budget Breakdown](#question-7-execution-shot-budget-breakdown)
-  - [Part 3: Conceptual \& Algorithmic Analysis](#part-3-conceptual--algorithmic-analysis)
-    - [Question 8: Empirical Basis Transformations for Non-Diagonal Observables](#question-8-empirical-basis-transformations-for-non-diagonal-observables)
-    - [Question 9: The Anatomy of a Barren Plateau](#question-9-the-anatomy-of-a-barren-plateau)
-    - [Question 10: The "One State" Paradigm in Quantum GANs](#question-10-the-one-state-paradigm-in-quantum-gans)
-    - [Question 11: Factorizable vs. Non-Factorizable Cost Landscapes](#question-11-factorizable-vs-non-factorizable-cost-landscapes)
-    - [Question 12: Step-by-Step Complete QML Execution Pipeline](#question-12-step-by-step-complete-qml-execution-pipeline)
-  - [Part 4: Advanced, Tricky \& Conceptual Exam Questions](#part-4-advanced-tricky--conceptual-exam-questions)
-    - [Question 13: The Parameter-Shift Trap with Non-Pauli Generators](#question-13-the-parameter-shift-trap-with-non-pauli-generators)
-    - [Question 14: Apparent Freedom from Barren Plateaus](#question-14-apparent-freedom-from-barren-plateaus)
-    - [Question 15: Over-Shifting the Parameter-Shift Rule](#question-15-over-shifting-the-parameter-shift-rule)
-    - [Question 16: Measuring $Y$ Basis Readout under $Z$-Only Native Constraints](#question-16-measuring-y-basis-readout-under-z-only-native-constraints)
-    - [Question 17: Expressibility Collapse under Product Feature Maps](#question-17-expressibility-collapse-under-product-feature-maps)
-    - [Question 18: Nash Equilibrium Realities in Faulty QGANs](#question-18-nash-equilibrium-realities-in-faulty-qgans)
-    - [Question 19: Exploding Shot Noise inside Gradient Descent Loops](#question-19-exploding-shot-noise-inside-gradient-descent-loops)
-    - [Question 20: Cost Function Vanishing via Observable Locality](#question-20-cost-function-vanishing-via-observable-locality)
-    - [Question 21: The Unitary Invariance Illusion of Quantum Kernels](#question-21-the-unitary-invariance-illusion-of-quantum-kernels)
-    - [Question 22: Quantum Overfitting under Perfect Target Overlap](#question-22-quantum-overfitting-under-perfect-target-overlap)
+  - [Part 1 : Theoretical Fundamental](#part-1--theoretical-fundamental)
+    - [Question 1.1: Quantum Advantage vs. Quantum Supremacy](#question-11-quantum-advantage-vs-quantum-supremacy)
+    - [Question 1.2: Barren Plateaus in Quantum Neural Networks](#question-12-barren-plateaus-in-quantum-neural-networks)
+    - [Question 1.3: Feature Maps: Translating Classical Data into Quantum States](#question-13-feature-maps-translating-classical-data-into-quantum-states)
+    - [Question 1.4: QSVM Kernel Function — Element Identification](#question-14-qsvm-kernel-function--element-identification)
+  - [Part 2: Mathematical Proofs \& Fundamental Derivations](#part-2-mathematical-proofs--fundamental-derivations)
+    - [Question 2.1: Real Eigenvalues of Hermitian Operators](#question-21-real-eigenvalues-of-hermitian-operators)
+    - [Question 2.2: Expectation Value Formula from Quantum Postulates](#question-22-expectation-value-formula-from-quantum-postulates)
+    - [Question 2.3: Analytical Derivation of the Parameter Shift Rule](#question-23-analytical-derivation-of-the-parameter-shift-rule)
+    - [Question 2.4: Sign-Flipping Action of a Phase Oracle](#question-24-sign-flipping-action-of-a-phase-oracle)
+  - [Part 3: Analytical Calculations](#part-3-analytical-calculations)
+    - [Question 3.1: Complete Cost Function Circuit Derivation](#question-31-complete-cost-function-circuit-derivation)
+    - [Question 3.2: The Algebraic Foundation of the Parameter-Shift Rule](#question-32-the-algebraic-foundation-of-the-parameter-shift-rule)
+    - [Question 3.3: Parameter Shift Rule - Derivative of $f(\\theta)$](#question-33-parameter-shift-rule---derivative-of-ftheta)
+    - [Question 3.4: Phase kickback Trick](#question-34-phase-kickback-trick)
+    - [Question 3.5: Bernstein-Vazirani Algorithm — Step-by-Step](#question-35-bernstein-vazirani-algorithm--step-by-step)
+    - [Question 3.6: Numerical Calculation of Quantum SVM Kernels](#question-36-numerical-calculation-of-quantum-svm-kernels)
+    - [Question 3.7: Execution Shot-Budget Breakdown](#question-37-execution-shot-budget-breakdown)
+  - [Part 4: Conceptual \& Algorithmic Analysis](#part-4-conceptual--algorithmic-analysis)
+    - [Question 4.1: Empirical Basis Transformations for Non-Diagonal Observables](#question-41-empirical-basis-transformations-for-non-diagonal-observables)
+    - [Question 4.2: The Anatomy of a Barren Plateau](#question-42-the-anatomy-of-a-barren-plateau)
+    - [Question 4.3: The "One State" Paradigm in Quantum GANs](#question-43-the-one-state-paradigm-in-quantum-gans)
+    - [Question 4.4: Factorizable vs. Non-Factorizable Cost Landscapes](#question-44-factorizable-vs-non-factorizable-cost-landscapes)
+    - [Question 4.5: Step-by-Step Complete QML Execution Pipeline](#question-45-step-by-step-complete-qml-execution-pipeline)
+  - [Part 5: Advanced, Tricky \& Conceptual Exam Questions](#part-5-advanced-tricky--conceptual-exam-questions)
+    - [Question 5.1: The Parameter-Shift Trap with Non-Pauli Generators](#question-51-the-parameter-shift-trap-with-non-pauli-generators)
+    - [Question 5.2: Apparent Freedom from Barren Plateaus](#question-52-apparent-freedom-from-barren-plateaus)
+    - [Question 5.3: Over-Shifting the Parameter-Shift Rule](#question-53-over-shifting-the-parameter-shift-rule)
+    - [Question 5.4: Measuring $Y$ Basis Readout under $Z$-Only Native Constraints](#question-54-measuring-y-basis-readout-under-z-only-native-constraints)
+    - [Question 5.5: Expressibility Collapse under Product Feature Maps](#question-55-expressibility-collapse-under-product-feature-maps)
+    - [Question 5.6: Nash Equilibrium Realities in Faulty QGANs](#question-56-nash-equilibrium-realities-in-faulty-qgans)
+    - [Question 5.7: Exploding Shot Noise inside Gradient Descent Loops](#question-57-exploding-shot-noise-inside-gradient-descent-loops)
+    - [Question 5.8: Cost Function Vanishing via Observable Locality](#question-58-cost-function-vanishing-via-observable-locality)
+    - [Question 5.9: The Unitary Invariance Illusion of Quantum Kernels](#question-59-the-unitary-invariance-illusion-of-quantum-kernels)
+    - [Question 5.10: Quantum Overfitting under Perfect Target Overlap](#question-510-quantum-overfitting-under-perfect-target-overlap)
+  - [Part 6: GAN, BCE, and QGANS](#part-6-gan-bce-and-qgans)
+    - [Question 6.1: Roles of Generator and Discriminator in standard GAN](#question-61-roles-of-generator-and-discriminator-in-standard-gan)
+    - [Question 6.2: Explain the explicit mathematical of PQC as Generator](#question-62-explain-the-explicit-mathematical-of-pqc-as-generator)
+    - [Question 6.3: Explain Why Loss function coverge to 0.693?](#question-63-explain-why-loss-function-coverge-to-0693)
+    - [Question 6.4: BCE Formula](#question-64-bce-formula)
+    - [Question 6.5: Discriminator Role](#question-65-discriminator-role)
+    - [Question 6.6: Generator Objective in GAN, Explain Flipped Target Label](#question-66-generator-objective-in-gan-explain-flipped-target-label)
+    - [Question 6.7: Objectiv of MinMax in GAN](#question-67-objectiv-of-minmax-in-gan)
+    - [Question 6.8:  Vanishing gradient in GAN](#question-68--vanishing-gradient-in-gan)
+    - [Question 6.9: Non-Saturating Generator Loss](#question-69-non-saturating-generator-loss)
+    - [Question 6.10: Explain How Expected Value is Computed in Practice](#question-610-explain-how-expected-value-is-computed-in-practice)
+    - [Question 6.11: Discriminator Training Loss](#question-611-discriminator-training-loss)
+    - [Question 6.12: Compare Between Minimax and Non-Saturating](#question-612-compare-between-minimax-and-non-saturating)
+    - [Question 6.13: Explain Mode Collapse in GANs](#question-613-explain-mode-collapse-in-gans)
+    - [Question 6.14: Replacing BCE with Wasserstein Loss](#question-614-replacing-bce-with-wasserstein-loss)
+    - [Question 6.15: GAN requires More images, unlike QGAN](#question-615-gan-requires-more-images-unlike-qgan)
+    - [Question 6.16: Properties in QM Make single Quantum state non-trivial in training](#question-616-properties-in-qm-make-single-quantum-state-non-trivial-in-training)
+    - [Question 6.17: Role of PQC in QGAN](#question-617-role-of-pqc-in-qgan)
+    - [Question 6.18: Comparison Between Training Signal in QGAN and GAN](#question-618-comparison-between-training-signal-in-qgan-and-gan)
+    - [Question 6.19: Calculate BCE](#question-619-calculate-bce)
+    - [Question 6.20: Calculate Loss of Discriminator](#question-620-calculate-loss-of-discriminator)
+    - [Question 6.21: Explain the Gradient in Non-saturating](#question-621-explain-the-gradient-in-non-saturating)
+    - [Question 6.22: How does shot noise scale with the number of measurements? What does this imply for practical QNN training?](#question-622-how-does-shot-noise-scale-with-the-number-of-measurements-what-does-this-imply-for-practical-qnn-training)
+    - [Question 6.23: What basis rotation is needed to measure a qubit in the X basis? In the Y basis?](#question-623-what-basis-rotation-is-needed-to-measure-a-qubit-in-the-x-basis-in-the-y-basis)
 - [Final Exam Model Answers](#final-exam-model-answers)
   - [Question 1:](#question-1)
-    - [(b) (i) Using the basic postulates of quantum mechanics, show that the expectation value of a Hermitian operator, $\\langle A\\rangle$ is given by $\\langle A\\rangle=\\langle\\psi|A|\\psi\\rangle$. \[4 Marks\]](#b-i-using-the-basic-postulates-of-quantum-mechanics-show-that-the-expectation-value-of-a-hermitian-operator-langle-arangle-is-given-by-langle-aranglelanglepsiapsirangle-4-marks)
-    - [(b) (ii) How this expectation value can be calculated empirically using a quantum computer? \[4 Marks\]](#b-ii-how-this-expectation-value-can-be-calculated-empirically-using-a-quantum-computer-4-marks)
-  - [Question 2: \[13 Marks\]](#question-2-13-marks)
-    - [(a) The quantum kernel function $k(\\vec{x}_{j}, \\vec{x}_{k})$ used in QSVM reads: $k(\\vec{x}_{j}, \\vec{x}_{k})=|\\langle\\phi(\\vec{x}_{j})|\\phi(\\vec{x}_{k})\\rangle|^{2}$. Identify different elements in this expression: $\\vec{x}\_j$, $\\vec{x}\_k$, $|\\phi(\\vec{x})\\rangle$, $k(\\vec{x}\_j, \\vec{x}\_k)$. \[4 Marks\]](#a-the-quantum-kernel-function-kvecxj-vecxk-used-in-qsvm-reads-kvecxj-vecxklanglephivecxjphivecxkrangle2-identify-different-elements-in-this-expression-vecx_j-vecx_k-phivecxrangle-kvecx_j-vecx_k-4-marks)
-    - [(b) What is the main objective of using quantum kernel method? \[4 Marks\]](#b-what-is-the-main-objective-of-using-quantum-kernel-method-4-marks)
-    - [(c) Explain why factorizable quantum training landscapes do not offer quantum advantage and discuss why non-factorizable cost functions are essential. \[5 Marks\]](#c-explain-why-factorizable-quantum-training-landscapes-do-not-offer-quantum-advantage-and-discuss-why-non-factorizable-cost-functions-are-essential-5-marks)
+    - [(b) (i) Using the basic postulates of quantum mechanics, show that the expectation value of a Hermitian operator, $\\langle A\\rangle$ is given by $\\langle A\\rangle=\\langle\\psi|A|\\psi\\rangle$.](#b-i-using-the-basic-postulates-of-quantum-mechanics-show-that-the-expectation-value-of-a-hermitian-operator-langle-arangle-is-given-by-langle-aranglelanglepsiapsirangle)
+    - [(b) (ii) How this expectation value can be calculated empirically using a quantum computer?](#b-ii-how-this-expectation-value-can-be-calculated-empirically-using-a-quantum-computer)
+    - [(b) What is the main objective of using quantum kernel method?](#b-what-is-the-main-objective-of-using-quantum-kernel-method)
+    - [(c) Explain why factorizable quantum training landscapes do not offer quantum advantage and discuss why non-factorizable cost functions are essential.](#c-explain-why-factorizable-quantum-training-landscapes-do-not-offer-quantum-advantage-and-discuss-why-non-factorizable-cost-functions-are-essential)
       - [Factorizable Cost Functions (No Quantum Advantage)](#factorizable-cost-functions-no-quantum-advantage)
       - [Non-Factorizable Cost Functions (Essential for Advantage)](#non-factorizable-cost-functions-essential-for-advantage)
   - [Question 3:](#question-3)
     - [(a) Prove analytically the parameter shift rule for a Pauli operator generator.](#a-prove-analytically-the-parameter-shift-rule-for-a-pauli-operator-generator)
     - [(b) Discuss how this derivative is obtained empirically using a quantum computer during the training of a quantum neural network.](#b-discuss-how-this-derivative-is-obtained-empirically-using-a-quantum-computer-during-the-training-of-a-quantum-neural-network)
-  - [Question 4: \[10 Marks\]](#question-4-10-marks)
-    - [(a) Given $U\_{f}|x\\rangle|y\\rangle=|x\\rangle|y\\oplus f(x)\\rangle$, where $y$ and $f(x)\\in{0,1}$, demonstrate that: $U\_{f}|x\\rangle|-\\rangle=(-1)^{f(x)}|x\\rangle|-\\rangle$. \[4 Marks\]](#a-given-u_fxrangleyranglexrangleyoplus-fxrangle-where-y-and-fxin01-demonstrate-that-u_fxrangle-rangle-1fxxrangle-rangle-4-marks)
-    - [(b) The oracle $U\_{f}$ in Bernstein-Vazirani algorithm calculates a function $f(x)=s.x=\\sum\_{i=1}^{n}s\_{i}.x\_{i}$, where $x$ and $s\\in{0,1}^{n}$, such that $U\_{f}|x\\rangle|y\\rangle=|x\\rangle|y\\oplus f(x)\\rangle$, where $y$ and $f(x)\\in{0,1}$. By carrying out the algorithm step by step, show that by measuring the first $n$ output qubits, the secret string $s$ is revealed. \[6 Marks\]](#b-the-oracle-u_f-in-bernstein-vazirani-algorithm-calculates-a-function-fxsxsum_i1ns_ix_i-where-x-and-sin01n-such-that-u_fxrangleyranglexrangleyoplus-fxrangle-where-y-and-fxin01-by-carrying-out-the-algorithm-step-by-step-show-that-by-measuring-the-first-n-output-qubits-the-secret-string-s-is-revealed-6-marks)
-      - [Step 1: Initialize the Input Registers](#step-1-initialize-the-input-registers)
-      - [Step 2: Apply Hadamard Gates to All Qubits](#step-2-apply-hadamard-gates-to-all-qubits)
-      - [Step 3: Apply the Function Oracle $\\hat{U}\_f$](#step-3-apply-the-function-oracle-hatu_f)
-      - [Step 4: Apply a Second Layer of Hadamard Gates to the Input Register](#step-4-apply-a-second-layer-of-hadamard-gates-to-the-input-register)
-      - [Step 5: Evaluate Orthogonality and Measurement Outcomes](#step-5-evaluate-orthogonality-and-measurement-outcomes)
 
 ---
 
-## Part 1: Mathematical Proofs & Fundamental Derivations
+## Part 1 : Theoretical Fundamental
 
-### Question 1: Real Eigenvalues of Hermitian Operators
+### Question 1.1: Quantum Advantage vs. Quantum Supremacy
+[Exam Question]</br>
+What is meant by quantum advantage and what is meant by quantum supremacy?</br>
+
+**Quantum Supremacy (Quantum Computational Supremacy):**</br>
+The point at which a quantum computer performs a specific computational task that is **practically infeasible** for any classical computer to solve in a reasonable time — regardless of whether that task is practically useful. It is a **milestone demonstration**, not a general capability.
+
+> *Example: Google's 2019 Sycamore processor performing random circuit sampling in ~200 seconds, which they claimed would take a classical supercomputer ~10,000 years.*
+
+**Quantum Advantage:**</br>
+A quantum computer solves a **practically relevant problem** faster, more efficiently, or more accurately than the best known classical algorithm. This is a broader and more practically meaningful concept.
+
+> *Examples: Grover's search ($O(\sqrt{N})$ vs. $O(N)$), Shor's factoring ($\text{poly}(n)$ vs. sub-exponential classical), or quantum simulation of molecular systems.*
+
+**Key distinction:** Supremacy is about raw computational power on any task (even artificial ones); Advantage is about solving real-world problems better.
+
+---
+
+### Question 1.2: Barren Plateaus in Quantum Neural Networks
+[Exam Question]</br>
+What are the barren plateaus and why do they matter when training a quantum neural network?</br>
+
+**What they are:**</br>
+Barren plateaus are regions in the parameter space of a quantum neural network (QNN) where the gradients of the cost function become extremely small on average. Specifically, as the number of qubits (system size) scales up, the variance of the gradients shrinks exponentially, creating an optimization landscape that is almost entirely flat and featureless.
+
+Why they matter when training a QNN:
+- Training Becomes Impossible: Because the gradient landscape lacks a clear slope, classical optimization algorithms (like gradient descent) cannot determine a direction to update the parameters, halting the learning process.
+- Scalability Bottleneck: They represent a fundamental limitation to scaling quantum machine learning models, as deeper, highly expressible, or randomly initialized circuits are highly susceptible to getting trapped in these plateaus right from the start.
+
+---
+
+### Question 1.3: Feature Maps: Translating Classical Data into Quantum States
+[Exam Question]</br>
+How do feature maps help translate classical data into quantum states? Mention two methods.</br>
+
+A **feature map** is a function $\phi: \mathbb{R}^d \rightarrow \mathcal{H}$ implemented as a parameterized unitary circuit $U_\phi(\vec{x})$ that encodes a classical data vector $\vec{x}$ into a quantum state:
+$$|\phi(\vec{x})\rangle = U_\phi(\vec{x})|0\rangle^{\otimes n}$$
+
+**Two common methods:**
+
+**Method 1 — Angle Encoding (Rotation Encoding):**
+Each classical feature $x_i$ is encoded into the rotation angle of a single-qubit gate:
+$$U_\phi(\vec{x}) = \bigotimes_{i=1}^n R_y(x_i) = \bigotimes_{i=1}^n e^{-i\frac{x_i}{2}Y}$$
+This maps $n$ classical features to $n$ qubits. It is simple and hardware-efficient, but linear — it does not create interactions between features.
+
+**Method 2 — ZZFeatureMap (Pauli Feature Map):**
+Introduced by Havlíček et al. (used in Qiskit), this encodes data using entangling layers:
+$$U_\phi(\vec{x}) = \left(U_Z(\vec{x})\cdot H^{\otimes n}\right)^d$$
+where $U_Z(\vec{x}) = \exp\!\left(i\sum_{S\subseteq[n]} \phi_S(\vec{x}) \prod_{j\in S} Z_j\right)$
+
+The $ZZ$ interactions between qubits create **non-linear, high-dimensional feature correlations** in Hilbert space — forming a kernel that is classically hard to compute, giving a potential quantum advantage.
+
+---
+
+### Question 1.4: QSVM Kernel Function — Element Identification
+[Exam Question]</br>
+The quantum kernel function $k(\vec{x}_{j}, \vec{x}_{k})$ used in QSVM reads: $k(\vec{x}_{j}, \vec{x}_{k})=|\langle\phi(\vec{x}_{j})|\phi(\vec{x}_{k})\rangle|^{2}$. Identify different elements in this expression: $\vec{x}_j$, $\vec{x}_k$, $|\phi(\vec{x})\rangle$, $k(\vec{x}_j, \vec{x}_k)$.
+
+**Answer:**
+* **$\vec{x}_j, \vec{x}_k$:** These represent two separate input data feature vectors from the classical dataset. They serve as the raw coordinate parameters fed into the algorithm.
+* **$|\phi(\vec{x})\rangle$:** This represents the non-linear quantum state vector in the high-dimensional Hilbert space. It is generated by mapping a classical vector $\vec{x}$ through a parameterized feature map circuit ($\hat{U}_{\Phi}(\vec{x})$) applied to a reference initial state:
+  $$|\phi(\vec{x})\rangle = \hat{U}_{\Phi}(\vec{x})|0\dots0\rangle$$
+* **$k(\vec{x}_j, \vec{x}_k)$:** This represents the calculated **Quantum Kernel Function** value. It is a scalar entry between $0$ and $1$ that quantifies the geometric inner product overlap (or transition probability/fidelity) between the two quantum states $|\phi(\vec{x}_j)\rangle$ and $|\phi(\vec{x}_k)\rangle$ inside the Hilbert space.
+
+| Element | Meaning |
+|---|---|
+| $\vec{x}_j,\, \vec{x}_k$ | Classical input data vectors (e.g., feature vectors of two data points in the training set) |
+| $\phi(\vec{x})$ | The **quantum feature map** — a unitary circuit $U_\phi(\vec{x})$ that encodes classical data $\vec{x}$ into a quantum state: $|\phi(\vec{x})\rangle = U_\phi(\vec{x})|0\rangle^{\otimes n}$ |
+| $\langle\phi(\vec{x}_j)|\phi(\vec{x}_k)\rangle$ | The **inner product** (overlap amplitude) between the two quantum feature states in Hilbert space |
+| $\|\cdot\|^2$ | The **modulus squared** — converts the complex amplitude to a real probability, giving the transition probability between the two quantum states. It ensures $k \in [0,1]$ |
+
+**Physical interpretation:** The kernel $k(\vec{x}_j, \vec{x}_k)$ measures the similarity between two data points as the probability of confusing their corresponding quantum states. Points that are more similar yield quantum states with higher overlap.
+
+---
+
+## Part 2: Mathematical Proofs & Fundamental Derivations
+
+### Question 2.1: Real Eigenvalues of Hermitian Operators
 [Exam Question]</br>
 **Question:** Prove that the eigenvalues of a Hermitian operator are always real.</br>
 **Answer:**</br>
@@ -85,10 +183,17 @@ Since the eigenvalue equals its own complex conjugate, $\lambda$ must be a real 
 
 ---
 
-### Question 2: Expectation Value Formula from Quantum Postulates
+### Question 2.2: Expectation Value Formula from Quantum Postulates
+[Exam Question]</br>
 **Question:** Using the basic foundational postulates of quantum mechanics, demonstrate that the expectation value of an observable represented by a Hermitian operator $\hat{A}$ is mathematically given by $\langle \hat{A}\rangle=\langle\psi|\hat{A}|\psi\rangle$.
 
-**Answer:**
+**Answer:**</br>
+Expectation of an observable from the postulates:</br>
+1. **State Postulate**: A quantum system is described by a state vector $|\psi\rangle$ in a Hilbert space. This vector encodes all possible information about the system.
+2. **Observable Postulate**: Any measurement physical quantity (observable) $\hat{A}$ is represented by a Hermitian operator. Hermiticity ensures that measurement outcomes (eigenvalues) are real.
+
+!! STILL UNCOMPLETED
+
 By the Measurement Postulate, when an observable $\hat{A}$ is measured, the only possible outcomes are its eigenvalues $a_i$. The probability $P(a_i)$ of obtaining a specific eigenvalue $a_i$ when the system is prepared in state $|\psi\rangle$ is given by Born's Rule:
 $$P(a_i) = |\langle a_i|\psi\rangle|^2 = \langle\psi|a_i\rangle\langle a_i|\psi\rangle$$
 where $\{|a_i\rangle\}$ forms a complete, orthonormal basis of eigenstates of $\hat{A}$.
@@ -110,7 +215,7 @@ $$\langle \hat{A}\rangle = \langle\psi| \hat{A} \hat{I} |\psi\rangle = \langle\p
 
 ---
 
-### Question 3: Analytical Derivation of the Parameter Shift Rule
+### Question 2.3: Analytical Derivation of the Parameter Shift Rule
 **Question:** Let a parameter-dependent cost function be defined as $f(\mu) = \langle\Psi|U^\dagger(\mu) M U(\mu)|\Psi\rangle$, where the unitary gate is generated by a Pauli operator $G$ such that $U(\mu) = e^{-i\mu G}$. Prove analytically that the exact gradient $\frac{\partial f}{\partial \mu}$ can be evaluated without numerical finite differences using the relation:
 $$\frac{\partial f}{\partial \mu} = \frac{f\left(\mu + \frac{\pi}{2}\right) - f\left(\mu - \frac{\pi}{2}\right)}{2}$$
 
@@ -151,7 +256,7 @@ $$\frac{\partial f}{\partial \mu} = \frac{f\left(\mu + \frac{\pi}{2}\right) - f\
 
 ---
 
-### Question 4: Sign-Flipping Action of a Phase Oracle
+### Question 2.4: Sign-Flipping Action of a Phase Oracle
 **Question:** Given the standard quantum phase oracle operator defined by its action on computational basis states as $U_{f}|x\rangle|y\rangle=|x\rangle|y\oplus f(x)\rangle$, where $x \in \{0,1\}^n$ and $y, f(x)\in\{0,1\}$, demonstrate explicitly that setting the target register to the minus state $|-\rangle$ forces the oracle to act via:
 $$U_{f}|x\rangle|-\rangle=(-1)^{f(x)}|x\rangle|-\rangle$$
 
@@ -178,9 +283,9 @@ $$U_{f}|x\rangle|-\rangle = (-1)^{f(x)}|x\rangle|-\rangle \quad \blacksquare$$
 
 ---
 
-## Part 2: Analytical Calculations
+## Part 3: Analytical Calculations
 
-### Question 5: Complete Cost Function Circuit Derivation
+### Question 3.1: Complete Cost Function Circuit Derivation
 [Exam Question]</br>
 **Question:** Consider a 2-qubit QNN variational form. Take the initial input state as $|00\rangle$, apply a parameter-controlled rotation gate $R_Y(\theta)$ on qubit 1, and then apply a CNOT gate where qubit 1 acts as the control and qubit 2 acts as the target. Given the target cost function measurement observable $\hat{O} = X \otimes X$, prove by vector tracking that the output cost evaluation function maps to $f(\theta) = \sin(\theta)$.
 
@@ -222,12 +327,12 @@ Using the double-angle trigonometric identity $\sin(2\alpha) = 2\sin\alpha\cos\a
 $$f(\theta) = \sin\left(2 \cdot \frac{\theta}{2}\right) = \sin(\theta) \quad \blacksquare$$
 
 **HandWritten Solution:**</br>
-![image](./assets/q-a/fe-q5-a1.jpg)
-![image](./assets/q-a/fe-q5-a2.jpg)
+![image](./assets/q-a/fe-q31-a1.jpg)
+![image](./assets/q-a/fe-q31-a2.jpg)
 
 ---
 
-### Question 6: The Algebraic Foundation of the Parameter-Shift Rule
+### Question 3.2: The Algebraic Foundation of the Parameter-Shift Rule
 [Exam Question]</br>
 Show that $f(\theta) = A + B\cos\theta + C\sin\theta$</br>
 **Given:**
@@ -236,8 +341,8 @@ Show that $f(\theta) = A + B\cos\theta + C\sin\theta$</br>
 
 **HandWritten Solution**</br>
 
-![image](./assets/q-a/fe-q6-a1.jpg)
-![image](./assets/q-a/fe-q6-a2.jpg)
+![image](./assets/q-a/fe-q32-a1.jpg)
+![image](./assets/q-a/fe-q32-a2.jpg)
 
 **Proof**</br>
 Expand $U(\theta)$ using the Euler/Rodrigues identity for a Pauli generator $G$:</br>
@@ -270,7 +375,7 @@ where $A$, $B$, $C$ are real constants independent of $\theta$.
  
 ---
 
-### Question 7: Parameter Shift Rule - Derivative of $f(\theta)$
+### Question 3.3: Parameter Shift Rule - Derivative of $f(\theta)$
 [Exam Question]</br>
 Apply the parameter shift rule to get the derivative of the cost function $f(\theta)$ given in part (a) (Question-6). Discuss how this derivative is obtained empirically using a quantum computer during the training of a quantum  neural network.</br>
 
@@ -304,7 +409,82 @@ During training of a QNN:
 
 ---
 
-### Question 6: Numerical Calculation of Quantum SVM Kernels
+### Question 3.4: Phase kickback Trick
+[Exam Question]</br>
+Show that $U_f|x\rangle|-\rangle = (-1)^{f(x)}|x\rangle|-\rangle$
+
+**Given:**
+$$U_f|x\rangle|y\rangle = |x\rangle|y \oplus f(x)\rangle, \quad y, f(x) \in \{0,1\}$$
+$$|-\rangle = \frac{1}{\sqrt{2}}\left(|0\rangle - |1\rangle\right)$$
+
+**Proof:**
+
+Apply $U_f$ to $|x\rangle|-\rangle$:
+$$U_f|x\rangle|-\rangle = U_f|x\rangle \cdot \frac{1}{\sqrt{2}}\left(|0\rangle - |1\rangle\right)$$
+$$= \frac{1}{\sqrt{2}}\left(U_f|x\rangle|0\rangle - U_f|x\rangle|1\rangle\right)$$
+$$= \frac{1}{\sqrt{2}}\left(|x\rangle|0\oplus f(x)\rangle - |x\rangle|1\oplus f(x)\rangle\right)$$
+$$= |x\rangle \cdot \frac{1}{\sqrt{2}}\left(|f(x)\rangle - |1\oplus f(x)\rangle\right)$$
+
+Since $f(x)$ is a binary function, it can only output a value of $0$ or $1$. Let us evaluate both cases:
+
+* **Case 1: When $f(x) = 0$**
+  $$0 \oplus 0 = 0 \quad \text{and} \quad 1 \oplus 0 = 1$$
+  $$\text{State} = \frac{1}{\sqrt{2}}|x\rangle\left(|0\rangle - |1\rangle\right) = |x\rangle \otimes \frac{|0\rangle - |1\rangle}{\sqrt{2}} = |x\rangle|-\rangle$$
+  Since $(-1)^{0} = 1$, this matches the target expression: $(-1)^{0}|x\rangle|-\rangle$.
+
+* **Case 2: When $f(x) = 1$**
+  $$0 \oplus 1 = 1 \quad \text{and} \quad 1 \oplus 1 = 0$$
+  $$\text{State} = \frac{1}{\sqrt{2}}|x\rangle\left(|1\rangle - |0\rangle\right) = -|x\rangle \otimes \frac{|0\rangle - |1\rangle}{\sqrt{2}} = -|x\rangle|-\rangle$$
+  Since $(-1)^{1} = -1$, this matches the target expression: $(-1)^{1}|x\rangle|-\rangle$.
+
+Combining both cases into a single exponential term proves the sign-flipping property of the phase oracle:
+$$U_{f}|x\rangle|-\rangle = (-1)^{f(x)}|x\rangle|-\rangle \quad \blacksquare$$
+
+> **Note:** This is the **phase kickback** trick — the oracle writes the result into the phase of the $|x\rangle$ register rather than flipping the ancilla qubit, leaving $|-\rangle$ unchanged.
+
+**HandWritten Solution:**</br>
+![image](./assets/q-a/fe-q34-a.jpg)
+
+---
+
+### Question 3.5: Bernstein-Vazirani Algorithm — Step-by-Step
+[Exam Question]</br>
+The oracle $U_{f}$ in Bernstein-Vazirani algorithm calculates a function $f(x)=s.x=\sum_{i=1}^{n}s_{i}.x_{i}$, where $x$ and $s\in\{0,1\}^{n}$, such that $U_{f}|x\rangle|y\rangle=|x\rangle|y\oplus f(x)\rangle$, where $y$ and $f(x)\in\{0,1\}$. By carrying out the algorithm step by step, show that by measuring the first $n$ output qubits, the secret string $s$ is revealed. [6 Marks]
+
+**Answer:**</br>
+**Step 1: Initialize the Input Registers**</br>
+The system prepares an input register of $n$ qubits in the ground state $|0\rangle^{\otimes n}$ and a single target readout qubit in the state $|1\rangle$:
+$$|\psi_0\rangle = |0\rangle^{\otimes n} |1\rangle$$
+
+**Step 2: Apply Hadamard Gates to All Qubits**</br>
+A global layer of Hadamard transformations ($\hat{H}^{\otimes n+1}$) is applied across all registers. This creates a uniform superposition in the input register and switches the target qubit to the $|-\rangle$ state:
+$$|\psi_1\rangle = \left(\frac{1}{\sqrt{2^n}}\sum_{x \in \{0,1\}^n} |x\rangle\right) |-\rangle$$
+
+**Step 3: Apply the Function Oracle $\hat{U}_f$**</br>
+The system passes the state through the Bernstein-Vazirani function oracle. Using the phase-kickback property proved in part (a), the binary function evaluation in the target register kicks back an alternate sign phase to the input register:
+$$|\psi_2\rangle = \hat{U}_f |\psi_1\rangle = \left(\frac{1}{\sqrt{2^n}}\sum_{x \in \{0,1\}^n} (-1)^{f(x)} |x\rangle\right) |-\rangle$$
+
+Substitute the secret dot-product function $f(x) = s \cdot x = \sum_{i=1}^{n}s_{i}.x_{i}$ into the expression:
+$$|\psi_2\rangle = \left(\frac{1}{\sqrt{2^n}}\sum_{x \in \{0,1\}^n} (-1)^{s \cdot x} |x\rangle\right) |-\rangle$$
+
+**Step 4: Apply a Second Layer of Hadamard Gates to the Input Register**</br>
+A second layer of Hadamard gates ($\hat{H}^{\otimes n}$) is applied exclusively to the first $n$ input qubits. The standard transformation of a computational state under a Hadamard gate is given by $\hat{H}^{\otimes n}|x\rangle = \frac{1}{\sqrt{2^n}}\sum_{y}(-1)^{x \cdot y}|y\rangle$. Applying this to the superposition yields:
+$$|\psi_3\rangle = \frac{1}{2^n} \sum_{x \in \{0,1\}^n} \sum_{y \in \{0,1\}^n} (-1)^{s \cdot x} (-1)^{x \cdot y} |y\rangle |-\rangle$$
+$$|\psi_3\rangle = \sum_{y \in \{0,1\}^n} \left[ \frac{1}{2^n} \sum_{x \in \{0,1\}^n} (-1)^{(s \oplus y) \cdot x} \right] |y\rangle |-\rangle$$
+
+**Step 5: Evaluate Orthogonality and Measurement Outcomes**</br>
+Let us look at the behavior of the internal bracketed scalar sum $\frac{1}{2^n} \sum_{x} (-1)^{(s \oplus y) \cdot x}$:
+* If $y \neq s$, the bits are not identical, causing the positive and negative phases to cancel out perfectly over the summation, resulting in a net value of $0$.
+* If $y = s$, the expression simplifies to $(-1)^{(s \oplus s) \cdot x} = (-1)^0 = 1$ for all terms. Summing $1$ across all $2^n$ combinations yields exactly $2^n$, making the coefficient $\frac{2^n}{2^n} = 1$.
+
+This perfect cancellation isolates the secret string component, collapsing the state vector into:
+$$|\psi_3\rangle = |s\rangle |-\rangle$$
+
+When the first $n$ input qubits are measured in the computational basis, the system will output the secret string $s = s_1 s_2 \dots s_n$ with a **probability of $100\%$ ($P=1$)** in a single execution run. $\blacksquare$
+
+---
+
+### Question 3.6: Numerical Calculation of Quantum SVM Kernels
 **Question:** A QSVM maps 1D input data features $x_i$ using a non-linear quantum embedding feature-map circuit: $\Phi(x) = R_Z(x) R_Y(x)$. Compute the exact numerical value of the quantum kernel matrix entry $K(x_1, x_2)$ for the data point pair $x_1 = 0$ and $x_2 = \pi$.
 
 **Answer:**
@@ -323,7 +503,7 @@ $$K(x_1, x_2) = |\langle0|\Phi^\dagger(x_1)\Phi(x_2)|0\rangle|^2$$
 
 ---
 
-### Question 7: Execution Shot-Budget Breakdown
+### Question 3.7: Execution Shot-Budget Breakdown
 **Question:** A multi-qubit QNN cost function matches the expectation value of a composite Hamiltonian system: $\hat{H} = 0.5 Z_1 + 0.3 X_2 + 0.2 (Z_1 \otimes Z_2)$. An engineer executes this on hardware using $N = 1000$ measurement shots allocated per run. The system logs the following tallies:
 * For $Z_1$: $+1$ measured 650 times, $-1$ measured 350 times.
 * For $X_2$: $+1$ measured 400 times, $-1$ measured 600 times.
@@ -341,9 +521,9 @@ $$\langle \hat{H} \rangle = 0.5(0.3) + 0.3(-0.2) + 0.2(0.6) = 0.15 - 0.06 + 0.12
 
 ---
 
-## Part 3: Conceptual & Algorithmic Analysis
+## Part 4: Conceptual & Algorithmic Analysis
 
-### Question 8: Empirical Basis Transformations for Non-Diagonal Observables
+### Question 4.1: Empirical Basis Transformations for Non-Diagonal Observables
 **Question:** Explain how a quantum computer empirically calculates the expectation value of a non-diagonal observable, such as the Pauli-X operator, when the hardware's physical measurement setup can only measure along the standard computational Z basis ($|0\rangle, |1\rangle$).
 
 **Answer:**
@@ -355,7 +535,7 @@ To measure a non-diagonal observable like Pauli-X using a hardware platform that
 
 ---
 
-### Question 9: The Anatomy of a Barren Plateau
+### Question 4.2: The Anatomy of a Barren Plateau
 **Question:** Describe the Barren Plateau problem in the context of training deep Quantum Neural Networks. What causes it, how does expressibility affect it, and how does the choice of the cost function (global vs. local) influence its severity?
 
 **Answer:**
@@ -366,7 +546,7 @@ $$\text{Var}\left[\frac{\partial C}{\partial \theta}\right] \in \mathcal{O}\left
 
 ---
 
-### Question 10: The "One State" Paradigm in Quantum GANs
+### Question 4.3: The "One State" Paradigm in Quantum GANs
 **Question:** In classical Machine Learning, training a Generative Adversarial Network (GAN) requires a large dataset containing thousands of distinct samples. Conversely, a Quantum GAN (QGAN) can be effectively trained using **only one single target quantum state** without encountering overfitting. Explain the physical reasons behind this distinction.
 
 **Answer:**
@@ -377,7 +557,7 @@ $$\text{Var}\left[\frac{\partial C}{\partial \theta}\right] \in \mathcal{O}\left
 
 ---
 
-### Question 11: Factorizable vs. Non-Factorizable Cost Landscapes
+### Question 4.4: Factorizable vs. Non-Factorizable Cost Landscapes
 **Question:** Contrast the behavior of **Factorizable** and **Non-Factorizable** cost functions in training a QNN. Discuss their appearance, parameters interaction, and why non-factorizable structures are essential for achieving a quantum advantage.
 
 **Answer:**
@@ -386,7 +566,7 @@ $$\text{Var}\left[\frac{\partial C}{\partial \theta}\right] \in \mathcal{O}\left
 
 ---
 
-### Question 12: Step-by-Step Complete QML Execution Pipeline
+### Question 4.5: Step-by-Step Complete QML Execution Pipeline
 **Question:** Outline the step-by-step pipeline of an end-to-end Hybrid Quantum-Classical Neural Network training loop, detailing how data flows across both classical and quantum hardware components.
 
 **Answer:**
@@ -398,9 +578,9 @@ $$\text{Var}\left[\frac{\partial C}{\partial \theta}\right] \in \mathcal{O}\left
 
 ---
 
-## Part 4: Advanced, Tricky & Conceptual Exam Questions
+## Part 5: Advanced, Tricky & Conceptual Exam Questions
 
-### Question 13: The Parameter-Shift Trap with Non-Pauli Generators
+### Question 5.1: The Parameter-Shift Trap with Non-Pauli Generators
 **Question [Tricky]:** An engineer wants to use the standard Parameter-Shift Rule to find the exact analytical gradient of a variational gate $U(\theta) = e^{-i\theta G}$. However, the generator $G$ is a custom multi-qubit operation whose eigenvalues are $\{-2, 0, 2\}$ instead of the standard Pauli eigenvalues $\pm 1$. Explain why the standard two-term Parameter-Shift Rule fails here, and explain conceptually how it must be modified to calculate the exact gradient.
 
 **Answer:**
@@ -409,7 +589,7 @@ $$\text{Var}\left[\frac{\partial C}{\partial \theta}\right] \in \mathcal{O}\left
 
 ---
 
-### Question 14: Apparent Freedom from Barren Plateaus
+### Question 5.2: Apparent Freedom from Barren Plateaus
 **Question [Tricky]:** You are designing a QNN with a global cost function on $n=20$ qubits. To avoid a Barren Plateau, you limit your variational ansatz circuit depth to just 2 layers. During optimization, you observe that the gradients are not exponentially small, and the model updates rapidly. However, the model completely fails to achieve any significant accuracy on your dataset. Explain the underlying structural trade-off occurring here.
 
 **Answer:**
@@ -420,7 +600,7 @@ This scenario highlights the fundamental trade-off between **Expressibility** an
 
 ---
 
-### Question 15: Over-Shifting the Parameter-Shift Rule
+### Question 5.3: Over-Shifting the Parameter-Shift Rule
 **Question [Tricky]:** Suppose you are using the standard Parameter-Shift Rule to calculate the gradient of a cost function with respect to a gate parameter $\theta$. By mistake, instead of shifting the parameter by $\pm \frac{\pi}{2}$, you shift it by $\pm \pi$. What is the numerical result of this gradient calculation, and what does it represent physically?
 
 **Answer:**
@@ -434,7 +614,7 @@ This scenario highlights the fundamental trade-off between **Expressibility** an
 
 ---
 
-### Question 16: Measuring $Y$ Basis Readout under $Z$-Only Native Constraints
+### Question 5.4: Measuring $Y$ Basis Readout under $Z$-Only Native Constraints
 **Question [Tricky]:** Assume your quantum computer can only perform measurements in the computational $Z$-basis. Write down the exact single-qubit basis transformation sequence required to measure the expectation value of the Pauli-$Y$ operator ($\langle Y \rangle$). Prove your answer using matrix multiplication.
 
 **Answer:**
@@ -454,7 +634,7 @@ This confirms that the transformation maps the $+1$ and $-1$ eigenstates of the 
 
 ---
 
-### Question 17: Expressibility Collapse under Product Feature Maps
+### Question 5.5: Expressibility Collapse under Product Feature Maps
 **Question [Tricky]:** You design a QNN classifier where the feature map circuit is defined as a simple product of un-entangled rotations: $F(\vec{x}) = \bigotimes_{i=1}^n R_X(x_i)$. Even if you connect this feature map to a highly expressible variational ansatz with strongly entangling layers, explain why this QNN will fail to achieve a quantum advantage over classical support vector machines.
 
 **Answer:**
@@ -466,7 +646,7 @@ This confirms that the transformation maps the $+1$ and $-1$ eigenstates of the 
 
 ---
 
-### Question 18: Nash Equilibrium Realities in Faulty QGANs
+### Question 5.6: Nash Equilibrium Realities in Faulty QGANs
 **Question [Tricky]:** During the training of a QGAN on a real NISQ (Noisy Intermediate-Scale Quantum) hardware processor, both the generator loss and discriminator loss converge toward $-\log(1/2) \approx 0.693$, suggesting that the system has successfully reached a perfect Nash Equilibrium. However, when you plot the generator's output probability distribution, it matches a completely uniform random distribution instead of the target distribution. Explain what has occurred.
 
 **Answer:**
@@ -480,7 +660,7 @@ This behavior points to a classic pitfall when training generative models on noi
 
 ---
 
-### Question 19: Exploding Shot Noise inside Gradient Descent Loops
+### Question 5.7: Exploding Shot Noise inside Gradient Descent Loops
 **Question [Tricky]:** When training a QNN on quantum hardware using gradient descent, you calculate your gradients using the Parameter-Shift Rule with $N = 10$ shots per circuit run. You observe that the optimizer fails to minimize the cost function, causing the parameters to fluctuate wildly. Explain why increasing the number of shots resolves this issue, and describe the relationship between shot allocation and gradient accuracy.
 
 **Answer:**
@@ -494,7 +674,7 @@ This behavior points to a classic pitfall when training generative models on noi
 
 ---
 
-### Question 20: Cost Function Vanishing via Observable Locality
+### Question 5.8: Cost Function Vanishing via Observable Locality
 **Question [Tricky]:** You are training a 10-qubit QNN using an ansatz circuit that has a depth of $d = \sqrt{n}$. You transition your model's cost function from a global operator ($\hat{O}_{\text{global}} = |00\dots0\rangle\langle00\dots0|$) to a local operator ($\hat{O}_{\text{local}} = Z_1 \otimes Z_2$). Explain precisely how this modification alters the gradient variance landscape, and discuss its impact on the Barren Plateau problem.
 
 **Answer:**
@@ -508,7 +688,7 @@ This modification changes the scaling behavior of the gradient variance, helping
 
 ---
 
-### Question 21: The Unitary Invariance Illusion of Quantum Kernels
+### Question 5.9: The Unitary Invariance Illusion of Quantum Kernels
 **Question [Tricky]:** In a Quantum Support Vector Machine (QSVM), the kernel is evaluated using the overlap of two quantum states: $K(\vec{x}_i, \vec{x}_j) = |\langle0|\Phi^\dagger(\vec{x}_i)\Phi(\vec{x}_j)|0\rangle|^2$. Suppose an engineer attempts to preprocess the data by applying a fixed, data-independent unitary circuit $W$ immediately after the feature map, changing the state to $|\psi'\rangle = W\Phi(\vec{x})|0\rangle$. Prove mathematically whether this additional transformation alters the final kernel matrix values.
 
 **Answer:**
@@ -527,7 +707,7 @@ This modification changes the scaling behavior of the gradient variance, helping
 
 ---
 
-### Question 22: Quantum Overfitting under Perfect Target Overlap
+### Question 5.10: Quantum Overfitting under Perfect Target Overlap
 **Question [Tricky]:** Suppose you are training a QNN to perform binary classification. Your training profile achieves a cost value of exactly $0.0$, indicating a perfect fit on your training data. However, when evaluated on an unseen test dataset, the model's accuracy drops below a random guess (50%). Explain how a quantum circuit can overfit classical data, and describe a strategy to mitigate this effect.
 
 **Answer:**
@@ -539,11 +719,264 @@ This modification changes the scaling behavior of the gradient variance, helping
 
 ---
 
+## Part 6: GAN, BCE, and QGANS
+
+### Question 6.1: Roles of Generator and Discriminator in standard GAN
+Explain the operational roles of the Generator and the Discriminator in a standard GAN framework using the classical counterfeiting analogy. What represents the ideal endpoint of this training process?</br>
+**Answer:**</br>
+- The Generator (The Counterfeiter): Acts as an agent that takes arbitrary, random seeds (noise) as an input and transforms them into structured data. Its primary goal is to produce synthetic data that perfectly mimics the underlying patterns and properties of the real dataset to deceive the discriminator.
+- The Discriminator (The Central Bank): Acts as a classical binary classifier. It processes incoming samples from both the true historical dataset and the generator, outputting a probability indicating whether it believes a sample is real ($1$) or fake ($0$).
+- The Training Endpoint: The interaction is modeled as a zero-sum game that iteratively updates both networks until they reach a Nash Equilibrium. At this point, the Generator produces "perfect fakes," and the Discriminator's capability to differentiate them degrades completely, leaving it to make a random guess with a static probability of exactly $0.5$ (or an accuracy of 50%).
+
+---
+
+### Question 6.2: Explain the explicit mathematical of PQC as Generator
+In a hybrid or fully Quantum GAN (QGAN) designed to learn a target probability distribution, describe the explicit mathematical objective of the Parameterized Quantum Circuit (PQC) acting as the Generator.</br>
+**Answer**:</br>
+The objective of the quantum generator circuit (parameterized by tunable gate weights $\theta$) is to prepare a quantum state $|\psi(\theta)\rangle$ whose amplitude distribution over the computational basis vectors matches the target probability distribution.</br>
+Mathematically, it aims to converge on the state:
+
+$$|\psi(\theta)\rangle = \sum_{r} \sqrt{p_{\alpha(r)}} |r\rangle$$
+
+Where measuring the output qubits in the computational basis yields a specific binary bitstring state $|r\rangle$, which corresponds to a data label $\alpha(r)$ with a precise historical probability of:
+
+$$\left| \sqrt{p_{\alpha(r)}} \right|^2 = p_{\alpha(r)}$$
+
+A fully trained quantum generator achieves success not by outputting a single static solution, but by engineering its quantum wave function so that repetitive measurements yield a sampling frequency matching the target distribution.
+
+---
+
+### Question 6.3: Explain Why Loss function coverge to 0.693?
+During the tracking of a QGAN's optimization loop, why do the loss functions of both the generator and the discriminator ideally converge toward the specific mathematical bound of $-\log(1/2) \approx 0.693$?</br>
+
+**Answer:**</br>
+The loss value of $-\log(1/2)$ represents the state of maximum entropy (maximum uncertainty) for a binary classifier.</br>
+In a standard binary cross-entropy loss landscape, when the generator successfully reaches the Nash Equilibrium, the discriminator is completely incapable of distinguishing real samples from quantum-generated samples.</br> 
+The discriminator assigns an output probability of exactly $D(x) = 0.5$ to every single input sample. Substituting this balanced probability into the adversarial objective function yields:
+
+$$\text{Loss} = -\mathbb{E}[\log(0.5)] = -\log\left(\frac{1}{2}\right) \approx 0.693$$
+
+Tracking this specific value provides a reliable analytical indicator to verify that the adversarial networks are converging stably rather than experiencing a collapse.
+
+---
+
+### Question 6.4: BCE Formula 
+Write the Binary Cross-Entropy loss formula for a single sample. Define each variable.
+
+**Answer:**
+$$L = -[y \cdot \log(p) + (1 - y) \cdot \log(1 - p)]$$
+
+- `y`: the true label (0 or 1)
+- `p`: the model's predicted probability that the sample belongs to class 1
+
+When `y = 1`, only the term `-log(p)` matters. When `y = 0`, only `-log(1-p)` matters. In both cases, a confident wrong prediction produces a very large (→ ∞) loss.
+
+---
+
+### Question 6.5: Discriminator Role
+In the context of a GAN, what is the role of the Discriminator and how does it use BCE?
+
+**Answer:**
+The Discriminator is a binary classifier that learns to distinguish real data from generated (fake) data. It uses BCE with:
+- Label `1` for real samples → it is penalized if `D(x) → 0`
+- Label `0` for fake samples → it is penalized if `D(G(z)) → 1`
+
+Its cost function is:
+$$\mathcal{L}^{(D)} = -\mathbb{E}_{x \sim p_{data}}[\log D(x)] - \mathbb{E}_{z \sim p_z}[\log(1 - D(G(z)))]$$
+
+---
+
+### Question 6.6: Generator Objective in GAN, Explain Flipped Target Label
+What is the Generator's objective in a GAN, and why does it use a "flipped" target label?
+
+**Answer:**
+The Generator wants to produce fake samples that the Discriminator classifies as real. Since G only receives feedback through D, it uses BCE with a flipped label: instead of targeting `0` (fake), it targets `1` (real) for its own generated outputs. By minimizing this flipped loss, G is forced to produce outputs where `D(G(z)) → 1`.
+
+---
+
+### Question 6.7: Objectiv of MinMax in GAN
+State the full minimax objective of a GAN. Identify what each player is trying to do.
+
+**Answer:**
+$$\min_G \max_D V(D, G) = \mathbb{E}_{x \sim p_{data}}[\log D(x)] + \mathbb{E}_{z \sim p_z}[\log(1 - D(G(z)))]$$
+
+- **D** tries to **maximize** `V`: it wants `D(x) → 1` on real data and `D(G(z)) → 0` on fakes.
+- **G** tries to **minimize** `V`: it wants to collapse the second term by making `D(G(z)) → 1`.
+
+At equilibrium, D cannot do better than random guessing (50/50), meaning G has learned the real data distribution.
+
+---
+
+### Question 6.8:  Vanishing gradient in GAN
+Explain the vanishing gradient problem in GAN training. When does it occur, and which part of the network is affected?
+
+**Answer:**
+Vanishing gradients affect the **Generator** early in training. When G is poorly trained, D easily rejects all fakes (`D(G(z)) → 0`). In the minimax Generator loss `log(1 - D(G(z)))`, the gradient at `D(G(z)) ≈ 0` is nearly flat. G receives almost no signal to update its weights, so training stalls. The problem originates from the saturation of the `log(1 - x)` function near `x = 0`.
+
+---
+
+### Question 6.9: Non-Saturating Generator Loss
+What is the non-saturating Generator loss? How does it fix the vanishing gradient problem?
+
+**Answer:**
+Instead of minimizing `E[log(1 - D(G(z)))]`, the non-saturating version minimizes:
+$$\mathcal{L}^{(G)}_{NS} = -\mathbb{E}_{z \sim p_z}[\log D(G(z))]$$
+
+The gradient of `-log(D(G(z)))` near `D(G(z)) ≈ 0` is **steep**, not flat. So early in training, when G is bad, it actually receives the strongest gradient signal — exactly when it needs to learn fastest. The two objectives have the same fixed point but very different gradient landscapes at the start of training.
+
+---
+
+### Question 6.10: Explain How Expected Value is Computed in Practice
+What does the notation `𝔼_{x ~ p_data}[log D(x)]` mean, and how is it computed in practice?
+
+**Answer:**
+It is the **expected value** of `log D(x)` over samples drawn from the real data distribution `p_data`. In theory this is a continuous integral, which cannot be computed directly since `p_data` is unknown.
+
+In practice, it is approximated via Monte Carlo sampling using a mini-batch of size `m`:
+$$\mathbb{E}_{x \sim p_{data}}[\log D(x)] \approx \frac{1}{m} \sum_{i=1}^{m} \log D(x^{(i)})$$
+
+As batch size increases, this empirical average converges to the true expectation.
+
+---
+
+### Question 6.11: Discriminator Training Loss
+Write the discriminator training loss `L_D` using a batch of real samples `X` and noise seeds `S`. Explain each term.
+
+**Answer:**
+$$L_D = -\frac{1}{|X| + |S|} \left( \sum_{x \in X} \log D(x) + \sum_{s \in S} \log(1 - D(G(s))) \right)$$
+
+- **First term**: penalizes D for outputting low values on real samples.
+- **Second term**: penalizes D for outputting high values on generated fakes.
+- The factor `1/(|X|+|S|)` averages over both real and fake contributions.
+
+---
+
+### Question 6.12: Compare Between Minimax and Non-Saturating
+Compare the two Generator loss formulations (minimax vs. non-saturating). Under what training condition does the difference matter most?
+
+**Answer:**
+The difference matters most **early in training**, when G is weak and D is highly accurate. In the minimax version, the gradient is near zero in that regime, slowing G's learning. The non-saturating version has a steep gradient in that same region, giving G a strong signal precisely when it needs it. Later in training, when D(G(z)) is closer to 0.5, the two formulations behave more similarly.
+
+---
+
+### Question 6.13: Explain Mode Collapse in GANs
+What is mode collapse in GANs? Why does BCE-based training make it possible?
+
+**Answer:**
+Mode collapse is when G learns to produce only one (or a few) outputs that consistently fool D, ignoring the rest of the real data distribution. BCE-based training is susceptible because D's feedback is purely classification-based: once G finds a "safe" output that gets classified as real, it has no incentive to explore other modes. The loss function doesn't penalize lack of variety — only incorrect classification.
+
+---
+
+### Question 6.14: Replacing BCE with Wasserstein Loss
+Why do modern GANs often replace BCE with Wasserstein loss? What problem does it address?
+
+**Answer:**
+Wasserstein loss addresses both vanishing gradients and training instability. BCE saturates when D becomes too confident, producing near-zero gradients for G. The Wasserstein distance (used in WGAN) doesn't saturate in the same way — it provides a smoother, more informative gradient signal throughout training, even when D is highly accurate. It also correlates better with sample quality, giving a more meaningful training signal.
+
+---
+
+### Question 6.15: GAN requires More images, unlike QGAN
+In a classical GAN, why is training on a single image nearly useless? How does a QGAN fundamentally differ in this regard?
+
+**Answer:**
+A classical GAN needs many training examples because a single image is just one data point — it carries no information about the distribution of other images. A QGAN can train on a single quantum state because that state already **encodes a probability distribution** over all possible measurement outcomes. Each measurement is a sample from that distribution, so repeated measurements generate a full training signal from just one state.
+
+---
+
+### Question 6.16: Properties in QM Make single Quantum state non-trivial in training
+List three properties of quantum mechanics that make a single quantum state a non-trivial training target for a QGAN. Briefly explain each.
+
+**Answer:**
+
+1. **Superposition**: A quantum state is a weighted combination of many basis states. The Generator must reproduce the correct amplitudes and phases across all of them, not just a single value.
+
+2. **Entanglement**: In multi-qubit systems, qubits can be correlated in ways with no classical equivalent. Reproducing these correlations correctly is a non-trivial constraint.
+
+3. **Exponentially large Hilbert space**: An n-qubit system has 2ⁿ dimensions. Even at n=30, the Generator is targeting a vector in over a billion dimensions. The complexity of the target grows exponentially with system size.
+
+---
+
+### Question 6.17: Role of PQC in QGAN
+What is the role of the parameterized quantum circuit in a QGAN?
+
+**Answer:**
+The parameterized quantum circuit is the **Generator**. It takes a noise input (or a fixed initial state) and applies a sequence of quantum gates with trainable parameters. The goal is to tune those parameters so the circuit outputs a quantum state that matches the target — similar to how a classical neural network learns weights to produce outputs that match training data.
+
+---
+
+### Question 6.18: Comparison Between Training Signal in QGAN and GAN
+How does the training signal in a QGAN compare to that in a classical GAN?
+
+**Answer:**
+In a classical GAN, the training signal comes from labeled examples in a dataset — many distinct real samples are compared against Generator outputs. In a QGAN (one-state case), the training signal comes from **statistical comparison of measurement outcomes**: repeated measurements of the target state vs. repeated measurements of the Generator's output state. The Discriminator compares these distributions rather than individual labeled images.
+
+---
+
+### Question 6.19: Calculate BCE
+Calculate the BCE loss for the following two predictions. Which prediction is worse?
+
+- Sample A: `y = 1`, `p = 0.9`
+- Sample B: `y = 1`, `p = 0.1`
+
+**Answer:**
+$$L_A = -\log(0.9) \approx 0.105$$
+$$L_B = -\log(0.1) \approx 2.303$$
+
+Sample B is far worse. The model predicted only 10% probability for the correct class. BCE penalizes confident wrong predictions exponentially.
+
+---
+
+### Question 6.20: Calculate Loss of Discriminator
+A mini-batch contains 3 real samples with `D(x)` outputs: `[0.9, 0.8, 0.7]` and 3 fake samples with `D(G(z))` outputs: `[0.3, 0.2, 0.1]`. Calculate `L_D`.
+
+**Answer:**
+$$L_D = -\frac{1}{6} \left[ (\log 0.9 + \log 0.8 + \log 0.7) + (\log(1-0.3) + \log(1-0.2) + \log(1-0.1)) \right]$$
+
+$$= -\frac{1}{6} \left[ (-0.105 - 0.223 - 0.357) + (-0.357 - 0.223 - 0.105) \right]$$
+
+$$= -\frac{1}{6} \times (-1.370) \approx 0.228$$
+
+Lower `L_D` means D is performing better at separating real from fake.
+
+---
+
+### Question 6.21: Explain the Gradient in Non-saturating
+In the non-saturating Generator loss, explain why the gradient is steep when `D(G(z)) → 0`. Use the derivative of `-log(x)` to support your answer.
+
+**Answer:**
+The non-saturating Generator loss is `-log(D(G(z)))`. Let `x = D(G(z))`. The derivative of `-log(x)` with respect to `x` is:
+
+$$\frac{d}{dx}[-\log(x)] = -\frac{1}{x}$$
+
+As `x → 0`, this derivative → `-∞`. The gradient magnitude becomes very large, providing a strong update signal to G. This is exactly the opposite of the minimax version, where the gradient vanishes at the same point. The steep gradient early in training is what makes the non-saturating version work in practice.
+
+---
+
+### Question 6.22: How does shot noise scale with the number of measurements? What does this imply for practical QNN training?
+
+**Answer:**
+Shot noise (the statistical error in the expectation value estimate) scales as `1/√N`. To halve the error, you need four times as many shots. In practice, this means:
+
+- Increasing measurement precision is expensive computationally and in real quantum hardware runtime.
+- There is a trade-off between estimate accuracy and circuit execution cost.
+- Gradient estimation (e.g., via the parameter-shift rule) inherits this noise — each gradient component requires multiple cost function evaluations, each costing `N` shots.
+
+---
+
+### Question 6.23: What basis rotation is needed to measure a qubit in the X basis? In the Y basis?
+
+**Answer:**
+
+- **X basis:** Apply a **Hadamard (H)** gate before measurement. The H gate rotates the X eigenstates (`|+⟩` and `|−⟩`) into the computational basis.
+- **Y basis:** Apply **H then S†** (or equivalently, a specific `Ry(π/2)` rotation) before measurement. This maps the Y eigenstates to the computational basis so that measurement outcomes correspond to Y eigenvalues `±1`.
+
+---
+---
 # Final Exam Model Answers
 
 ## Question 1:
 
-### (b) (i) Using the basic postulates of quantum mechanics, show that the expectation value of a Hermitian operator, $\langle A\rangle$ is given by $\langle A\rangle=\langle\psi|A|\psi\rangle$. [4 Marks]
+### (b) (i) Using the basic postulates of quantum mechanics, show that the expectation value of a Hermitian operator, $\langle A\rangle$ is given by $\langle A\rangle=\langle\psi|A|\psi\rangle$. 
 
 **Proof:**
 1. According to the **Measurement Postulate** and **Born's Rule**, when a physical quantity represented by a Hermitian operator $\hat{A}$ is measured on a system in the state $|\psi\rangle$, the only possible numerical outcomes are the eigenvalues $\{a_i\}$ of $\hat{A}$.
@@ -562,7 +995,7 @@ This modification changes the scaling behavior of the gradient variance, helping
 
 ---
 
-### (b) (ii) How this expectation value can be calculated empirically using a quantum computer? [4 Marks]
+### (b) (ii) How this expectation value can be calculated empirically using a quantum computer?
 
 **Answer:**
 A physical quantum processor cannot extract a continuous mathematical expectation value directly from a single operation. Instead, it estimates the value empirically through an iterative process of preparation, transformation, and statistical sampling:
@@ -582,19 +1015,7 @@ A physical quantum processor cannot extract a continuous mathematical expectatio
 
 ---
 
-## Question 2: [13 Marks]
-
-### (a) The quantum kernel function $k(\vec{x}_{j}, \vec{x}_{k})$ used in QSVM reads: $k(\vec{x}_{j}, \vec{x}_{k})=|\langle\phi(\vec{x}_{j})|\phi(\vec{x}_{k})\rangle|^{2}$. Identify different elements in this expression: $\vec{x}_j$, $\vec{x}_k$, $|\phi(\vec{x})\rangle$, $k(\vec{x}_j, \vec{x}_k)$. [4 Marks]
-
-**Answer:**
-* **$\vec{x}_j, \vec{x}_k$:** These represent two separate input data feature vectors from the classical dataset. They serve as the raw coordinate parameters fed into the algorithm.
-* **$|\phi(\vec{x})\rangle$:** This represents the non-linear quantum state vector in the high-dimensional Hilbert space. It is generated by mapping a classical vector $\vec{x}$ through a parameterized feature map circuit ($\hat{U}_{\Phi}(\vec{x})$) applied to a reference initial state:
-  $$|\phi(\vec{x})\rangle = \hat{U}_{\Phi}(\vec{x})|0\dots0\rangle$$
-* **$k(\vec{x}_j, \vec{x}_k)$:** This represents the calculated **Quantum Kernel Function** value. It is a scalar entry between $0$ and $1$ that quantifies the geometric inner product overlap (or transition probability/fidelity) between the two quantum states $|\phi(\vec{x}_j)\rangle$ and $|\phi(\vec{x}_k)\rangle$ inside the Hilbert space.
-
----
-
-### (b) What is the main objective of using quantum kernel method? [4 Marks]
+### (b) What is the main objective of using quantum kernel method?
 
 **Answer:**
 The primary objective of the quantum kernel method is to **leverage the exponentially large dimensionality of the quantum Hilbert space to solve non-linear classification problems that are intractable for classical algorithms.**
@@ -605,7 +1026,7 @@ The primary objective of the quantum kernel method is to **leverage the exponent
 
 ---
 
-### (c) Explain why factorizable quantum training landscapes do not offer quantum advantage and discuss why non-factorizable cost functions are essential. [5 Marks]
+### (c) Explain why factorizable quantum training landscapes do not offer quantum advantage and discuss why non-factorizable cost functions are essential.
 
 **Answer:**
 
@@ -684,67 +1105,3 @@ Because classical backpropagation requires saving intermediate state vectors tha
 
 ---
 
-## Question 4: [10 Marks]
-
-### (a) Given $U_{f}|x\rangle|y\rangle=|x\rangle|y\oplus f(x)\rangle$, where $y$ and $f(x)\in\{0,1\}$, demonstrate that: $U_{f}|x\rangle|-\rangle=(-1)^{f(x)}|x\rangle|-\rangle$. [4 Marks]
-
-**Proof:**
-Recall that the quantum state $|-\rangle$ is defined as the uniform linear superposition:
-$$|-\rangle = \frac{|0\rangle - |1\rangle}{\sqrt{2}}$$
-
-Substitute this definition into the target register of the system expression:
-$$U_{f}|x\rangle|-\rangle = U_{f}\left(|x\rangle \otimes \frac{|0\rangle - |1\rangle}{\sqrt{2}}\right) = \frac{1}{\sqrt{2}}\left(U_{f}|x\rangle|0\rangle - U_{f}|x\rangle|1\rangle\right)$$
-
-Using the definition of the function oracle ($\hat{U}_{f}|x\rangle|y\rangle = |x\rangle|y \oplus f(x)\rangle$):
-$$U_{f}|x\rangle|-\rangle = \frac{1}{\sqrt{2}}\left(|x\rangle|0 \oplus f(x)\rangle - |x\rangle|1 \oplus f(x)\rangle\right)$$
-
-Since $f(x)$ is a binary function, it can only output a value of $0$ or $1$. Let us evaluate both cases:
-
-* **Case 1: When $f(x) = 0$**
-  $$0 \oplus 0 = 0 \quad \text{and} \quad 1 \oplus 0 = 1$$
-  $$\text{State} = \frac{1}{\sqrt{2}}\left(|x\rangle|0\rangle - |x\rangle|1\rangle\right) = |x\rangle \otimes \frac{|0\rangle - |1\rangle}{\sqrt{2}} = |x\rangle|-\rangle$$
-  Since $(-1)^{0} = 1$, this matches the target expression: $(-1)^{0}|x\rangle|-\rangle$.
-
-* **Case 2: When $f(x) = 1$**
-  $$0 \oplus 1 = 1 \quad \text{and} \quad 1 \oplus 1 = 0$$
-  $$\text{State} = \frac{1}{\sqrt{2}}\left(|x\rangle|1\rangle - |x\rangle|0\rangle\right) = -|x\rangle \otimes \frac{|0\rangle - |1\rangle}{\sqrt{2}} = -|x\rangle|-\rangle$$
-  Since $(-1)^{1} = -1$, this matches the target expression: $(-1)^{1}|x\rangle|-\rangle$.
-
-Combining both cases into a single exponential term proves the sign-flipping property of the phase oracle:
-$$U_{f}|x\rangle|-\rangle = (-1)^{f(x)}|x\rangle|-\rangle \quad \blacksquare$$
-
----
-
-### (b) The oracle $U_{f}$ in Bernstein-Vazirani algorithm calculates a function $f(x)=s.x=\sum_{i=1}^{n}s_{i}.x_{i}$, where $x$ and $s\in\{0,1\}^{n}$, such that $U_{f}|x\rangle|y\rangle=|x\rangle|y\oplus f(x)\rangle$, where $y$ and $f(x)\in\{0,1\}$. By carrying out the algorithm step by step, show that by measuring the first $n$ output qubits, the secret string $s$ is revealed. [6 Marks]
-
-**Answer:**
-
-#### Step 1: Initialize the Input Registers
-The system prepares an input register of $n$ qubits in the ground state $|0\rangle^{\otimes n}$ and a single target readout qubit in the state $|1\rangle$:
-$$|\psi_0\rangle = |0\rangle^{\otimes n} |1\rangle$$
-
-#### Step 2: Apply Hadamard Gates to All Qubits
-A global layer of Hadamard transformations ($\hat{H}^{\otimes n+1}$) is applied across all registers. This creates a uniform superposition in the input register and switches the target qubit to the $|-\rangle$ state:
-$$|\psi_1\rangle = \left(\frac{1}{\sqrt{2^n}}\sum_{x \in \{0,1\}^n} |x\rangle\right) |-\rangle$$
-
-#### Step 3: Apply the Function Oracle $\hat{U}_f$
-The system passes the state through the Bernstein-Vazirani function oracle. Using the phase-kickback property proved in part (a), the binary function evaluation in the target register kicks back an alternate sign phase to the input register:
-$$|\psi_2\rangle = \hat{U}_f |\psi_1\rangle = \left(\frac{1}{\sqrt{2^n}}\sum_{x \in \{0,1\}^n} (-1)^{f(x)} |x\rangle\right) |-\rangle$$
-
-Substitute the secret dot-product function $f(x) = s \cdot x = \sum_{i=1}^{n}s_{i}.x_{i}$ into the expression:
-$$|\psi_2\rangle = \left(\frac{1}{\sqrt{2^n}}\sum_{x \in \{0,1\}^n} (-1)^{s \cdot x} |x\rangle\right) |-\rangle$$
-
-#### Step 4: Apply a Second Layer of Hadamard Gates to the Input Register
-A second layer of Hadamard gates ($\hat{H}^{\otimes n}$) is applied exclusively to the first $n$ input qubits. The standard transformation of a computational state under a Hadamard gate is given by $\hat{H}^{\otimes n}|x\rangle = \frac{1}{\sqrt{2^n}}\sum_{y}(-1)^{x \cdot y}|y\rangle$. Applying this to the superposition yields:
-$$|\psi_3\rangle = \frac{1}{2^n} \sum_{x \in \{0,1\}^n} \sum_{y \in \{0,1\}^n} (-1)^{s \cdot x} (-1)^{x \cdot y} |y\rangle |-\rangle$$
-$$|\psi_3\rangle = \sum_{y \in \{0,1\}^n} \left[ \frac{1}{2^n} \sum_{x \in \{0,1\}^n} (-1)^{(s \oplus y) \cdot x} \right] |y\rangle |-\rangle$$
-
-#### Step 5: Evaluate Orthogonality and Measurement Outcomes
-Let us look at the behavior of the internal bracketed scalar sum $\frac{1}{2^n} \sum_{x} (-1)^{(s \oplus y) \cdot x}$:
-* If $y \neq s$, the bits are not identical, causing the positive and negative phases to cancel out perfectly over the summation, resulting in a net value of $0$.
-* If $y = s$, the expression simplifies to $(-1)^{(s \oplus s) \cdot x} = (-1)^0 = 1$ for all terms. Summing $1$ across all $2^n$ combinations yields exactly $2^n$, making the coefficient $\frac{2^n}{2^n} = 1$.
-
-This perfect cancellation isolates the secret string component, collapsing the state vector into:
-$$|\psi_3\rangle = |s\rangle |-\rangle$$
-
-When the first $n$ input qubits are measured in the computational basis, the system will output the secret string $s = s_1 s_2 \dots s_n$ with a **probability of $100\%$ ($P=1$)** in a single execution run. $\blacksquare$

@@ -34,15 +34,72 @@
   - [4.1. Representing Multiple Qubit Mathematically](#41-representing-multiple-qubit-mathematically)
   - [4.2. Quantum Circuits](#42-quantum-circuits)
   - [4.3. Multi-qubit Gates: CNOT, Toffoli and Controlled Gates](#43-multi-qubit-gates-cnot-toffoli-and-controlled-gates)
-- [Notes](#notes)
+  - [Notes](#notes)
   - [The Inner Product](#the-inner-product)
     - [Calculation](#calculation)
+  - [4.4. More Linear Algebra](#44-more-linear-algebra)
+    - [4.4.1. The Inner Product — Notation and Properties](#441-the-inner-product--notation-and-properties)
+    - [4.4.2. The Hermitian Conjugate (Adjoint)](#442-the-hermitian-conjugate-adjoint)
+    - [4.4.3. Key Identities for Operator Adjoints](#443-key-identities-for-operator-adjoints)
+    - [4.4.4. A Worked Example — Finding $U^\\dagger$](#444-a-worked-example--finding-udagger)
+  - [4.5. The Quantum Kernel Method — Angle Encoding in Detail](#45-the-quantum-kernel-method--angle-encoding-in-detail)
+    - [4.5.1. Feature Map](#451-feature-map)
+    - [4.5.2. Kernel Derivation](#452-kernel-derivation)
+    - [4.5.3. What Entanglement Does to the Kernel](#453-what-entanglement-does-to-the-kernel)
+    - [4.5.4. Summary Table](#454-summary-table)
 - [5. Quantum Neural Network (QNN)](#5-quantum-neural-network-qnn)
-  - [5.1. Cost Function](#51-cost-function)
-  - [5.2. The Components](#52-the-components)
-  - [5.3. Cost Function Calculation Example](#53-cost-function-calculation-example)
-  - [5.4. Quantum Kernel](#54-quantum-kernel)
-  - [5.5. Quantum Kernel Calculation Steps](#55-quantum-kernel-calculation-steps)
+  - [5.1. Expectation Value of an Observable](#51-expectation-value-of-an-observable)
+  - [5.2. Measurement as Expectation in training QNN](#52-measurement-as-expectation-in-training-qnn)
+  - [5.3. Cost Function](#53-cost-function)
+  - [5.4. The Components Summary](#54-the-components-summary)
+  - [5.5. Cost Function Calculation Example](#55-cost-function-calculation-example)
+  - [5.6. Parameter Shift Rule - Quantum Gradient](#56-parameter-shift-rule---quantum-gradient)
+  - [5.7. Note: Cost Function - Global View vs Local View](#57-note-cost-function---global-view-vs-local-view)
+  - [5.7. Empirical Estimation of Cost Functions in QNNs](#57-empirical-estimation-of-cost-functions-in-qnns)
+    - [5.7.1. The Cost Function in a QNN](#571-the-cost-function-in-a-qnn)
+    - [5.7.2. How to Estimate It — The Measurement Loop](#572-how-to-estimate-it--the-measurement-loop)
+    - [5.7.3. Single-Qubit Example — Measuring Z](#573-single-qubit-example--measuring-z)
+    - [5.7.4. Eigenvalues of Tensor Product Operators](#574-eigenvalues-of-tensor-product-operators)
+    - [5.7.5. Two-Qubit Example — Measuring $Z\\otimes Z$](#575-two-qubit-example--measuring-zotimes-z)
+    - [5.7.6. Hamiltonian Cost Functions — Multiple Observables](#576-hamiltonian-cost-functions--multiple-observables)
+    - [5.7.7. Generalizing to Any Pauli Observable](#577-generalizing-to-any-pauli-observable)
+    - [5.7.8. Summary](#578-summary)
+  - [5.8. Quantum Mechanics Postulates \& the Quantum Kernel Method](#58-quantum-mechanics-postulates--the-quantum-kernel-method)
+    - [5.8.2. Quantum Kernel Calculation Steps](#582-quantum-kernel-calculation-steps)
+    - [5.8.1. The Five Postulates — The Rules Quantum Mechanics Runs On](#581-the-five-postulates--the-rules-quantum-mechanics-runs-on)
+    - [5.8.2. Expectation Values](#582-expectation-values)
+    - [5.8.3. Hermitian Conjugates and Operator Algebra](#583-hermitian-conjugates-and-operator-algebra)
+    - [5.8.4. The Quantum Kernel Method](#584-the-quantum-kernel-method)
+    - [5.8.5. Kernel Calculation — Angle Encoding (Toy Example 1)](#585-kernel-calculation--angle-encoding-toy-example-1)
+    - [5.8.6. Adding Entanglement — CNOT Gate (Toy Example 2)](#586-adding-entanglement--cnot-gate-toy-example-2)
+    - [5.8.7. Deeper Circuits — Repeating Layers (Toy Example 3)](#587-deeper-circuits--repeating-layers-toy-example-3)
+    - [5.8.8. Summary](#588-summary)
+- [6. Barren Plateaus](#6-barren-plateaus)
+  - [6.1. What is a Barren Plateau?](#61-what-is-a-barren-plateau)
+  - [6.2. Why Do Barren Plateaus Occur? (Root Causes)](#62-why-do-barren-plateaus-occur-root-causes)
+  - [6.3. Why they matter when training a QNN?](#63-why-they-matter-when-training-a-qnn)
+  - [6.4. Expressibility vs. Expressivity](#64-expressibility-vs-expressivity)
+  - [6.5. Strategies to Mitigate Barren Plateaus](#65-strategies-to-mitigate-barren-plateaus)
+- [7. QGAN](#7-qgan)
+  - [7.1. Classical Generative Adversarial Networks (GANs)](#71-classical-generative-adversarial-networks-gans)
+  - [7.2. GAN Training with Binary Cross-Entropy](#72-gan-training-with-binary-cross-entropy)
+    - [7.2.1. What is Binary Cross-Entropy?](#721-what-is-binary-cross-entropy)
+    - [7.2.2. GANs: Two Networks, One Game](#722-gans-two-networks-one-game)
+    - [7.2.3. The Discriminator's Job](#723-the-discriminators-job)
+    - [7.2.4. The Generator's Job](#724-the-generators-job)
+    - [7.2.5. The Minimax Equation](#725-the-minimax-equation)
+    - [7.2.6. From Theory to Code: The Expectation Explained](#726-from-theory-to-code-the-expectation-explained)
+    - [7.2.7. The Discriminator Training Loss in Full](#727-the-discriminator-training-loss-in-full)
+    - [7.2.8. Known Failure Modes](#728-known-failure-modes)
+    - [7.2.9. Quick Reference](#729-quick-reference)
+  - [7.3. Moving into Quantum (QGAN)](#73-moving-into-quantum-qgan)
+  - [7.4. QGAN Trained on One State](#74-qgan-trained-on-one-state)
+    - [7.4.1. How Classical GANs Learn (Quick Recap)](#741-how-classical-gans-learn-quick-recap)
+    - [7.4.2. What Changes in a QGAN?](#742-what-changes-in-a-qgan)
+    - [7.4.3. Why One State Is Enough](#743-why-one-state-is-enough)
+    - [7.4.4. Why One Quantum State Can Be "Rich Enough"](#744-why-one-quantum-state-can-be-rich-enough)
+    - [7.4.5. Classical vs. Quantum GAN — Side by Side](#745-classical-vs-quantum-gan--side-by-side)
+    - [7.4.6. The Core Takeaway](#746-the-core-takeaway)
 - [CheatSheet](#cheatsheet)
 
 # Abstract
@@ -1057,7 +1114,8 @@ There are also other controlled gates like: $CY, CZ, CS, CT, CH, ..$; it does th
 </div>
 
 ---
-# Notes
+
+## Notes
 Theories explain; Models represent and apply.
 
 Measurements reveals properties!!
@@ -1079,26 +1137,162 @@ The inner product between two states is written as: $\langle\phi|\psi\rangle$
 An Example:
 ![i1](./assets/inner-product-2.jpg)
 
+---
+
+## 4.4. More Linear Algebra
+
+### 4.4.1. The Inner Product — Notation and Properties
+
+The inner product between two states $|\phi\rangle$ and $|\psi\rangle$ is written $\langle\phi|\psi\rangle$. Two properties come up constantly:
+
+**| Conjugate symmetry:** Swapping the two states gives the complex conjugate of the original.
+
+$$\langle \varphi | \psi \rangle = \langle \psi | \varphi \rangle^*$$
+
+**| Scaling:** If `|α⟩ = c|ψ⟩` for some complex scalar `c`, then:
+
+$$\langle \varphi | \alpha \rangle = c \langle \varphi | \psi \rangle$$
+
+The scalar comes out on the right (ket) side as-is. If it were on the bra side, it would come out as `c*`. This asymmetry matters whenever you take adjoints of scaled states.
+
+### 4.4.2. The Hermitian Conjugate (Adjoint)
+
+The **Hermitian conjugate** of an operator `A`, written `A†`, satisfies:
+
+$$\langle v | A^\dagger | u \rangle = \langle u | A | v \rangle^*$$
+
+for any two vectors `|u⟩` and `|v⟩` in the Hilbert space. In words: if you move `A` from the ket side to the bra side (or vice versa), you replace it with `A†` and take the complex conjugate of the whole expression.
+
+**Hermitian operators** are those where `Q = Q†`. Measurement outcomes are real because Hermitian operators have real eigenvalues and orthogonal eigenvectors — two properties that are provable from the definition.
+
+### 4.4.3. Key Identities for Operator Adjoints
+
+**Rule 1:** If $|\alpha\rangle=Q|\psi\rangle$, then the corresponding bra is:
+
+$$\langle \alpha | = \langle \psi | Q^\dagger$$
+
+**Rule 2:** For products of operators, the adjoint reverses the order:
+
+$$(AB)^\dagger = B^\dagger A^\dagger$$
+$$(ABC)^\dagger = C^\dagger B^\dagger A^\dagger$$
+
+This reversal is the same rule as transposing a matrix product.
+
+### 4.4.4. A Worked Example — Finding $U^\dagger$
+
+Given:
+
+$$U(\theta) = Y \cdot H \cdot R_x(\theta) \cdot Z$$
+
+Apply the product reversal rule:
+
+$$U^\dagger(\theta) = (Y H R_x(\theta) Z)^\dagger = Z^\dagger \cdot R_x^\dagger(\theta) \cdot H^\dagger \cdot Y^\dagger$$
+
+Now use the fact that Y, H, and Z are all Hermitian (`Y† = Y`, `H† = H`, `Z† = Z`), and that:
+
+$$R_x^\dagger(\theta) = \left(e^{-iX\theta/2}\right)^\dagger = e^{+iX\theta/2} = R_x(-\theta)$$
+
+So the final result is:
+
+$$U^\dagger(\theta) = Z \cdot R_x(-\theta) \cdot H \cdot Y$$
+
+The circuit runs in reverse order with negated rotation angles. This is exactly how you invert a quantum circuit on hardware.
+
+## 4.5. The Quantum Kernel Method — Angle Encoding in Detail
+
+### 4.5.1. Feature Map
+
+For a 2D input vector `x = (x₁, x₂)`, apply `Ry` rotations to two qubits:
+
+$$|\phi(x_1, x_2)\rangle = R_y(x_1)|0\rangle \otimes R_y(x_2)|0\rangle$$
+
+Since `Ry(θ)|0⟩ = cos(θ/2)|0⟩ + sin(θ/2)|1⟩`, expanding the tensor product gives:
+
+$$|\phi(x_1, x_2)\rangle = \cos\frac{x_1}{2}\cos\frac{x_2}{2}|00\rangle + \cos\frac{x_1}{2}\sin\frac{x_2}{2}|01\rangle + \sin\frac{x_1}{2}\cos\frac{x_2}{2}|10\rangle + \sin\frac{x_1}{2}\sin\frac{x_2}{2}|11\rangle$$
+
+### 4.5.2. Kernel Derivation
+
+The inner product between two encoded states `x` and `y`:
+
+$$\langle \phi(\vec{x}) | \phi(\vec{y}) \rangle = \cos\frac{x_1}{2}\cos\frac{y_1}{2}\cos\frac{x_2}{2}\cos\frac{y_2}{2} + \cos\frac{x_1}{2}\cos\frac{y_1}{2}\sin\frac{x_2}{2}\sin\frac{y_2}{2} + \ldots$$
+
+Factoring by qubit:
+
+$$= \left(\cos\frac{x_1}{2}\cos\frac{y_1}{2} + \sin\frac{x_1}{2}\sin\frac{y_1}{2}\right)\left(\cos\frac{x_2}{2}\cos\frac{y_2}{2} + \sin\frac{x_2}{2}\sin\frac{y_2}{2}\right)$$
+
+Using the cosine difference identity `cos(A-B) = cosA cosB + sinA sinB`:
+
+$$\langle \phi(\vec{x}) | \phi(\vec{y}) \rangle = \cos\!\left(\frac{x_1 - y_1}{2}\right) \cdot \cos\!\left(\frac{x_2 - y_2}{2}\right)$$
+
+So the kernel is:
+
+$$K(\vec{x}, \vec{y}) = \cos^2\!\left(\frac{x_1 - y_1}{2}\right) \cdot \cos^2\!\left(\frac{x_2 - y_2}{2}\right)$$
+
+This has a clean geometric reading: the kernel measures how close the two input angles are. If `x = y`, the kernel is 1. As the vectors diverge, it drops toward 0.
+
+
+### 4.5.3. What Entanglement Does to the Kernel
+
+Without entanglement, the kernel factorizes — the two qubits contribute independently. Adding a CNOT gate couples them: the amplitude of each basis state in the final superposition now depends on the interaction between `x₁` and `x₂`, not just their individual values.
+
+This breaks the product structure and produces a kernel that captures **cross-feature correlations**. The practical effect: off-diagonal kernel values drop (more separation between data points), and the expressiveness of the feature map increases.
+
+Deeper circuits (more Rotation + CNOT layers) amplify this further — but every added layer brings more gate noise on real hardware, which degrades the kernel estimate.
+
+
+### 4.5.4. Summary Table
+
+| Concept | Formula / Rule |
+|---|---|
+| Inner product conjugate symmetry | `⟨φ\|ψ⟩ = ⟨ψ\|φ⟩*` |
+| Adjoint definition | `⟨v\|A†\|u⟩ = ⟨u\|A\|v⟩*` |
+| Hermitian operator | `Q = Q†` |
+| Product adjoint | `(ABC)† = C†B†A†` |
+| Ry rotation adjoint | `Rₓ†(θ) = Rₓ(−θ)` |
+| Angle encoding kernel | `K(x,y) = cos²((x₁−y₁)/2) · cos²((x₂−y₂)/2)` |
+| Effect of entanglement | Breaks product structure; increases feature separation |
+
+---
+
 # 5. Quantum Neural Network (QNN)
-## 5.1. Cost Function
+## 5.1. Expectation Value of an Observable
+**| Expectation of an Observable from the Postulates**:</br>
+1. **State Postulate**: A quantum system is described by a state vector $|\psi\rangle$ in a Hilbert space. This vector encodes all possible information about the system.
+2. **Observable Postulate**: Any measurement physical quantity (observable) $\hat{A}$ is represented by a Hermitian operator. Hermiticity ensures that measurement outcomes (eigenvalues) are real.
+
+**| Expectation Value of an Observable**:</br>
+The expectation value is the **average outcome** if we repeat the measurement many times.</br>
+The average value of an observable given by operator $A$ in state $|\psi\rangle$ is given by : $\langleA\rangle = \langle\psi|A|\psi\rangle$
+
+## 5.2. Measurement as Expectation in training QNN
+This is where the **foundations of quantum mechanics (expectation values)** meet the **variational training of quantum neural networks (QNNs**).</br>
+
+**| Varitional Principle in QNN Training**:
+- In **variational quantum algorithms (VQAs)** and QNNs, the state $|\psi(\theta)\rangle$ depends on tunable parameters $\theta$ (rotation angles, gate parameters).
+- The **Cost function** is defined as the expectation value of some operator (often Hamilitonian or task-specific observable): $C(\theta)=\langle\psi(\theta)|\hat{O}|\psi(\theta)\rangle$
+- This cost function is what get minimized (or maximized) during training.
+- In practice, the QNN circuit is run many times, measurements are collected, and the empirical average of outcomes approximates the expectation value.
+
+## 5.3. Cost Function
 In QML, a cost funciton tells us how 'well' our quantum circuit is performing relative to an objective.</br>
-It is almost always defined as the **expectation value** of a measurement operator (obeservable) $\hat{O}$ for the final state of the circuit $|\psi \rangle$:
+It is almost always defined as the **expectation value** of a measurement operator (obeservable, often Hamiltonian or task-specific observable) $\hat{O}$ for the final state of the circuit $|\psi \rangle$:
 $$C(\theta)=\langle\psi(\theta)|\hat{O}|\psi(\theta)\rangle$$
 
+This cost function is what get minimized (or maximized) during training.</br>
 In most of the problem it's defined as $C(\theta_1,\theta_2)=\langle\psi_f|\hat{O}|\psi_f\rangle$, where:</br>
 - $|\psi_f\rangle (The Ket)$: the final column vector of our system.
 - $\langle\psi_f| (The Bra)$: The conjugate transpose (row vector) of our system.
 - $\hat{O} (The Operator)$: The measurement instruction (e,g, $Z\otimes X$).
 
-## 5.2. The Components
+## 5.4. The Components Summary
 
 |Component|Role|
 |-|-|
-**Variational Form </br>or</br> Parameterized Quantum Circuit (PQC)**|This is the sequence of gates with tunable parameters ($\theta_1, \theta_2$).</br>By changing these angles, we train the circuit to minimize the cost function. 
+**Variational Form - Quantum Algorithms (VQAs) </br>or</br> Parameterized Quantum Circuit (PQC)**|This is the sequence of gates with tunable parameters ($\theta_1, \theta_2$).</br>By changing these angles, we train the circuit to minimize the cost function. 
 **Rotation Gates ($R_y$)**|These move the qubit state along the Y-axis of the Bloch sphere.
 **Measurement Operator ($\hat{O}=Z\otimes X$)**|This is the specific physical property we are measuring.</br>It asks: "is the first qubit aligned with the Z-axis, and is the second qubit aligned with the X-axis?"
 
-## 5.3. Cost Function Calculation Example
+## 5.5. Cost Function Calculation Example
 A two-qubit QNN takes the input PQC $|00\rangle$. Apply rotation gates $R_y(\theta_1)$ on qubit 1, $R_y(\theta_2)$ on qubit 2, then a CNOT (control: qubit 1, target: qubit 2). the cost function operator is $\hat{O}=Z\otimes X$</br>
 
 **| 1. Calculating ($|\psi_f\rangle$) final state from the Circuit:**
@@ -1148,17 +1342,673 @@ $$(Z \otimes X) |\psi_f\rangle = \cos\frac{\theta_1}{2}\cos\frac{\theta_2}{2}|01
 | $\|11\rangle$ | $\sin\frac{\theta_1}{2}\cos\frac{\theta_2}{2}$ | $-\sin\frac{\theta_1}{2}\sin\frac{\theta_2}{2}$ | $-\sin^2\frac{\theta_1}{2} \cdot \cos\frac{\theta_2}{2}\sin\frac{\theta_2}{2}$ |
 
 Summing these up:</br>
+
 $\therefore C = 2 \cos^2\frac{\theta_1}{2} \left( \sin\frac{\theta_2}{2}\cos\frac{\theta_2}{2} \right) - 2 \sin^2\frac{\theta_1}{2} \left( \sin\frac{\theta_2}{2}\cos\frac{\theta_2}{2} \right)$</br>
 $\therefore C = \left( 2 \sin\frac{\theta_2}{2}\cos\frac{\theta_2}{2} \right) \left( \cos^2\frac{\theta_1}{2} - \sin^2\frac{\theta_1}{2} \right)$</br>
 $\therefore C(\theta_1, \theta_2) = \sin(\theta_2) \cos(\theta_1)$
 
-## 5.4. Quantum Kernel
+---
 
-## 5.5. Quantum Kernel Calculation Steps
+## 5.6. Parameter Shift Rule - Quantum Gradient
+
+**| Conceptual Significance:**</br>
+In classical deep learning, gradients are computed efficiently using automatic differentiation via backpropagation, which caches intermediate forward state vectors. On physical quantum hardware, this approach is fundamentally blocked by the **No-Cloning Theorem**, which dictates that an unknown quantum state cannot be copied.</br></br>
+The **Parameter Shift Rule** addresses this limitation. It enables the calculation of exact analytical gradients for parameterized quantum gates directly on physical quantum processors without numerical finite differences, avoiding numerical instability and approximation errors.</br>
+
+**| Mathematical Derivation (Proof)**:</br>
+Let a parameter-dependent quantum cost function be defined as the expectation value of a Hermitian measurement operator $\hat{M}$ relative to a state modified by a single-parameter unitary gate $\hat{U}(\mu)$:
+
+$$f(\mu) = \langle\psi|\hat{U}^\dagger(\mu) \hat{M} \hat{U}(\mu)|\psi\rangle$$
+
+The unitary gate is generated by a Pauli operator $\hat{G}$ (where $\hat{G} \in \{\hat{X}, \hat{Y}, \hat{Z}\}$) with a tunable parameter $\mu$:
+
+$$\hat{U}(\mu) = e^{-i\frac{\mu}{2} \hat{G}}$$
+
+Because any Pauli operator satisfies $\hat{G}^2 = \hat{I}$, we can expand the exponential unitary gate using Euler's operator expansion:
+
+$$\hat{U}(\mu) = \cos\left(\frac{\mu}{2}\right)\hat{I} - i\sin\left(\frac{\mu}{2}\right)\hat{G}$$
+
+Its corresponding adjoint operator is:
+
+$$\hat{U}^\dagger(\mu) = \cos\left(\frac{\mu}{2}\right)\hat{I} + i\sin\left(\frac{\mu}{2}\right)\hat{G}$$
+
+Substituting these trigonometric expansions directly back into the cost expectation equation $f(\mu)$:
+
+$$f(\mu) = \langle\psi| \left[\cos\left(\frac{\mu}{2}\right)\hat{I} + i\sin\left(\frac{\mu}{2}\right)\hat{G}\right] \hat{M} \left[\cos\left(\frac{\mu}{2}\right)\hat{I} - i\sin\left(\frac{\mu}{2}\right)\hat{G}\right] |\psi\rangle$$
+
+Expanding the inner product expression terms systematically yields:
+
+$$f(\mu) = \cos^2\left(\frac{\mu}{2}\right)\langle\psi|\hat{M}|\psi\rangle + \sin^2\left(\frac{\mu}{2}\right)\langle\psi|\hat{G}\hat{M}\hat{G}|\psi\rangle - i\sin\left(\frac{\mu}{2}\right)\cos\left(\frac{\mu}{2}\right)\langle\psi|\hat{M}\hat{G}|\psi\rangle + i\sin\left(\frac{\mu}{2}\right)\cos\left(\frac{\mu}{2}\right)\langle\psi|\hat{G}\hat{M}|\psi\rangle$$
+
+Using standard double-angle trigonometric identities ($\cos^2\frac{\mu}{2} = \frac{1+\cos\mu}{2}$, $\sin^2\frac{\mu}{2} = \frac{1-\cos\mu}{2}$, and $2\sin\frac{\mu}{2}\cos\frac{\mu}{2} = \sin\mu$), we group the static operator expressions:
+
+$$f(\mu) = \left(\frac{1+\cos\mu}{2}\right)\langle\hat{M}\rangle + \left(\frac{1-\cos\mu}{2}\right)\langle\hat{G}\hat{M}\hat{G}\rangle + \frac{i}{2}\sin(\mu)\langle[\hat{G}, \hat{M}]\rangle$$
+
+This condenses the entire cost landscape into a clean sinusoidal profile:
+
+$$f(\mu) = A + B\cos(\mu) + C\sin(\mu)$$
+
+where $A, B, C$ are static scalar values independent of the parameter $\mu$. Differentiating $f(\mu)$ analytically with respect to $\mu$ yields:
+
+$$\frac{\partial f}{\partial \mu} = -B\sin(\mu) + C\cos(\mu) \quad \text{--- (Equation A)}$$
+
+Now, evaluate the cost function at two parameter locations shifted forward and backward by $\frac{\pi}{2}$:
+
+$$f\left(\mu + \frac{\pi}{2}\right) = A + B\cos\left(\mu + \frac{\pi}{2}\right) + C\sin\left(\mu + \frac{\pi}{2}\right) = A - B\sin(\mu) + C\cos(\mu)$$
+
+$$f\left(\mu - \frac{\pi}{2}\right) = A + B\cos\left(\mu - \frac{\pi}{2}\right) + C\sin\left(\mu - \frac{\pi}{2}\right) = A + B\sin(\mu) - C\cos(\mu)$$
+
+Subtracting these two shifted evaluations yields:
+
+$$f\left(\mu + \frac{\pi}{2}\right) - f\left(\mu - \frac{\pi}{2}\right) = -2B\sin(\mu) + 2C\cos(\mu)$$
+
+Dividing this difference expression by $2$ matches the exact derivative in Equation A:
+
+$$\frac{f\left(\mu + \frac{\pi}{2}\right) - f\left(\mu - \frac{\pi}{2} \right)}{2} = -B\sin(\mu) + C\cos(\mu) = \frac{\partial f}{\partial \mu} \quad \blacksquare$$
+
+*(Note: Depending on the gate convention used, if the generator is expressed as $U(\theta) = e^{-i\theta G}$ without the $\frac{1}{2}$ scaling factor, the exact parameter shift points evaluate to $\pm\frac{\pi}{2}$ for a simplified Fourier form $f(\theta) = A + B\cos\theta + C\sin\theta$, yielding $\frac{\partial f}{\partial \theta} = \frac{1}{2}[f(\theta + \frac{\pi}{2}) - f(\theta - \frac{\pi}{2})]$. Both conventions represent identical hardware execution mechanics).*
+
+---
+
+## 5.7. Note: Cost Function - Global View vs Local View
+What is the differnt between Cost function question where the cost function is defined as : $$C(\theta)=\langle\psi(\theta)|\hat{O}|\psi(\theta)\rangle$$ and with parameter shift rule: $$f(\mu) = \langle\psi|\hat{U}^\dagger(\mu) \hat{M} \hat{U}(\mu)|\psi\rangle$$? </br>
+
+The short answer is: Mathematically, they are exactly the same thing. The difference lies purely in how the notation isolates the specific parameter we want to differentiate. In variational quantum algorithms, the second equation ($f(\mu)$) represents a zoomed-in, granular look at a single parameterized gate inside the broader circuit defined by the first equation ($C(\theta)$).</br>
+Here is a breakdown of how these two representations connect, why the notation changes, and what it implies for the parameter-shift rule.</br>
+
+**| 1. The Global View: $C(\theta) = \langle\psi(\theta)|\hat{O}|\psi(\theta)\rangle$**</br>
+
+This notation describes the entire quantum circuit system from a high level.</br>
+- $\vec{\theta}$ is usually a vector: In a real quantum circuit (like a Variational Quantum Eigensolver or a Quantum Neural Network), $\vec{\theta} = (\theta_1, \theta_2, \dots, \theta_m)$ represents all the tunable parameters across dozens of different gates in the circuit.
+- $|\psi(\theta)\rangle$ is the final state: It is the state produced after passing through the entire sequence of gates:
+
+$$|\psi(\theta)\rangle = U_m(\theta_m) \dots U_2(\theta_2) U_1(\theta_1) |0\rangle$$
+
+- $\hat{O}$ is the global observable: This is the complete Hamiltonian or measurement operator you use to calculate your final cost.
+
+**The Problem**: If you want to perform gradient descent, you need the partial derivative with respect to just one specific gate's parameter (e.g., $\frac{\partial C}{\partial \theta_i}$). The global notation does not show you where or how that single parameter is embedded.
+
+**| 2. The Local View (Parameter-Shift Rule): $f(\mu) = \langle\psi|\hat{U}^\dagger(\mu) \hat{M} \hat{U}(\mu)|\psi\rangle$**</br>
+
+To derive the parameter-shift rule, we must isolate the one specific parameter we want to differentiate and treat everything else in the circuit as constants. That is what this second equation does.</br>
+Let's assume we want to find the gradient for a single gate $\hat{U}(\mu)$ located somewhere in the middle of the circuit. We split the entire circuit into three distinct parts relative to that gate:</br>
+- The Initial State Preparation ($|\psi\rangle$): All the gates that execute before our target gate are lumped together. They take the ground state and turn it into a static starting state, which we label simply as $|\psi\rangle$.
+- The Target Gate ($\hat{U}(\mu)$): This is the explicit gate we are actively studying, governed by the single scalar parameter $\mu$.
+- The Effective Observable ($\hat{M}$): All the gates that execute after our target gate, combined with the final global measurement operator $\hat{O}$, are lumped together into a new "effective" operator $\hat{M}$. If the subsequent gates are represented by a combined unitary $V$, then $\hat{M} = V^\dagger \hat{O} V$. Because $V$ is unitary and $\hat{O}$ is Hermitian, $\hat{M}$ remains a valid Hermitian operator.
+
+**| How They Connect in Practice:**</br>
+When you train a quantum machine learning model, you evaluate $C(\theta)$ to see how well your model is performing.When it is time to update the parameter $\theta_i$, you temporarily shift your perspective to the $f(\mu)$ notation for that gate. You hold all other parameters constant, run the circuit twice to compute $f(\theta_i + \frac{\pi}{2})$ and $f(\theta_i - \frac{\pi}{2})$, subtract them, and update that specific coordinate of your global vector $\vec{\theta}$.
+
+--- 
+
+## 5.7. Empirical Estimation of Cost Functions in QNNs
+
+### 5.7.1. The Cost Function in a QNN
+
+In a Quantum Neural Network, the thing you're trying to minimize is typically the **expectation value** of some observable $O$ with respect to the state the circuit produces:
+
+$$C(\theta) = \langle \psi(\theta) | O | \psi(\theta) \rangle$$
+
+where $|\psi(\theta\rangle)$ is the output of your parameterized quantum circuit with parameters $\theta$. The optimizer adjusts $\theta$ to minimize $C(\theta)$.
+
+**The problem**: quantum mechanics is probabilistic. You can't read $C(\theta)$ off in a single shot. You have to estimate it.
+
+### 5.7.2. How to Estimate It — The Measurement Loop
+
+Every cost function evaluation follows the same five-step process:
+
+1. **Prepare the state.** Run the circuit with current parameters $\theta$ to get $|\psi(\theta\rangle)$.
+
+2. **Choose the right measurement basis.** If $O$ is diagonal in the computational basis (e.g., Pauli-Z), measure directly. If not (e.g., Pauli-X or Y), first apply a basis-change (unitary) rotation so the measurement outcomes correspond to eigenvalues of $O$.
+
+3. **Measure.** Each shot yields one eigenvalue of $O$ — for Pauli operators, that's either `+1` or `−1`.
+
+4. **Repeat (shots).** Run the circuit thousands of times to collect a distribution of outcomes.
+
+5. **Average.** The empirical mean approximates the expectation value:
+
+$$\langle O \rangle \approx \frac{1}{N} \sum_{i=1}^N o_i$$
+
+where $o_i$ is the eigenvalue outcome on shot $i$, and $N$ is the total number of shots.
+
+### 5.7.3. Single-Qubit Example — Measuring Z
+
+A single qubit measured in the Z basis gives `+1` for $|0\rangle$ and `−1` for $|1\rangle$.
+
+After 1000 shots: 700 outcomes of `|0⟩`, 300 of `|1⟩`.
+
+$$\langle Z \rangle \approx \frac{(+1)(700) + (-1)(300)}{1000} = \frac{400}{1000} = 0.4$$
+
+That `0.4` is the cost function value fed to the optimizer.
+
+### 5.7.4. Eigenvalues of Tensor Product Operators
+
+For multi-qubit observables like $Z\otimes Z$, the eigenvalue for each measurement outcome is the **product** of the individual-qubit eigenvalues:
+
+| Outcome | Qubit 1 eigenvalue | Qubit 2 eigenvalue | Product |
+|---------|--------------------|--------------------|---------|
+| `\|00⟩` | +1 | +1 | **+1** |
+| `\|01⟩` | +1 | −1 | **−1** |
+| `\|10⟩` | −1 | +1 | **−1** |
+| `\|11⟩` | −1 | −1 | **+1** |
+
+The same rule generalizes: for $Z_1Z_2Z_3$, multiply all three qubit eigenvalues together. For $Z\otimes I$, only qubit 1's eigenvalue matters (the identity contributes a factor of 1).
+
+### 5.7.5. Two-Qubit Example — Measuring $Z\otimes Z$
+
+After 1000 shots on some entangled state:
+
+| Outcome | Eigenvalue | Count |
+|---------|-----------|-------|
+| `00` | +1 | 400 |
+| `01` | −1 | 250 |
+| `10` | −1 | 250 |
+| `11` | +1 | 100 |
+
+$$\langle Z \otimes Z \rangle \approx \frac{400(+1) + 250(-1) + 250(-1) + 100(+1)}{1000} = \frac{400 - 250 - 250 + 100}{1000} = 0$$
+
+A result of 0 here means the state has equal amounts of correlated (`|00⟩`, `|11⟩`) and anti-correlated (`|01⟩`, `|10⟩`) measurement outcomes — the qubits show no net Z-correlation.
+
+### 5.7.6. Hamiltonian Cost Functions — Multiple Observables
+
+Real QNN cost functions are often a **weighted sum of Pauli terms**. You can't measure all terms simultaneously if they require different bases, so you handle each term in a separate set of shots.
+
+**| Example Hamiltonian:**
+
+$$H = 0.5 \, Z_1 + 0.3 \, X_2 + 0.2 \, Z_1 Z_2$$
+
+**| Measurement strategy:**
+
+| Term | What to do |
+|------|-----------|
+| `Z₁` | Measure qubit 1 in computational basis |
+| `X₂` | Apply Hadamard to qubit 2, then measure |
+| `Z₁Z₂` | Measure both qubits, take product of eigenvalues |
+
+Each term gets its own independent set of shots. Then:
+
+$$\langle H \rangle \approx 0.5 \langle Z_1 \rangle + 0.3 \langle X_2 \rangle + 0.2 \langle Z_1 Z_2 \rangle$$
+
+**| Numerical example:**  
+Say after 1000 shots each you find `⟨Z₁⟩ = 0.6`, `⟨X₂⟩ = −0.2`, `⟨Z₁Z₂⟩ = 0.1`.
+
+$$\langle H \rangle \approx 0.5(0.6) + 0.3(-0.2) + 0.2(0.1) = 0.30 - 0.06 + 0.02 = 0.26$$
+
+This `0.26` is the scalar cost value the optimizer uses to update $\theta$.
+
+### 5.7.7. Generalizing to Any Pauli Observable
+
+The procedure always follows the same pattern:
+
+- **Computational basis observable** (`Z`, `ZZ`, `ZZZ...`): measure directly, multiply eigenvalues.
+- **Non-computational basis observable** (`X`, `Y`, `XY`, etc.): apply the appropriate basis rotation first (Hadamard for X, Hadamard + S† for Y), then measure.
+- **Linear combination** (`aZ₁ + bX₂ + cZ₁Z₂`): measure each term separately, compute weighted sum.
+
+The more shots you take, the closer your empirical average gets to the true expectation value. Shot noise scales as `1/√N` — to halve the error, you quadruple the shots.
+
+### 5.7.8. Summary
+
+| Step | Action |
+|---|---|
+| Define cost | $C(\theta)=\langle\psi(\theta\|O\|\psi(\theta\rangle))$ |
+| Prepare state | Run circuit with current $\theta$ |
+| Choose basis | Rotate into measurement basis of $O$ |
+| Measure | Each shot → one eigenvalue $o_i \in {\pm 1}$ |
+| Average | `⟨O⟩ ≈ (1/N) Σ oᵢ` |
+| Multi-term H | Measure each Pauli term separately, combine with weights |
+| Shot noise | Error scales as `1/√N` |
+
+---
+
+## 5.8. Quantum Mechanics Postulates & the Quantum Kernel Method
+
+### 5.8.2. Quantum Kernel Calculation Steps
 1. Define the state $|\psi(x)\rangle$ as a superposition with phases $\phi_{ij}(x)$.
 2. Define the Kernel as $K(x, y) = |\langle \psi(y) | \psi(x) \rangle|^2$.
 3. Sum the differences in phases ($\Delta \phi$).
 4. Use trig identities to arrive at the final $\cos^2 + \sin^2$ formula.
+
+### 5.8.1. The Five Postulates — The Rules Quantum Mechanics Runs On
+
+Quantum mechanics isn't built from intuition. It rests on five postulates — formal rules that define how quantum systems exist, evolve, and get measured. Everything else follows from these.
+
+**| Postulate 1 — State of the System (Wavefunction):**</br>
+At any moment, a quantum system is fully described by a **state vector** $|\psi\rangle$ in a Hilbert space. Not partially described. Fully. The state vector carries all the information there is to know about the system.
+
+**| Postulate 2 — Observables Are Operators:**</br>
+Every physical quantity you can measure — position, momentum, energy, spin — is represented by a **Hermitian operator**. Hermitian means the operator equals its own conjugate transpose: $Q=Q\dagger$.
+
+Why Hermitian? Because Hermitian operators have **real eigenvalues**, and real eigenvalues are the only sensible outcome for a physical measurement. You can't measure an imaginary energy.
+
+> **Key fact:** The Pauli operators X, Y, Z are all Hermitian. They are also unitary, which means X² = Y² = Z² = I.
+
+**| Postulate 3 — Measurement:**</br>
+Measuring an observable $Q$ can only yield one of its **eigenvalues** $q_i$, where:
+
+$$Q|q_i\rangle = q_i|q_i\rangle$$
+
+The eigenstates ${|q_i⟩}$ are orthogonal and complete:
+
+$$\langle q_i | q_j \rangle = \delta_{i,j} \qquad \text{and} \qquad \sum_i |q_i\rangle\langle q_i| = I$$
+
+Any state $|\psi\rangle$ can be written as a superposition of these eigenstates:
+
+$$|\psi\rangle = \sum_i c_i |q_i\rangle, \quad \text{where } c_i = \langle q_i | \psi \rangle$$
+
+The probability of getting outcome $q_i$ is:
+
+$$P(q_i) = |c_i|^2 = |\langle q_i | \psi \rangle|^2$$
+
+After measurement, the system **collapses** into $|q_i⟩$. The superposition is gone.
+
+**| Postulate 4 — Time Evolution:**</br>
+Between measurements, the state evolves deterministically under the **Schrödinger equation**:
+
+$$i\hbar \frac{\partial}{\partial t}|\psi(t)\rangle = H|\psi(t)\rangle$$
+
+where `H` is the Hamiltonian (the energy operator). The formal solution is:
+
+$$|\psi(t)\rangle = U(t)|\psi(0)\rangle, \quad U(t) = \exp\!\left(-\frac{i}{\hbar}Ht\right)$$
+
+$U(t)$ is a **unitary** operator: $U(t)U^\dagger(t)=I$. This means quantum evolution preserves the norm of the state — probabilities always sum to 1, and no information is lost.
+
+**| Postulate 5 — Composite Systems**</br>
+When two systems are combined, the total state lives in the **tensor product** of their Hilbert spaces. This is what makes entanglement possible: after combining, the joint state may not be separable back into individual parts.
+
+### 5.8.2. Expectation Values
+
+The expectation value $\langleA\rangle$ is the average measurement outcome if you repeat the same measurement many times on identically prepared states:
+
+$$\langle A \rangle = \sum_i a_i P(a_i) = \langle \psi | A | \psi \rangle$$
+
+The derivation goes through the spectral decomposition of $A$ and the completeness relation. The end result — $\langle\psi|A|\psi\rangle$ — is the compact form used everywhere in quantum computing.
+
+### 5.8.3. Hermitian Conjugates and Operator Algebra
+
+The **Hermitian conjugate** (adjoint) $A^\dagger$ of an operator satisfies:
+
+$$\langle v | A^\dagger | u \rangle = \langle u | A | v \rangle^*$$
+
+Two rules that come up constantly in circuit calculations:
+
+- If $|\alpha\rangle=Q|\psi\rangle$, then $\langle\alpha=\langle\psi|Q^\dagger$
+- $(ABC)^\dagger=C^\dagger B^\dagger A^\dagger$ — the order reverses
+
+**Example:** If $U(\theta)=YHR_x(\theta)Z$, then:
+
+$$U^\dagger = Z^\dagger R_x^\dagger(\theta) H^\dagger Y^\dagger = Z \cdot R_x(-\theta) \cdot H \cdot Y$$
+
+since Y, H, Z are Hermitian (self-adjoint), and $R_x^\dagger(\theta)=R_x(-\theta)$.
+
+### 5.8.4. The Quantum Kernel Method
+
+**| The Basic Idea:**</br>
+A classical kernel function $K(x_i, x_j)$ measures similarity between two data points in some feature space. In a **Quantum Kernel**, that feature space is the Hilbert space of a quantum circuit.</br>
+Given a parameterized circuit `Φ(x⃗)` that maps a data vector to a quantum state:
+
+$$|\varphi(\vec{x})\rangle = \Phi(\vec{x})|0\rangle$$
+
+the kernel function is the **squared inner product** between two feature states:
+
+$$K(\vec{x}_i, \vec{x}_j) = |\langle \varphi(\vec{x}_i) | \varphi(\vec{x}_j) \rangle|^2$$
+
+In circuit form:
+
+$$K(\vec{x}_i, \vec{x}_j) = |\langle 0 | \Phi^\dagger(\vec{x}_i) \Phi(\vec{x}_j) | 0 \rangle|^2$$
+
+This is a transition probability — the probability of the combined circuit returning the all-zeros state `|0⟩`.
+
+### 5.8.5. Kernel Calculation — Angle Encoding (Toy Example 1)
+
+With two qubits and $R_y$ rotations, the feature map is:
+
+$$|\psi(\vec{x})\rangle = R_y(x_1)|0\rangle \otimes R_y(x_2)|0\rangle$$
+
+Expanding each qubit: $R_y(\theta)|0\rangle=cons(\frac{\theta}{2})|0\rangle+sin(\frac{\theta}{2})|1\rangle$
+
+The inner product between two states `x` and `y` simplifies to:
+
+$$\langle \psi(\vec{x}) | \psi(\vec{y}) \rangle = \cos\!\left(\frac{x_1 - y_1}{2}\right) \cos\!\left(\frac{x_2 - y_2}{2}\right)$$
+
+So the kernel entry is:
+
+$$K_{ij} = \cos^2\!\left(\frac{x_{i,1} - x_{j,1}}{2}\right) \cos^2\!\left(\frac{x_{i,2} - x_{j,2}}{2}\right)$$
+
+For the three data points `x₁ = [0.1, 0.5]`, `x₂ = [0.8, 1.2]`, `x₃ = [1.5, 0.2]`:
+
+|  | x₁ | x₂ | x₃ |
+|--|-----|-----|-----|
+| **x₁** | 1.0000 | 0.8354 | 0.7891 |
+| **x₂** | 0.8354 | 1.0000 | 0.6720 |
+| **x₃** | 0.7891 | 0.6720 | 1.0000 |
+
+Diagonal entries are always 1 (a state is perfectly similar to itself). The matrix is symmetric.
+
+### 5.8.6. Adding Entanglement — CNOT Gate (Toy Example 2)
+
+Inserting a CNOT after the `Ry` rotations creates an **entangled feature map**. The CNOT flips qubit 2 when qubit 1 is `|1⟩`:
+
+$$CX|00\rangle = |00\rangle, \quad CX|01\rangle = |01\rangle, \quad CX|10\rangle = |11\rangle, \quad CX|11\rangle = |10\rangle$$
+
+The resulting state is no longer a tensor product of two independent qubits — the features `x₁` and `x₂` interact. The new kernel matrix:
+
+|  | x₁ | x₂ | x₃ |
+|--|-----|-----|-----|
+| **x₁** | 1.0000 | 0.7787 | 0.5719 |
+| **x₂** | 0.7787 | 1.0000 | 0.6796 |
+| **x₃** | 0.5719 | 0.6796 | 1.0000 |
+
+`K₁₃` dropped from 0.7891 → 0.5719. Entanglement pushes data points further apart in Hilbert space, which can make them easier for an SVM to separate.
+
+### 5.8.7. Deeper Circuits — Repeating Layers (Toy Example 3)
+
+Running the Rotation + CNOT block **twice** spreads the data even further:
+
+|  | x₁ | x₂ | x₃ |
+|--|-----|-----|-----|
+| **x₁** | 1.0000 | 0.3969 | 0.1256 |
+| **x₂** | 0.3969 | 1.0000 | 0.1682 |
+| **x₃** | 0.1256 | 0.1682 | 1.0000 |
+
+`K₁₂` went from 0.8354 (no entanglement) → 0.7787 (depth 1) → 0.3969 (depth 2). Deeper circuits amplify input differences and give the SVM more room to find classification boundaries. The trade-off: more depth also means more **quantum noise** (decoherence and gate errors), which degrades accuracy on real hardware.
+
+### 5.8.8. Summary
+
+| Concept | Core Idea |
+|---|---|
+| State vector `\|ψ⟩` | Complete description of a quantum system |
+| Hermitian operator | Represents a measurable quantity; has real eigenvalues |
+| Measurement | Yields an eigenvalue; collapses state to corresponding eigenstate |
+| Unitary evolution | State changes reversibly under `U(t) = exp(-iHt/ℏ)` |
+| Tensor product | Combines subsystems; enables entanglement |
+| Quantum kernel | Inner product between quantum feature states; measures similarity |
+| CNOT effect | Introduces non-separability; increases expressiveness of feature map |
+| Circuit depth | More layers → more separation → more noise |
+
+---
+
+# 6. Barren Plateaus
+
+## 6.1. What is a Barren Plateau?
+A barren plateau is a region in the parameter space of a quantum neural network where the gradients become extremely small on average.</br> 
+- The Core Problem: In many quantum models, the variance of the gradients shrinks exponentially as the number of qubits (system size) increases.  
+- Consequence: Because the optimization landscape becomes almost completely flat and featureless, the classical optimizer sees virtually no slope to follow. This makes gradient-based training effectively impossible.
+
+## 6.2. Why Do Barren Plateaus Occur? (Root Causes)
+Barren plateaus occur primarily due to how quantum circuits explore the exponentially large Hilbert space. Key influencing factors include:  
+- Excessive Expressibility & Depth: While adding layers initially helps a circuit reach more areas of the Hilbert space , reaching a "maximum expressibility" state becomes a trap. Deep, random-like circuit architectures produce typical quantum states that cause "concentration of measure," leading to gradient decay.
+- Global Cost Functions: Cost functions that are "global" (measuring or acting on many qubits simultaneously) are far more prone to flat plateaus than "local" cost functions.  
+- Random Initialization: Standard random initialization in deep circuits can cause the model to land directly inside a flat barren plateau right at the start of training. 
+
+## 6.3. Why they matter when training a QNN?
+- Training Becomes Impossible: Because the gradient landscape lacks a clear slope, classical optimization algorithms (like gradient descent) cannot determine a direction to update the parameters, halting the learning process.
+- Scalability Bottleneck: They represent a fundamental limitation to scaling quantum machine learning models, as deeper, highly expressible, or randomly initialized circuits are highly susceptible to getting trapped in these plateaus right from the start.
+
+## 6.4. Expressibility vs. Expressivity
+- Expressibility: Focuses on geometry—how uniformly a quantum circuit can explore and touch different parts of the available Hilbert space.  
+- Expressivity: Focuses on functionality—the overall power of the model to learn complex patterns or approximate a specific dataset
+
+    Stage|Expressibility|Impact on Training
+    |-|-|-|
+    Shallow|Poor|Model is too simple to learn complex data.
+    Optimal|Good|Balanced; captures complex patterns while remaining trainable.
+    Deep|Maximum|High risk of Barren Plateaus; training becomes nearly impossible.
+
+## 6.5. Strategies to Mitigate Barren Plateaus
+Researchers have proposed several methods to bypass or smooth out these flat optimization landscapes:</br>  
+1. Data Re-uploadingInstead of using a basic QNN layout—which typically features one data-loading map $F(x)$ followed by a long variational circuit $V(\theta)$ —data re-uploading repeats the data injection multiple times throughout the circuit.  This encodes the same input $x$ several times alongside interleaved processing gates.  It successfully increases the model's expressive power without needing to rely on deep, highly random layers, thereby preserving trainability.
+2. Other Structural Fixes:
+   1. Problem-Inspired Ansätze: Instead of building highly flexible, totally random circuits, design architectures that reflect known structural elements of the problem, such as local interactions or specific symmetries.
+   2. Local Cost Functions: Transition from global observables to local cost functions that only measure a small subset of the qubits at a time.  
+   3. Layer-wise Training: Start by training a few shallow layers, and then progressively add more layers over time to keep the circuit depth managed.  
+   4. Identity/Weak Initialization: Use clever parameter initializations (such as starting near the identity or using weakly entangling regimes) to avoid starting the optimization process inside a plateau.  
+
+---
+
+# 7. QGAN
+
+## 7.1. Classical Generative Adversarial Networks (GANs)
+
+Before diving into the quantum realm, the lecture establishes how a classical GAN operates, using the famous Counterfeiting Analogy.</br>
+**| 1. The Core Analogy:**</br>
+A GAN consists of an adversarial dynamic between two agents:</br>
+- The Generator (The Counterfeiter): Tries to produce fake data (e.g., counterfeit money) that looks identical to the real dataset. It starts with random noise ("arbitrary seeds") as an input and transforms it into structured data.
+- The Discriminator (The Central Bank): Acts as a binary classifier. It receives both real data from the training set and fake data from the generator. Its sole job is to guess whether the sample is Real (1) or Fake (0).
+
+```
+[Real Dataset] -------------> |   Discriminator   | ---> Output: Real (1) vs Fake (0)
+                              | (Binary Classifier|
+[Noise Seed] -> [Generator] -> |___________________|
+```
+
+**| 2. The Training Dynamic & Nash Equilibrium:**</br>
+
+The two networks play a zero-sum game. The Generator learns to create better fakes to trick the Discriminator, while the Discriminator learns to spot finer flaws to catch the Generator.
+
+$$L_D=-\frac{1}{|X|+|S|}(\sum_{x\in X}logD(X)+\sum_{s\in S}log(1-D(G(s))))$$
+$$L_G=-\frac{1}{|S|}\sum_{s\in S}log(D(G(s)))$$
+
+Over many iterations, they reach a Nash Equilibrium: The generator produces "perfect fakes," and the discriminator can no longer tell the difference, resulting in a random guessing accuracy of exactly 50% (or a probability of 0.5).
+
+$$L_D=L_G=-log(\frac{1}{2})=log(2)\approx 0.6931$$
+
+## 7.2. GAN Training with Binary Cross-Entropy
+
+### 7.2.1. What is Binary Cross-Entropy?
+Binary Cross-Entropy (BCE) — also called log loss — measures how wrong a model is when it predicts a probability for a binary outcome (yes/no, real/fake, spam/not-spam).
+
+For a single sample, the formula is:
+
+$$L = -[y \cdot \log(p) + (1 - y) \cdot \log(1 - p)]$$
+
+| Symbol | Meaning |
+|--------|---------|
+| `y` | The true label: `1` (positive class) or `0` (negative class) |
+| `p` | The model's predicted probability that the sample is class `1` |
+
+**| How the penalty works:**
+
+- If `y = 1` and `p → 1` → loss ≈ 0. Correct and confident. No penalty.
+- If `y = 1` and `p → 0` → loss → ∞. Confident and completely wrong. Huge penalty.
+- If `y = 0` and `p → 0` → loss ≈ 0. Correct again.
+- If `y = 0` and `p → 1` → loss → ∞. Badly wrong.
+
+Over a full dataset, losses are averaged across all N samples. The model's job is to drive that average down.
+
+### 7.2.2. GANs: Two Networks, One Game
+
+A GAN has two networks that train simultaneously against each other.
+
+```
+Random Noise (z)
+      │
+      ▼
+ ┌──────────┐       Fake Image G(z)        ┌──────────────┐
+ │ Generator│  ─────────────────────────►  │              │
+ │    G     │                              │ Discriminator│──► Real or Fake?
+ └──────────┘                              │      D       │
+                                           │              │
+ Real Images (x)  ──────────────────────►  └──────────────┘
+```
+
+- **The Generator (G)** takes random noise and produces fake samples (e.g., fake images).
+- **The Discriminator (D)** sees both real and fake samples and tries to tell them apart.
+
+They never cooperate. D tries to get better at spotting fakes. G tries to get better at making fakes that fool D. BCE is what drives both.
+
+### 7.2.3. The Discriminator's Job
+
+D is a straightforward binary classifier. It uses BCE to learn two things:
+
+- When it sees a **real** sample `x`: push `D(x) → 1`
+- When it sees a **fake** sample `G(z)`: push `D(G(z)) → 0`
+
+Its cost function penalizes it for getting either of those wrong:
+
+$$\mathcal{L}^{(D)} = -\mathbb{E}_{x \sim p_{data}}[\log D(x)] - \mathbb{E}_{z \sim p_z}[\log(1 - D(G(z)))]$$
+
+Two terms, two sources of error. Minimize both, and D becomes a reliable detector.
+
+---
+
+### 7.2.4. The Generator's Job
+
+**G** never sees real data. It only gets a signal through D's reactions to its fakes.
+
+**The trick:** G uses a *flipped* label. Instead of targeting `0` (fake), it targets `1` (real). If it can make D output `D(G(z)) ≈ 1` on fake images, it has fooled D completely.
+
+**| Option A — Minimax Version (theoretical, problematic):**
+
+$$\mathcal{L}^{(G)} = \mathbb{E}_{z \sim p_z}[\log(1 - D(G(z)))]$$
+
+**The problem:** Early in training, G is terrible, so D rejects every fake with near-certainty (`D(G(z)) → 0`). The gradient of `log(1 - D(G(z)))` at that point is almost flat — meaning G gets almost no signal to improve. Training stalls. This is the **vanishing gradient** problem.
+
+**| Option B — Non-Saturating Version (used in practice):**</br>
+
+$$\mathcal{L}^{(G)}_{NS} = -\mathbb{E}_{z \sim p_z}[\log D(G(z))]$$
+
+Instead of minimizing the chance of being caught, G now maximizes the log-probability of fooling D. Mathematically equivalent goal, but the gradient landscape is completely different.
+
+When G is poor and `D(G(z)) → 0`, the gradient of `-log D(G(z))` is **steep** — exactly when G needs the strongest signal to learn fast. This is why this version is preferred in practice.
+
+### 7.2.5. The Minimax Equation
+Putting both perspectives together gives the famous minimax objective:
+
+$$\min_G \max_D \, V(D, G) = \mathbb{E}_{x \sim p_{data}}[\log D(x)] + \mathbb{E}_{z \sim p_z}[\log(1 - D(G(z)))]$$
+
+- **D** tries to **maximize** `V` — it wants both log-terms to be large.
+- **G** tries to **minimize** `V` — it wants the second term to collapse.
+
+They pull in opposite directions. In theory, the system reaches a Nash equilibrium where D can't do better than 50/50 guessing — meaning G's fakes are indistinguishable from real data.
+
+### 7.2.6. From Theory to Code: The Expectation Explained
+
+The `𝔼` (expected value) notation can look intimidating. It just means "average over many samples."</br>
+**In theory** — a continuous integral you can't actually compute:
+
+$$\mathbb{E}_{x \sim p_{data}}[\log D(x)] = \int p_{data}(x) \log D(x) \, dx$$
+
+We don't know `p_data` as a closed-form formula, so the integral is intractable.</br>
+**In practice** — a mini-batch average you compute every training step:
+
+$$\mathbb{E}_{x \sim p_{data}}[\log D(x)] \approx \frac{1}{m} \sum_{i=1}^{m} \log D(x^{(i)})$$
+
+You grab a random mini-batch of `m` real samples, run them through D, and average the log-outputs. That's your estimate of the expectation. Larger batches give a better estimate. This approximation is called **Monte Carlo sampling**.
+
+### 7.2.7. The Discriminator Training Loss in Full
+
+Let `X` be a batch of real samples and `S` be a batch of noise seeds fed to G. Values near `1` mean "real"; values near `0` mean "fake."
+
+$$L_D = -\frac{1}{|X| + |S|} \left( \sum_{x \in X} \log D(x) + \sum_{s \in S} \log(1 - D(G(s))) \right)$$
+
+This averages over both real and fake contributions in a single update step. D minimizes this loss each training iteration.
+
+### 7.2.8. Known Failure Modes
+
+BCE-based GAN training is theoretically clean but practically fragile. Two problems come up often:
+
+1. **Vanishing Gradients**: If D gets too good too fast, its output for fake images saturates near `0`. The loss function flattens out and G stops receiving useful gradients. Using the non-saturating generator loss (Option B) delays this but doesn't eliminate it.
+2. **Mode Collapse**: G finds one type of output that reliably fools D and just keeps producing it. It learns to exploit D's weakness rather than learn the full variety of the real data distribution.
+
+These issues pushed the field toward alternatives like **Wasserstein GANs (WGAN)**, which replace BCE with the Wasserstein distance — a loss function with smoother, more informative gradients throughout training.
+
+### 7.2.9. Quick Reference
+
+| Component | Goal | Loss Function |
+|-----------|------|---------------|
+| Discriminator D | Correctly classify real vs. fake | Minimize `L_D` (standard BCE on both classes) |
+| Generator G (minimax) | Minimize chance of being detected | Minimize `E[log(1 - D(G(z)))]` — suffers vanishing gradients |
+| Generator G (non-saturating) | Maximize fooling probability | Minimize `-E[log D(G(z))]` — strong gradients early on |
+
+## 7.3. Moving into Quantum (QGAN)
+A Quantum GAN (QGAN) takes this architecture and runs either the generator, the discriminator, or both on quantum hardware. The primary objective is to train a quantum circuit to sample from a target probability distribution.
+
+**1. How the Quantum Generator Works**</br>
+Instead of classical neural network layers, the Quantum Generator uses a parameterized quantum circuit (PQC) with tunable gate parameters $\theta$.
+- **Objective**: The goal of training is for the quantum state returned by the generator ($|\psi(\theta)\rangle$) to closely mimic a target distribution over the computational basis:
+
+$$\sum_{r} \sqrt{p_{\alpha(r)}} |r\rangle$$
+
+- **The output Mechanism**: when we measure the otuput qubits in the computational basis, obtaining a specific binary outcome $|r\rangle$ yields a corresponding data label $\alpha(r)$ with a probability of:
+
+$$\left| \sqrt{p_{\alpha(r)}} \right|^2 = p_{\alpha(r)}$$
+
+- **In Plain English**: A perfectly trained quantum generator does not just output a single answer; its wave function is shaped so that when you measure it repeatedly, the frequency of the binary outputs matches the exact statistical distribution of your real-world data.
+
+## 7.4. QGAN Trained on One State
+
+### 7.4.1. How Classical GANs Learn (Quick Recap)
+
+A classical GAN doesn't memorize images. It trains on a *dataset*; hundreds or thousands of cat photos, for example: and the Generator gradually learns the statistical patterns shared across all of them: fur textures, ear shapes, eye positions. The Discriminator acts as a critic, and through their back-and-forth, the Generator builds an internal model of the whole distribution, not any single image.
+
+That's the key point: **classical GANs learn distributions, not instances.**
+
+### 7.4.2. What Changes in a QGAN?
+
+A Quantum GAN (QGAN) applies the same adversarial framework, but the thing being generated is no longer an image — it's a **quantum state**.
+
+The Generator is now a parameterized quantum circuit (PQC). Its job is to prepare a quantum state that matches some target. The Discriminator still judges whether what it sees is "real" (the target state) or "fake" (the Generator's current output).
+
+The PennyLane textbook example takes this to an extreme: **train on a single target quantum state.** No dataset of many examples. Just one state.
+
+### 7.4.3. Why One State Is Enough
+
+This is where quantum mechanics makes things genuinely strange.
+
+In classical ML, training on a single image is almost useless — one data point gives you almost nothing to generalize from. But a single quantum state isn't a single data point in the classical sense.
+
+A quantum state encodes a **probability distribution over all possible measurement outcomes**. Every time you measure it, you draw a sample from that distribution. Measure it a thousand times and you get a thousand samples — all coming from the same state, all carrying information about its internal structure.
+
+So repeated measurements of one quantum state effectively act as the training dataset.
+
+```
+Target Quantum State |ψ⟩
+         │
+         ▼
+  Measure repeatedly
+         │
+    ┌────┴────┐
+    │ Sample  │  ← each measurement is one training signal
+    │ Sample  │
+    │ Sample  │
+    └─────────┘
+         │
+         ▼
+  Discriminator compares statistics
+  from target vs. Generator's output
+```
+
+### 7.4.4. Why One Quantum State Can Be "Rich Enough"
+
+Three properties of quantum mechanics make a single state non-trivial as a training target:
+
+**Superposition**
+A quantum state isn't stuck in one configuration. It's a weighted combination of many basis states simultaneously. A Generator has to reproduce the exact amplitudes and phases of that combination — not just a single output value.
+
+**Entanglement**
+In a multi-qubit system, the state of one qubit can depend on the state of others in ways that have no classical analogue. Getting the correlations right is a hard constraint, not a trivial one.
+
+**Exponentially Large Hilbert Space**
+An n-qubit system lives in a 2ⁿ-dimensional space. With even 30 qubits, the Generator is effectively trying to reproduce a vector in a space with over a billion dimensions. "Just one state" at that scale is not a simple target.
+
+### 7.4.5. Classical vs. Quantum GAN — Side by Side
+
+| | Classical GAN | QGAN (one-state case) |
+|---|---|---|
+| **Training data** | Large dataset (many images) | Repeated measurements of one quantum state |
+| **Generator output** | Images / vectors | Quantum states (prepared by a parameterized circuit) |
+| **What's being learned** | Distribution over images | Structure of a target quantum state |
+| **Why multiple samples?** | Different images carry different info | Same state, different measurement outcomes |
+| **Richness of target** | Comes from dataset variety | Comes from superposition, entanglement, Hilbert space size |
+| **Memorization risk** | High with small datasets | Less relevant — the state IS the distribution |
+
+### 7.4.6. The Core Takeaway
+
+Classical GAN training needs many examples because any single classical data point is just a single data point. Quantum states are different; one state already *is* a distribution. Measuring it repeatedly gives you statistical access to that distribution, which is all a GAN needs to train against.
+
+This means QGANs can, in principle, work with far less "data" than their classical counterparts, but the complexity doesn't disappear. It shifts from dataset size to the internal structure of the quantum state itself.
+
+---
 
 # CheatSheet
 The set of {I, X, Y, Z} known as the set of **Pauli Matrices**.
@@ -1280,3 +2130,16 @@ To calculate: $e^{i\varphi Z\otimes I} = diag(e^{i\varphi}, e^{i\varphi}, e^{-i\
       2. The Entangling ZZ-Gate: a CNOT sandwich consisting of a CNOT (control:qubit 1, target:qubit 2), followed by $R_z$ gate on qubit 2 with angle $\theta=-2x_1x_2$, and ending with another CNOT.
 
 > Note: the mentioned angles above were the double! {$2x_1, 2x_2, 2x_1x_2$}, as in the rotation gate rule: $R(\theta)=e^{-i\frac{\theta}{2}}$
+
+**| Summary of steps to Calculate Cost Function Empirical:**</br>
+
+| Step | Action |
+|---|---|
+| Define cost | $C(\theta)=\langle\psi(\theta\|O\|\psi(\theta\rangle))$ |
+| Prepare state | Run circuit with current $\theta$ |
+| Choose basis | Rotate into measurement basis of $O$ |
+| Measure | Each shot → one eigenvalue $o_i \in {\pm 1}$ |
+| Average | `⟨O⟩ ≈ (1/N) Σ oᵢ` |
+| Multi-term H | Measure each Pauli term separately, combine with weights |
+| Shot noise | Error scales as `1/√N` |
+
