@@ -47,6 +47,11 @@
     - [4.5.2. Kernel Derivation](#452-kernel-derivation)
     - [4.5.3. What Entanglement Does to the Kernel](#453-what-entanglement-does-to-the-kernel)
     - [4.5.4. Summary Table](#454-summary-table)
+  - [4.6. The Quantum Kernel Method](#46-the-quantum-kernel-method)
+    - [4.6.5. Kernel Calculation — Angle Encoding (Toy Example 1)](#465-kernel-calculation--angle-encoding-toy-example-1)
+    - [4.6.6. Adding Entanglement — CNOT Gate (Toy Example 2)](#466-adding-entanglement--cnot-gate-toy-example-2)
+    - [4.6.7. Deeper Circuits — Repeating Layers (Toy Example 3)](#467-deeper-circuits--repeating-layers-toy-example-3)
+    - [4.6.8. Summary](#468-summary)
 - [5. Quantum Neural Network (QNN)](#5-quantum-neural-network-qnn)
   - [5.1. Expectation Value of an Observable](#51-expectation-value-of-an-observable)
   - [5.2. Measurement as Expectation in training QNN](#52-measurement-as-expectation-in-training-qnn)
@@ -69,11 +74,6 @@
     - [5.8.1. The Five Postulates — The Rules Quantum Mechanics Runs On](#581-the-five-postulates--the-rules-quantum-mechanics-runs-on)
     - [5.8.2. Expectation Values](#582-expectation-values)
     - [5.8.3. Hermitian Conjugates and Operator Algebra](#583-hermitian-conjugates-and-operator-algebra)
-    - [5.8.4. The Quantum Kernel Method](#584-the-quantum-kernel-method)
-    - [5.8.5. Kernel Calculation — Angle Encoding (Toy Example 1)](#585-kernel-calculation--angle-encoding-toy-example-1)
-    - [5.8.6. Adding Entanglement — CNOT Gate (Toy Example 2)](#586-adding-entanglement--cnot-gate-toy-example-2)
-    - [5.8.7. Deeper Circuits — Repeating Layers (Toy Example 3)](#587-deeper-circuits--repeating-layers-toy-example-3)
-    - [5.8.8. Summary](#588-summary)
 - [6. Barren Plateaus](#6-barren-plateaus)
   - [6.1. What is a Barren Plateau?](#61-what-is-a-barren-plateau)
   - [6.2. Why Do Barren Plateaus Occur? (Root Causes)](#62-why-do-barren-plateaus-occur-root-causes)
@@ -1252,6 +1252,91 @@ Deeper circuits (more Rotation + CNOT layers) amplify this further — but every
 | Angle encoding kernel | `K(x,y) = cos²((x₁−y₁)/2) · cos²((x₂−y₂)/2)` |
 | Effect of entanglement | Breaks product structure; increases feature separation |
 
+## 4.6. The Quantum Kernel Method
+
+**| The Basic Idea:**</br>
+A classical kernel function $K(x_i, x_j)$ measures similarity between two data points in some feature space. In a **Quantum Kernel**, that feature space is the Hilbert space of a quantum circuit.</br>
+Given a parameterized circuit `Φ(x⃗)` that maps a data vector to a quantum state:
+
+$$|\varphi(\vec{x})\rangle = \Phi(\vec{x})|0\rangle$$
+
+the kernel function is the **squared inner product** between two feature states:
+
+$$K(\vec{x}_i, \vec{x}_j) = |\langle \varphi(\vec{x}_i) | \varphi(\vec{x}_j) \rangle|^2$$
+
+In circuit form:
+
+$$K(\vec{x}_i, \vec{x}_j) = |\langle 0 | \Phi^\dagger(\vec{x}_i) \Phi(\vec{x}_j) | 0 \rangle|^2$$
+
+This is a transition probability — the probability of the combined circuit returning the all-zeros state `|0⟩`.
+
+### 4.6.5. Kernel Calculation — Angle Encoding (Toy Example 1)
+
+With two qubits and $R_y$ rotations, the feature map is:
+
+$$|\psi(\vec{x})\rangle = R_y(x_1)|0\rangle \otimes R_y(x_2)|0\rangle$$
+
+Expanding each qubit: $R_y(\theta)|0\rangle=cons(\frac{\theta}{2})|0\rangle+sin(\frac{\theta}{2})|1\rangle$
+
+The inner product between two states `x` and `y` simplifies to:
+
+$$\langle \psi(\vec{x}) | \psi(\vec{y}) \rangle = \cos\!\left(\frac{x_1 - y_1}{2}\right) \cos\!\left(\frac{x_2 - y_2}{2}\right)$$
+
+So the kernel entry is:
+
+$$K_{ij} = \cos^2\!\left(\frac{x_{i,1} - x_{j,1}}{2}\right) \cos^2\!\left(\frac{x_{i,2} - x_{j,2}}{2}\right)$$
+
+For the three data points `x₁ = [0.1, 0.5]`, `x₂ = [0.8, 1.2]`, `x₃ = [1.5, 0.2]`:
+
+|  | x₁ | x₂ | x₃ |
+|--|-----|-----|-----|
+| **x₁** | 1.0000 | 0.8354 | 0.7891 |
+| **x₂** | 0.8354 | 1.0000 | 0.6720 |
+| **x₃** | 0.7891 | 0.6720 | 1.0000 |
+
+Diagonal entries are always 1 (a state is perfectly similar to itself). The matrix is symmetric.
+
+### 4.6.6. Adding Entanglement — CNOT Gate (Toy Example 2)
+
+Inserting a CNOT after the `Ry` rotations creates an **entangled feature map**. The CNOT flips qubit 2 when qubit 1 is `|1⟩`:
+
+$$CX|00\rangle = |00\rangle, \quad CX|01\rangle = |01\rangle, \quad CX|10\rangle = |11\rangle, \quad CX|11\rangle = |10\rangle$$
+
+The resulting state is no longer a tensor product of two independent qubits — the features `x₁` and `x₂` interact. The new kernel matrix:
+
+|  | x₁ | x₂ | x₃ |
+|--|-----|-----|-----|
+| **x₁** | 1.0000 | 0.7787 | 0.5719 |
+| **x₂** | 0.7787 | 1.0000 | 0.6796 |
+| **x₃** | 0.5719 | 0.6796 | 1.0000 |
+
+`K₁₃` dropped from 0.7891 → 0.5719. Entanglement pushes data points further apart in Hilbert space, which can make them easier for an SVM to separate.
+
+### 4.6.7. Deeper Circuits — Repeating Layers (Toy Example 3)
+
+Running the Rotation + CNOT block **twice** spreads the data even further:
+
+|  | x₁ | x₂ | x₃ |
+|--|-----|-----|-----|
+| **x₁** | 1.0000 | 0.3969 | 0.1256 |
+| **x₂** | 0.3969 | 1.0000 | 0.1682 |
+| **x₃** | 0.1256 | 0.1682 | 1.0000 |
+
+`K₁₂` went from 0.8354 (no entanglement) → 0.7787 (depth 1) → 0.3969 (depth 2). Deeper circuits amplify input differences and give the SVM more room to find classification boundaries. The trade-off: more depth also means more **quantum noise** (decoherence and gate errors), which degrades accuracy on real hardware.
+
+### 4.6.8. Summary
+
+| Concept | Core Idea |
+|---|---|
+| State vector `\|ψ⟩` | Complete description of a quantum system |
+| Hermitian operator | Represents a measurable quantity; has real eigenvalues |
+| Measurement | Yields an eigenvalue; collapses state to corresponding eigenstate |
+| Unitary evolution | State changes reversibly under `U(t) = exp(-iHt/ℏ)` |
+| Tensor product | Combines subsystems; enables entanglement |
+| Quantum kernel | Inner product between quantum feature states; measures similarity |
+| CNOT effect | Introduces non-separability; increases expressiveness of feature map |
+| Circuit depth | More layers → more separation → more noise |
+
 ---
 
 # 5. Quantum Neural Network (QNN)
@@ -1262,7 +1347,7 @@ Deeper circuits (more Rotation + CNOT layers) amplify this further — but every
 
 **| Expectation Value of an Observable**:</br>
 The expectation value is the **average outcome** if we repeat the measurement many times.</br>
-The average value of an observable given by operator $A$ in state $|\psi\rangle$ is given by : $\langleA\rangle = \langle\psi|A|\psi\rangle$
+The average value of an observable given by operator $A$ in state $|\psi\rangle$ is given by : $\langle A\rangle = \langle\psi|A|\psi\rangle$
 
 ## 5.2. Measurement as Expectation in training QNN
 This is where the **foundations of quantum mechanics (expectation values)** meet the **variational training of quantum neural networks (QNNs**).</br>
@@ -1639,91 +1724,6 @@ Two rules that come up constantly in circuit calculations:
 $$U^\dagger = Z^\dagger R_x^\dagger(\theta) H^\dagger Y^\dagger = Z \cdot R_x(-\theta) \cdot H \cdot Y$$
 
 since Y, H, Z are Hermitian (self-adjoint), and $R_x^\dagger(\theta)=R_x(-\theta)$.
-
-### 5.8.4. The Quantum Kernel Method
-
-**| The Basic Idea:**</br>
-A classical kernel function $K(x_i, x_j)$ measures similarity between two data points in some feature space. In a **Quantum Kernel**, that feature space is the Hilbert space of a quantum circuit.</br>
-Given a parameterized circuit `Φ(x⃗)` that maps a data vector to a quantum state:
-
-$$|\varphi(\vec{x})\rangle = \Phi(\vec{x})|0\rangle$$
-
-the kernel function is the **squared inner product** between two feature states:
-
-$$K(\vec{x}_i, \vec{x}_j) = |\langle \varphi(\vec{x}_i) | \varphi(\vec{x}_j) \rangle|^2$$
-
-In circuit form:
-
-$$K(\vec{x}_i, \vec{x}_j) = |\langle 0 | \Phi^\dagger(\vec{x}_i) \Phi(\vec{x}_j) | 0 \rangle|^2$$
-
-This is a transition probability — the probability of the combined circuit returning the all-zeros state `|0⟩`.
-
-### 5.8.5. Kernel Calculation — Angle Encoding (Toy Example 1)
-
-With two qubits and $R_y$ rotations, the feature map is:
-
-$$|\psi(\vec{x})\rangle = R_y(x_1)|0\rangle \otimes R_y(x_2)|0\rangle$$
-
-Expanding each qubit: $R_y(\theta)|0\rangle=cons(\frac{\theta}{2})|0\rangle+sin(\frac{\theta}{2})|1\rangle$
-
-The inner product between two states `x` and `y` simplifies to:
-
-$$\langle \psi(\vec{x}) | \psi(\vec{y}) \rangle = \cos\!\left(\frac{x_1 - y_1}{2}\right) \cos\!\left(\frac{x_2 - y_2}{2}\right)$$
-
-So the kernel entry is:
-
-$$K_{ij} = \cos^2\!\left(\frac{x_{i,1} - x_{j,1}}{2}\right) \cos^2\!\left(\frac{x_{i,2} - x_{j,2}}{2}\right)$$
-
-For the three data points `x₁ = [0.1, 0.5]`, `x₂ = [0.8, 1.2]`, `x₃ = [1.5, 0.2]`:
-
-|  | x₁ | x₂ | x₃ |
-|--|-----|-----|-----|
-| **x₁** | 1.0000 | 0.8354 | 0.7891 |
-| **x₂** | 0.8354 | 1.0000 | 0.6720 |
-| **x₃** | 0.7891 | 0.6720 | 1.0000 |
-
-Diagonal entries are always 1 (a state is perfectly similar to itself). The matrix is symmetric.
-
-### 5.8.6. Adding Entanglement — CNOT Gate (Toy Example 2)
-
-Inserting a CNOT after the `Ry` rotations creates an **entangled feature map**. The CNOT flips qubit 2 when qubit 1 is `|1⟩`:
-
-$$CX|00\rangle = |00\rangle, \quad CX|01\rangle = |01\rangle, \quad CX|10\rangle = |11\rangle, \quad CX|11\rangle = |10\rangle$$
-
-The resulting state is no longer a tensor product of two independent qubits — the features `x₁` and `x₂` interact. The new kernel matrix:
-
-|  | x₁ | x₂ | x₃ |
-|--|-----|-----|-----|
-| **x₁** | 1.0000 | 0.7787 | 0.5719 |
-| **x₂** | 0.7787 | 1.0000 | 0.6796 |
-| **x₃** | 0.5719 | 0.6796 | 1.0000 |
-
-`K₁₃` dropped from 0.7891 → 0.5719. Entanglement pushes data points further apart in Hilbert space, which can make them easier for an SVM to separate.
-
-### 5.8.7. Deeper Circuits — Repeating Layers (Toy Example 3)
-
-Running the Rotation + CNOT block **twice** spreads the data even further:
-
-|  | x₁ | x₂ | x₃ |
-|--|-----|-----|-----|
-| **x₁** | 1.0000 | 0.3969 | 0.1256 |
-| **x₂** | 0.3969 | 1.0000 | 0.1682 |
-| **x₃** | 0.1256 | 0.1682 | 1.0000 |
-
-`K₁₂` went from 0.8354 (no entanglement) → 0.7787 (depth 1) → 0.3969 (depth 2). Deeper circuits amplify input differences and give the SVM more room to find classification boundaries. The trade-off: more depth also means more **quantum noise** (decoherence and gate errors), which degrades accuracy on real hardware.
-
-### 5.8.8. Summary
-
-| Concept | Core Idea |
-|---|---|
-| State vector `\|ψ⟩` | Complete description of a quantum system |
-| Hermitian operator | Represents a measurable quantity; has real eigenvalues |
-| Measurement | Yields an eigenvalue; collapses state to corresponding eigenstate |
-| Unitary evolution | State changes reversibly under `U(t) = exp(-iHt/ℏ)` |
-| Tensor product | Combines subsystems; enables entanglement |
-| Quantum kernel | Inner product between quantum feature states; measures similarity |
-| CNOT effect | Introduces non-separability; increases expressiveness of feature map |
-| Circuit depth | More layers → more separation → more noise |
 
 ---
 
