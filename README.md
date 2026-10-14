@@ -29,3 +29,9 @@ Plaintext
 ## Usage
 
 Navigate into any topic directory to access individual Markdown (.md) reference notes, lecture summaries, or supplementary code snippets.
+
+## License
+
+These notes are licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE). You may share and adapt them as long as you give credit and link back.
+
+Figures, slides and excerpts taken from course material belong to their original authors and are not covered by this license.
